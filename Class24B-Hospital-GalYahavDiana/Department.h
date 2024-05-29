@@ -9,7 +9,7 @@ class Department
 private:
 	char* nameOfDepartment;
 	DepartmentManager* DepartmentManager;
-	Pati patientsOfDepartment** 
+	Patient patientsOfDepartment**
 
 public:
 	Department(const char* firstName, const char* lastName, const int id);

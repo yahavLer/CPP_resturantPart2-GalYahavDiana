@@ -2,8 +2,11 @@
 
 #ifndef __PATIENT_H
 #define __PATIENT_H
+#include "Doctor.h"
+#include "Department.h"
+#include "Person.h"
 //#define ID_SIZE 9
-class Patient : class Person
+class Patient : public Person
 {
 private:
 	char* diagnosis;
@@ -22,6 +25,7 @@ public:
 	void setDiagnosis(char* diagnosis);
 	void getDiagnosis() const;
 	void print() const;
+	Nurse* callNurse();
 	~Patient();
 };
 
