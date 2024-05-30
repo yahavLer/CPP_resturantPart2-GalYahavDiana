@@ -16,10 +16,13 @@ private:
 public:
 	Worker(int Seniority,int Salary, double numOfHours, bool isOnShift);
 	Worker(const Worker& other);
-	void setFirstName(const char* n);
-	void setLastName(const char* n);
-	char* getFirstName() const;
-	char* getLastName() const;
+	void setSeniority(const char* n);
+	void setSalary(const char* n);
+	void setnumOfHours(const char* n);
+	bool isOnShift(bool isOnShift);
+	void getSeniority(const char* n);
+	void getSalary(const char* n);
+	void getnumOfHours(const char* n);
 	void print() const;
 	~Worker();
 };
