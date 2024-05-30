@@ -9,12 +9,12 @@ private:
 	char* nameOfArtical;
 	//__DATE__ publishDate;
 	Researcher** ResearchersWriteArtical;
-	Worker** staffOfDepartment;
 
 public:
 	Artical(char* nameOfArtical);
 	Artical(const Artical& other);
 	void setNameOfArtical(const char* nameOfArtical);
+	bool addResearcher(const Researcher& researcher);
 	void print() const;
 	~Artical();
 };

@@ -134,7 +134,7 @@
     <ClInclude Include="Department.h" />
     <ClInclude Include="DepartmentManager.h" />
     <ClInclude Include="Doctor.h" />
-    <ClInclude Include="Hospitale.h" />
+    <ClInclude Include="Hospital.h" />
     <ClInclude Include="InpatientDepartment.h" />
     <ClInclude Include="Nurse.h" />
     <ClInclude Include="Patient.h" />
