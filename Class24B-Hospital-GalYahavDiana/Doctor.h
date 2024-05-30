@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 #ifndef __DOCTOR_H
 #define __DOCTOR_H
@@ -19,5 +18,5 @@ public:
 	~Doctor();
 };
 
-#endif // __RESEARCHER_H
+#endif // __DOCTOR_H
 
