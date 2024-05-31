@@ -7,7 +7,6 @@
 #include "Worker.h"
 
 
-//#define ID_SIZE 9
 class Hospital : public Building
 {
 private:

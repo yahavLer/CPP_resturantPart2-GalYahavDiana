@@ -10,11 +10,11 @@ private:
 	Cafeteria* cafeteriaHeWork; 
 
 public:
-	Cafeteria(const Cafeteria* cafeteriaHeWork);
-	bool setCafeteria(const Cafeteria* cafeteriaHeWork);
-	Cafeteria* getCafeteria()const ;
-	void printCafeteria()const;
-	~Cafeteria();
+	CafeteriaWorker (const Cafeteria* cafeteriaHeWork);
+	bool setCafeteria(Cafeteria* cafeteriaHeWork);
+	Cafeteria* getCafeteria() const ;
+	void printCafeteriaWorker() const;
+	~CafeteriaWorker();
 };
 
 #endif // __CAFETERIAWORKER_H
