@@ -2,19 +2,26 @@
 
 #ifndef __DOCTOR_H
 #define __DOCTOR_H
-#include "Worker.h"
+#include "Patient.h"
 #include "Specialization.h"
 class Doctor : public Worker
 {
 private:
 
 	Patient** patientsOfDoctor;
-	Specialization* specialization;
+	Specialization** specialization;
 
 
 public:
 	Doctor(const Specialization* Specialization);
-	void putDiagnosis(const Patient* patient, const char* Diagnosis);
+	bool healPatient(Patient* patient);
+	bool putDiagnosis(Patient* patient, const char* Diagnosis);
+	bool addPatient(Patient* patient);
+	bool removePatient(Patient* patient); //remove patient from the doctor's list to other doctor
+	Patient** getPatients() const;
+	Specialization** getSpecialization() const;
+	bool resign();
+	void printDoctor() const;
 	~Doctor();
 };
 
