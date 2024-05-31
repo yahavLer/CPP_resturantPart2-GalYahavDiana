@@ -5,16 +5,18 @@
 #include "Building.h"
 #include "CafeteriaWorker.h"
 
-//#define ID_SIZE 9
-class Hospital : public Building
+class Cafeteria : public Building
 {
 private:
 	CafeteriaWorker** cafeteriaWorkers;
 
 public:
-	Hospital(const char* firstName, const char* lastName, const int id);
-	bool hospitalize_patient(Patient* patient);
-	~Hospital();
+	Cafeteria(const char* firstName, const char* lastName, const int id);
+	bool addWorker(const Worker* worker);
+	bool fireWorker(const Worker* worker);
+	CafeteriaWorker** getCafeteriaWorkers() const;
+	void printCafeteria()const;
+	~Cafeteria();
 };
 
 #endif // __CAFETERIA_H

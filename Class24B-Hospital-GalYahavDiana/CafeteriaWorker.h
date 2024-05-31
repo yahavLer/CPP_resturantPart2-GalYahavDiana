@@ -3,19 +3,18 @@
 #ifndef __CAFETERIAWORKER_H
 #define __CAFETERIAWORKER_H
 #include "Worker.h"
-#include "Specialization.h"
+#include "Cafeteria.h"
 class CafeteriaWorker : public Worker
 {
 private:
-
-	Patient** patientsOfDoctor;
-	Specialization* specialization;
-
+	Cafeteria* cafeteriaHeWork; 
 
 public:
-	Doctor(const Specialization* Specialization);
-	void putDiagnosis(const Patient* patient, const char* Diagnosis);
-	~Doctor();
+	Cafeteria(const Cafeteria* cafeteriaHeWork);
+	bool setCafeteria(const Cafeteria* cafeteriaHeWork);
+	Cafeteria* getCafeteria()const ;
+	void printCafeteria()const;
+	~Cafeteria();
 };
 
 #endif // __CAFETERIAWORKER_H

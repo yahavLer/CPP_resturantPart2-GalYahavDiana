@@ -1,11 +1,10 @@
 #pragma once
-#pragma once
 
-#ifndef __WORKER_H
-#define __WORKER_H
+#ifndef __DEPARTMENTMAMAGER_H
+#define __DEPARTMENTMAMAGER_H
 #include "Person.h"
 //#define ID_SIZE 9
-class DepartmentManager: public Researcher, public Person:
+class DepartmentManager : public Researcher, public Person 
 {
 private:
 
@@ -15,8 +14,8 @@ private:
 	bool isOnShift;
 
 public:
-	Worker(int Seniority, int Salary, double numOfHours, bool isOnShift);
-	Worker(const Worker& other);
+	DepartmentManager(int Seniority, int Salary, double numOfHours, bool isOnShift);
+	DepartmentManager(const Worker& other);
 	void setSeniority(const int Seniority);
 	void setSalary(const int Salary);
 	void setnumOfHours(const double numOfHours);
@@ -25,7 +24,7 @@ public:
 	void getSalary()const;
 	void getnumOfHours()const;
 	void print() const;
-	~Worker();
+	~DepartmentManager();
 };
 
-#endif // __WORKER_H
+#endif // __DEPARTMENTMAMAGER_H

@@ -39,9 +39,6 @@
     <ClInclude Include="Artical.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DepartmentManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Patient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -58,6 +55,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Specialization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DepartmentManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

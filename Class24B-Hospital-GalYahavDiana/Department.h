@@ -10,22 +10,24 @@ class Department
 {
 private:
 	char* nameOfDepartment;
-	DepartmentManager* DepartmentManager;
+	DepartmentManager* departmentManager;
 	Patient** patientsOfDepartment;
 	Worker** staffOfDepartment;
 
 public:
-	Department(char* nameOfDepartment, DepartmentManager* DepartmentManager, Patient** patientsOfDepartment);
+	Department(char* nameOfDepartment, DepartmentManager* DepartmentManager);
 	Department(const Department& other);
-	void setNameOfDepartment(const char* nameOfDepartment);
-	void getNameOfDepartment() const;
-	void setDepartmentManager(const DepartmentManager* DepartmentManager);
-	void getDepartmentManager()const;
-	bool addWorkerToDepartment(const Worker& worker) ;
-	bool RemoveWorkerToDepartment(const Worker& worker);
-	bool hospitalizePatient(const Patient& patient) ;
-	bool dischargedPatient(const Patient& patient);
-	void print() const;
+	bool setNameOfDepartment(const char* nameOfDepartment);
+	char* getNameOfDepartment() const;
+	bool setDepartmentManager(DepartmentManager* DepartmentManager);
+	DepartmentManager* getDepartmentManager()const;
+	bool addWorkerToDepartment(Worker& worker) ;
+	bool removeWorkerFromDepartment(Worker& worker);
+	bool addPatient(Patient& patient) ;
+	bool removePatient(Patient& patient);
+	Worker** getAllstaffOfDepartment()const;
+	Patient** getAllpatientsOfDepartment()const;
+	void printDepartment() const;
 	~Department();
 };
 
