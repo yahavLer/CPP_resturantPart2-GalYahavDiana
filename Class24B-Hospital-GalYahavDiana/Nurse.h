@@ -14,6 +14,7 @@ public:
 	Nurse();
 	void addPatient(const Patient* patient);
 	bool callDoctor(const Doctor* Doctor);
+	void printNurse()const;
 	~Nurse();
 };
 
