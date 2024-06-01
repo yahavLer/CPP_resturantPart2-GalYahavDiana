@@ -5,7 +5,6 @@
 #define __RESEARCHER_H
 #include "Worker.h"
 #include "Artical.h"
-//#define ID_SIZE 9
 class Researcher : public Worker
 {
 private:

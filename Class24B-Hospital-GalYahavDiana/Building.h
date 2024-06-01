@@ -6,7 +6,7 @@ class Building
 {
 private:
 	char* address;
-	char* name;
+	char* nameOfBuilding;
 
 public:
 	Building(const char* name, const char* address);

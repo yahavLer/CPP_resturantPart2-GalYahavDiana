@@ -11,9 +11,11 @@ private:
 	CafeteriaWorker** cafeteriaWorkers;
 
 public:
-	Cafeteria(const char* firstName, const char* lastName, const int id);
+	Cafeteria();
 	bool addWorker(const Worker* worker);
 	bool fireWorker(const Worker* worker);
+	bool setNameOfCafeteria(const char* nameOfCafeteria);
+	char* getNameOfCafeteria() const;
 	CafeteriaWorker** getCafeteriaWorkers() const;
 	void printCafeteria()const;
 	~Cafeteria();

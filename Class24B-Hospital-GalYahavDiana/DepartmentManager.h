@@ -12,7 +12,7 @@ private:
 	int bonus;
 
 public:
-	DepartmentManager();
+	DepartmentManager(const int bonus);
 	DepartmentManager(const DepartmentManager& other);
 	bool setBonus(const int bonus);
 	int getBonus() const;

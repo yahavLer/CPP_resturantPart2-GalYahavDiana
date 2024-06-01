@@ -13,13 +13,15 @@ private:
 
 
 public:
-	Doctor(const Specialization* Specialization);
+	Doctor();
+	Doctor(const Doctor& other);
 	bool healPatient(Patient* patient);
 	bool putDiagnosis(Patient* patient, const char* Diagnosis);
 	bool addPatient(Patient* patient);
 	bool removePatient(Patient* patient); //remove patient from the doctor's list to other doctor
 	Patient** getPatients() const;
-	Specialization** getSpecialization() const;
+	bool addSpecialization(const Specialization* specialization);
+	Specialization** getSpecializations() const;
 	void printDoctor() const;
 	~Doctor();
 };

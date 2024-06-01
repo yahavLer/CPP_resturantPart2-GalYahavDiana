@@ -10,12 +10,13 @@
 class Hospital : public Building
 {
 private:
+	char* nameOfHospital;
 	Building* allBuilding;
 	Patient** allPatients;
 	Worker** allWorkers;
 
 public:
-	Hospital(const char* firstName, const char* lastName, const int id);
+	Hospital(const char* nameOfHospital);
 	bool hospitalize_patient(const Patient* patient);
 	bool unhospitalize_patient(const Patient* patient);
 	bool add_worker(const Worker* worker);
@@ -23,6 +24,7 @@ public:
 	Building* getBuilding() const;
 	Patient** getPatients() const;
 	Worker** getWorkers() const;
+	void printHospital() const;
 	~Hospital();
 };
 
