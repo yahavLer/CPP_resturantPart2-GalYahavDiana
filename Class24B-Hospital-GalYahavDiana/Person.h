@@ -14,11 +14,12 @@ private:
 public:
 	Person(const char* firstName, const char* lastName, const int id);
 	Person(const Person& other);
-	void setFirstName(const char* n);
-	void setLastName(const char* n);
+	bool setFirstName(const char* n);
+	bool setLastName(const char* n);
 	char* getFirstName() const;
 	char* getLastName() const;
-	void print() const;
+	int getId() const;
+	void printPerson() const;
 	~Person();
 };
 

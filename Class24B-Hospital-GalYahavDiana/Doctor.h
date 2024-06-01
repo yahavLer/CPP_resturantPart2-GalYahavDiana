@@ -20,7 +20,6 @@ public:
 	bool removePatient(Patient* patient); //remove patient from the doctor's list to other doctor
 	Patient** getPatients() const;
 	Specialization** getSpecialization() const;
-	bool resign();
 	void printDoctor() const;
 	~Doctor();
 };

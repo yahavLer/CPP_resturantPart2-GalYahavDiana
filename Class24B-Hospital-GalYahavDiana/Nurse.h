@@ -12,9 +12,10 @@ private:
 
 public:
 	Nurse();
-	void addPatient(const Patient* patient);
+	bool addPatient(const Patient* patient);
 	bool callDoctor(const Doctor* Doctor);
-	void printNurse()const;
+	Patient** getPatientsGotCare() const;
+	void printNurse() const;
 	~Nurse();
 };
 

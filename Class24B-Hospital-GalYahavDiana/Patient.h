@@ -6,27 +6,27 @@
 #include "Department.h"
 #include "Person.h"
 #include "Nurse.h"
-//#define ID_SIZE 9
+
 class Patient : public Person
 {
 private:
 	char* diagnosis;
 //	DATE hospitalizationDate; 
 //	DATE dischargeDate;
-	Doctor* doctor;
+	Doctor* doctor; // Pointer to the doctor who treats the patient
 	Department* department;
 
 public:
 	Patient(char* diagnosis, Doctor* doctor, Department* department);
 	Patient(const Patient& other);
-	void setDoctor(Doctor* doctor);
-	void getDoctor() const;
-	void setDepartment(Department* department);
-	void getDepartment() const;
-	void setDiagnosis(char* diagnosis);
-	void getDiagnosis() const;
-	void print() const;
+	bool setDoctor(Doctor* doctor);
+	Doctor* getDoctor() const;
+	bool setDepartment(Department* department);
+	Department* getDepartment() const;
+	bool setDiagnosis(char* diagnosis);
+	char* getDiagnosis() const;
 	Nurse* callNurse();
+	void printPatient() const;
 	~Patient();
 };
 
