@@ -10,13 +10,14 @@ class Researcher : public Worker
 {
 private:
 	int numOfArticles;
-	Artical** articalsOfResearcher;
-	char** subject; ;
-
+	Artical* articalsOfResearcher;
 
 public:
-	Researcher(const int numOfArticles, char* subject);
+	Researcher();
 	Artical addArticle(const Artical* artical);
+	void printResearcher() const;
+	Artical* getArticals() const;
+	Artical* getNumOfArticles() const;
 	~Researcher();
 };
 
