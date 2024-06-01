@@ -8,14 +8,16 @@ class Artical
 private:
 	char* nameOfArtical;
 	//__DATE__ publishDate;
-	Researcher** ResearchersWriteArtical;
+	Researcher** researchersOfArtical;
 
 public:
 	Artical(char* nameOfArtical);
 	Artical(const Artical& other);
-	void setNameOfArtical(const char* nameOfArtical);
+	bool setNameOfArtical(const char* nameOfArtical);
+	char* getNameOfArtical()const;
 	bool addResearcher(const Researcher& researcher);
-	void print() const;
+	Researcher** getResearchersOfArtical()const;
+	void printArtical() const;
 	~Artical();
 };
 

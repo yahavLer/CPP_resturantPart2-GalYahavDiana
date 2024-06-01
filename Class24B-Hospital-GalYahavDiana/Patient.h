@@ -5,6 +5,7 @@
 #include "Doctor.h"
 #include "Department.h"
 #include "Person.h"
+#include "Nurse.h"
 //#define ID_SIZE 9
 class Patient : public Person
 {

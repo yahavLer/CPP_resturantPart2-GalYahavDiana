@@ -14,7 +14,11 @@ public:
 	Specialization(char* nameOfSpecialization);
 	Specialization(const Specialization& other);
 	bool setNameOfArtical(const char* nameOfArtical);
-	bool addResearcher(const Researcher& researcher);
+	char* getNameOfArtical()const;
+	int getnumOfDoctors()const;
+	Doctor** getListOfDoctorWithSpecial()const;
+	bool addDoctorWithSpecial(const Doctor* doctor);
+	bool removeDoctorWithSpecial(const Doctor* doctor);
 	void printSpecialization() const;
 	~Specialization();
 };
