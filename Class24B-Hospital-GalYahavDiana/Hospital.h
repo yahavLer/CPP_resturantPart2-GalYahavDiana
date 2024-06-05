@@ -2,10 +2,9 @@
 
 #ifndef __HOSPITAL_H
 #define __HOSPITAL_H
-#include "Building.h"
+class Building;
 #include "Patient.h"
-#include "Worker.h"
-
+class Worker;
 
 class Hospital : public Building
 {
@@ -19,8 +18,8 @@ private:
 
 public:
 	Hospital(const char* nameOfHospital);
-	bool hospitalize_patient(const Patient* patient);
-	bool unhospitalize_patient(const Patient* patient);
+	bool hospitalize_patient(Patient* patient);
+	bool unhospitalize_patient(Patient* patient);
 	bool add_worker(const Worker* worker);
 	bool fire_worker(const Worker* worker);
 	Building* getBuilding() const;

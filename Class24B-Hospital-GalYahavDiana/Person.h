@@ -2,15 +2,13 @@
 
 #ifndef __PERSON_H
 #define __PERSON_H
-//#define ID_SIZE 9
 class Person
 {
 private:
 	char* firstName;
 	char* lastName;
-	//char id[ID_SIZE];
-	int id; 
-
+	int id;
+	Date dateOfBirth;
 public:
 	Person(const char* firstName, const char* lastName, const int id);
 	Person(const Person& other);
