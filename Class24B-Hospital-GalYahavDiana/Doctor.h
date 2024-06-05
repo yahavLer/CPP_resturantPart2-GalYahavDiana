@@ -10,7 +10,8 @@ private:
 
 	Patient** patientsOfDoctor;
 	Specialization** specialization;
-
+	int numOfPatientsOfDoctor;
+	int numOfSpecialization;
 
 public:
 	Doctor();
@@ -22,6 +23,8 @@ public:
 	Patient** getPatients() const;
 	bool addSpecialization(const Specialization* specialization);
 	Specialization** getSpecializations() const;
+	int getNumOfPatientsOfDoctor() const;
+	int getNumOfSpecialization() const;
 	void printDoctor() const;
 	~Doctor();
 };

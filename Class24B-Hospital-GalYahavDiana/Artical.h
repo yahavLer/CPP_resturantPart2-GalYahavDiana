@@ -9,6 +9,7 @@ private:
 	char* nameOfArtical;
 	//__DATE__ publishDate;
 	Researcher** researchersOfArtical;
+	int numOfResearchersOfArtical;
 
 public:
 	Artical(char* nameOfArtical);
@@ -17,6 +18,7 @@ public:
 	char* getNameOfArtical()const;
 	bool addResearcher(const Researcher& researcher);
 	Researcher** getResearchersOfArtical()const;
+	int getNumOfResearchersOfArtical()const;
 	void printArtical() const;
 	~Artical();
 };

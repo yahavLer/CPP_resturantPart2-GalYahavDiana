@@ -9,6 +9,7 @@ class Nurse : public Worker
 private:
 
 	Patient** patientsGotCare;
+	int numOfPatientsGotCare;
 
 public:
 	Nurse();
@@ -16,6 +17,7 @@ public:
 	bool callDoctor(const Doctor* Doctor);
 	Patient** getPatientsGotCare() const;
 	void printNurse() const;
+	int getNumOfPatientsGotCare()const;
 	~Nurse();
 };
 

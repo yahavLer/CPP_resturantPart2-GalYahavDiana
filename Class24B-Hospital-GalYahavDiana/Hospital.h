@@ -14,6 +14,8 @@ private:
 	Building* allBuilding;
 	Patient** allPatients;
 	Worker** allWorkers;
+	int numOfWorkers;
+	int numOfPatients;
 
 public:
 	Hospital(const char* nameOfHospital);
@@ -25,6 +27,9 @@ public:
 	Patient** getPatients() const;
 	Worker** getWorkers() const;
 	void printHospital() const;
+	int getNumOfWorkers()const;
+	int getNumOfPatients()const;
+
 	~Hospital();
 };
 

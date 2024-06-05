@@ -9,6 +9,7 @@ class InpatientDepartment : public Building
 {
 private:
 	Department** allDepartments;
+	int numOfDepartments;
 
 public:
 	InpatientDepartment();
@@ -16,6 +17,7 @@ public:
     bool removeDepartment(const Department* department);
     Department** getDepartments() const;
     void printInpatientDepartment() const;
+	int getNumOfDepartments()const;
 };
 
 #endif // __INPATIENTDEPARTMENT_H

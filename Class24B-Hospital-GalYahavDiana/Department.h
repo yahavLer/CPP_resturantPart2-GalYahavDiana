@@ -13,6 +13,8 @@ private:
 	DepartmentManager* departmentManager;
 	Patient** patientsOfDepartment;
 	Worker** staffOfDepartment;
+	int numOfPatientsOfDepartment;
+	int numOfStaffOfDepartment;
 
 public:
 	Department(char* nameOfDepartment, DepartmentManager* DepartmentManager);
@@ -27,6 +29,8 @@ public:
 	bool removePatient(Patient& patient);
 	Worker** getAllstaffOfDepartment()const;
 	Patient** getAllpatientsOfDepartment()const;
+	int getNumOfPatientsOfDepartment()const;
+	int getNumOfStaffOfDepartment()const;
 	void printDepartment() const;
 	~Department();
 };

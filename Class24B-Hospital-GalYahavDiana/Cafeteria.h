@@ -9,6 +9,7 @@ class Cafeteria : public Building
 {
 private:
 	CafeteriaWorker** cafeteriaWorkers;
+	int numOfcafeteriaWorkers;
 
 public:
 	Cafeteria();
@@ -17,6 +18,7 @@ public:
 	bool setNameOfCafeteria(const char* nameOfCafeteria);
 	char* getNameOfCafeteria() const;
 	CafeteriaWorker** getCafeteriaWorkers() const;
+	int getNumOfcafeteriaWorkers();
 	void printCafeteria()const;
 	~Cafeteria();
 };
