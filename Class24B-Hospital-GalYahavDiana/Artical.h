@@ -7,7 +7,7 @@ class Artical
 {
 private:
 	char* nameOfArtical;
-	//__DATE__ publishDate;
+	Date publishDate;
 	Researcher** researchersOfArtical;
 	int numOfResearchersOfArtical;
 

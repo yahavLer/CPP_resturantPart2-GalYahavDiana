@@ -6,13 +6,13 @@
 #include "Department.h"
 #include "Person.h"
 #include "Nurse.h"
-
+#include "Date.h"
 class Patient : public Person
 {
 private:
 	char* diagnosis;
-//	DATE hospitalizationDate; 
-//	DATE dischargeDate;
+	Date hospitalizationDate; 
+	Date dischargeDate;
 	Doctor* doctor; // Pointer to the doctor who treats the patient
 	Department* department;
 
