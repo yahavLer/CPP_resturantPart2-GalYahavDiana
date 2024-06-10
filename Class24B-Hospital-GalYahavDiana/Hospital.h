@@ -2,8 +2,8 @@
 
 #ifndef __HOSPITAL_H
 #define __HOSPITAL_H
-class Building;
 #include "Patient.h"
+#include "Building.h"
 class Worker;
 
 class Hospital : public Building
