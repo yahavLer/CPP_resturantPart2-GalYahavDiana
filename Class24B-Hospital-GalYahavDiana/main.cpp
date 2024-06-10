@@ -245,7 +245,7 @@ void addResearchToResearcher(vector<Researcher*>& researchers) {
     cout << "Enter research name: ";
     cin >> researchName;
 
-    Artical* newArtical = new Artical(researchName.c_str());
+    Artical* newArtical = new Artical(researchName);
     researchers[researcherIndex - 1]->addArticle(newArtical);
 }
 
