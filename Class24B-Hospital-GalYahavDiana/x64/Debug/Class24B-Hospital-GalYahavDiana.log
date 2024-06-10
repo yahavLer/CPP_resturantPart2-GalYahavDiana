@@ -1,0 +1,100 @@
+﻿  HospitalManager.cpp
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(11,8): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(11,8): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(11,34): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(20,8): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(20,8): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(20,45): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(21,40): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(21,40): error C2143: syntax error: missing ',' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(22,43): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(22,43): error C2143: syntax error: missing ',' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(11,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(11,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(11,27): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(19,19): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(20,20): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(21,18): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(22,21): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(23,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(23,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(23,31): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(11,12): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(11,12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(11,35): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(19,37): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(19,37): error C2143: syntax error: missing ',' before '&'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(20,12): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(20,12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(20,45): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(14,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(14,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(14,32): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(28,18): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(29,21): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(31,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(31,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(31,45): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(11,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(11,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(11,27): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(16,31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(16,31): error C2143: syntax error: missing ',' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(18,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(18,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(18,38): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\HospitalManager.cpp(97,35): error C2661: 'Patient::Patient': no overloaded function takes 3 arguments
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\HospitalManager.cpp(97,35): message : while trying to match the argument list '(char [100], Doctor *, Department *)'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\HospitalManager.cpp(168,37): error C2664: 'bool Researcher::addArticle(const Artical *)': cannot convert argument 1 from 'Artical' to 'const Artical *'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\HospitalManager.cpp(168,50): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Researcher.h(16,7): message : see declaration of 'Researcher::addArticle'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\HospitalManager.cpp(168,37): message : while trying to match the argument list '(Artical)'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\HospitalManager.cpp(233,34): error C2065: 'departmentManagers': undeclared identifier
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\HospitalManager.cpp(233,82): error C2065: 'departmentManagers': undeclared identifier
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\HospitalManager.cpp(238,60): error C2065: 'departmentManagers': undeclared identifier
+  main.cpp
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(11,8): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(11,8): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(11,34): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(20,8): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(20,8): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(20,45): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(21,40): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(21,40): error C2143: syntax error: missing ',' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(22,43): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Specialization.h(22,43): error C2143: syntax error: missing ',' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(11,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(11,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(11,27): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(19,19): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(20,20): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(21,18): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(22,21): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(23,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(23,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Doctor.h(23,31): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(11,12): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(11,12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(11,35): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(19,37): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(19,37): error C2143: syntax error: missing ',' before '&'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(20,12): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(20,12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Artical.h(20,45): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(14,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(14,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(14,32): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(28,18): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(29,21): error C2061: syntax error: identifier 'Patient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(31,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(31,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Department.h(31,45): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(11,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(11,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(11,27): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(16,31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(16,31): error C2143: syntax error: missing ',' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(18,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(18,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Class24B-Hospital-GalYahavDiana\Nurse.h(18,38): error C2238: unexpected token(s) preceding ';'
+  Generating Code...

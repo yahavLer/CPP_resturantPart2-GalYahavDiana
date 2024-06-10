@@ -136,6 +136,7 @@
     <ClInclude Include="DepartmentManager.h" />
     <ClInclude Include="Doctor.h" />
     <ClInclude Include="Hospital.h" />
+    <ClInclude Include="HospitalManager.h" />
     <ClInclude Include="InpatientDepartment.h" />
     <ClInclude Include="Nurse.h" />
     <ClInclude Include="Patient.h" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Worker.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HospitalManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

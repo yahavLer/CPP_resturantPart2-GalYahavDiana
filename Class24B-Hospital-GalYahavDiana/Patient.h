@@ -17,7 +17,7 @@ private:
 	Department* department;
 
 public:
-	Patient(char* diagnosis, Doctor* doctor, Department* department);
+	Patient(char* diagnosis, Doctor* doctor, Department* department, Date hospitalizationDate);
 	Patient(const Patient& other);
 	bool setDoctor(Doctor* doctor);
 	Doctor* getDoctor() const;
@@ -27,6 +27,10 @@ public:
 	char* getDiagnosis() const;
 	Nurse* callNurse();
 	void printPatient() const;
+	Date getHospitalizationDate()const;
+	void setDischargeDate();
+	Date getDischargeDate()const;
+
 	~Patient();
 };
 

@@ -10,7 +10,7 @@ private:
 	int seniority;
 	int	salary;
 	double numOfHours;
-	bool isOnShift;
+	bool onShift;
 
 public:
 	Worker(int seniority,int salary, double numOfHours);
