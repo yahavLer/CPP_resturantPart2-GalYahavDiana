@@ -2,11 +2,11 @@
 
 #ifndef __PATIENT_H
 #define __PATIENT_H
-#include "Doctor.h"
-#include "Department.h"
 #include "Person.h"
-#include "Nurse.h"
 #include "Date.h"
+class Doctor;
+class Nurse;
+class Department;
 class Patient : public Person
 {
 private:
@@ -17,7 +17,7 @@ private:
 	Department* department;
 
 public:
-	Patient(char* diagnosis, Doctor* doctor, Department* department, Date hospitalizationDate);
+	Patient(char* diagnosis, Doctor* doctor, Department* department);
 	Patient(const Patient& other);
 	bool setDoctor(Doctor* doctor);
 	Doctor* getDoctor() const;

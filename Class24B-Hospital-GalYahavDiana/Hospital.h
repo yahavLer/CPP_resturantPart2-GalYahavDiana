@@ -15,9 +15,11 @@ private:
 	Worker** allWorkers;
 	int numOfWorkers;
 	int numOfPatients;
+	DepartmentManager** departmentManagers;
 
 public:
 	Hospital(const char* nameOfHospital);
+	Hospital();
 	bool hospitalize_patient(Patient* patient);
 	bool unhospitalize_patient(Patient* patient);
 	bool add_worker(const Worker* worker);
@@ -28,6 +30,8 @@ public:
 	void printHospital() const;
 	int getNumOfWorkers()const;
 	int getNumOfPatients()const;
+	DepartmentManager** getDepartmentManagers()const;
+
 
 	~Hospital();
 };

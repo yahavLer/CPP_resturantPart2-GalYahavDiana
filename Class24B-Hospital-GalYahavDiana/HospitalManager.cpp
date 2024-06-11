@@ -4,7 +4,8 @@
 
 using namespace std;
 
-HospitalManager::HospitalManager() {
+HospitalManager::HospitalManager() 
+{
     workerCount = 0;
     patientCount = 0;
     departmentCount = 0;
@@ -12,6 +13,7 @@ HospitalManager::HospitalManager() {
     researcherCount = 0;
     doctorCount = 0;
     departmentManagerCount = 0;
+    hospital = NULL;
 }
 
 
@@ -165,7 +167,7 @@ void HospitalManager::addArticleToResearcher()
     cin >> researchName;
 
     Artical* newArtical = new Artical(researchName);
-    researchers[researcherIndex - 1]->addArticle(*newArtical);
+    researchers[researcherIndex - 1]->addArticle(newArtical);
 }
 
 void HospitalManager::removePatient()
@@ -229,8 +231,10 @@ void HospitalManager::changeDepartmentManager()
     }
 
     cout << "Select new manager for the department:\n";
+    DepartmentManager** departmentManagers= hospital.getDepartmentManagers();
     for (int i = 0; i < departmentManagerCount; ++i) {
-        cout << i + 1 << ". " << departmentManagers[i]->getFirstName() << " " << departmentManagers[i]->getLastName() << endl;
+        cout << i + 1 << ". " ;
+        departmentManagers[i]->printDepartmentManager();
     }
     int managerIndex;
     cin >> managerIndex;

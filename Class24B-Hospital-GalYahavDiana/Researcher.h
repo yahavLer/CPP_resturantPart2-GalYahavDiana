@@ -4,7 +4,7 @@
 #ifndef __RESEARCHER_H
 #define __RESEARCHER_H
 #include "Worker.h"
-#include "Artical.h"
+class Artical;
 class Researcher : public Worker
 {
 private:

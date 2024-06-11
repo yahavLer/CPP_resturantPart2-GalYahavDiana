@@ -2,7 +2,8 @@
 
 #ifndef __ARTICAL_H
 #define __ARTICAL_H
-
+#include "Date.h"
+class Researcher;
 class Artical
 {
 private:
@@ -16,7 +17,7 @@ public:
 	Artical(const Artical& other);
 	bool setNameOfArtical(const char* nameOfArtical);
 	char* getNameOfArtical()const;
-	bool addResearcher(const Researcher& researcher);
+	bool addResearcher(Researcher& researcher);
 	Researcher** getResearchersOfArtical()const;
 	int getNumOfResearchersOfArtical()const;
 	void printArtical() const;

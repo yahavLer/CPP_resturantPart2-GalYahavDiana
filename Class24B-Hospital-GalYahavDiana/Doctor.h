@@ -2,8 +2,9 @@
 
 #ifndef __DOCTOR_H
 #define __DOCTOR_H
-#include "Patient.h"
+#include "Worker.h"
 #include "Specialization.h"
+class Patient;
 class Doctor : public Worker
 {
 private:

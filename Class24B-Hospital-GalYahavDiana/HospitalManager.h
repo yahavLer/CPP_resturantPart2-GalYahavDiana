@@ -8,6 +8,8 @@
 #include "Building.h"
 #include "Researcher.h"
 #include "Doctor.h"
+#include "Hospital.h"
+#include "Artical.h"
 
 class HospitalManager {
 private:
@@ -17,6 +19,8 @@ private:
     Building* buildings[100];
     Researcher* researchers[100];
     Doctor* doctors[100];
+    DepartmentManager* departmentManagers[100];
+    Hospital hospital;
 
     int workerCount;
     int patientCount;
