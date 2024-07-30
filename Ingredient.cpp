@@ -17,8 +17,7 @@ Ingredient::Ingredient() {
 }
 
 Ingredient::Ingredient(const char* ingredientName, eSection ingredientSection) {
-    strncpy(name, ingredientName, sizeof(name) - 1);
-    name[sizeof(name) - 1] = '\0';
+    setName(ingredientName);
     section = ingredientSection;
 }
 
@@ -30,7 +29,7 @@ Ingredient::eSection Ingredient::getSection() const {
     return section;
 }
 
-bool Ingredient::setName(char* newName) {
+bool Ingredient::setName(const char* newName) {
     if (newName) {
         strncpy(name, newName, sizeof(name) - 1);
         name[sizeof(name) - 1] = '\0';

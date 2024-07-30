@@ -1,5 +1,8 @@
-#pragma once
+#ifndef __INGREDIENT_H
+#define __CAT_H
 
+#include <iostream>
+using namespace std;
 struct Ingredient;
 
 
@@ -16,8 +19,8 @@ public:
 
 	inline int getPrice() const;
 	const Ingredient**& getIngredientList() const;
-	bool setPrice();
-	bool setIngredients();
+	bool setPrice(int newPrice);
+	bool setIngredients(Ingredient** list, int size);
 
 
 

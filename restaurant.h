@@ -45,6 +45,10 @@ public:
 	bool addIngredientToWarehouse(char* ingredientName, int section, int  forKitchen);
 	bool addTables(int numOfTables);
 	void presentDailyIncome();
+	void showKitchenWarehouse();
+	void showBarWarehouse();
+	void showMenuWarehouse();
+	void showTablesWarehouse();
 
 	void print() const;
 };

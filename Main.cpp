@@ -23,7 +23,11 @@ void displayMenu() {
 	std::cout << "6. Add new ingredient to warehouse\n";
 	std::cout << "7. Add tables to restaurant\n";
 	std::cout << "8. Present Restaurant income report\n";
-	std::cout << "9. Exit\n";
+	std::cout << "9. Show kitchen warehouse\n";
+	std::cout << "10. Show bar warehouse\n";
+	std::cout << "11. Show menu\n";
+	std::cout << "12. Show tables\n";
+	std::cout << "13. Exit\n";
 }
 
 int main() {
@@ -169,6 +173,26 @@ int main() {
 			break;
 		}
 		case 9:
+		{
+			restaurant.showKitchenWarehouse();
+			break;
+		}
+		case 10:
+		{
+			restaurant.showBarWarehouse();
+			break;
+		}
+		case 11:
+		{
+			restaurant.showMenuWarehouse();
+			break;
+		}
+		case 12:
+		{
+			restaurant.showTablesWarehouse();
+			break;
+		}
+		case 13:
 		{
 			exit = true;
 			break;
