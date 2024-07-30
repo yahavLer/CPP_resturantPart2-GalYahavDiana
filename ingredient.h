@@ -1,5 +1,8 @@
-#pragma once
+#ifndef __INGREDIENT_H
+#define __INGREDIENT_H
 
+#include <iostream>
+using namespace std;
 
 
 class Ingredient
@@ -20,3 +23,4 @@ private:
 	char name[20];
 	eSection section;
 };
+#endif// __INGREDIENT_H

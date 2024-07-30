@@ -1,8 +1,8 @@
-#pragma once
+#ifndef __DRINK_ITEM_H
+#define __DRINK_ITEM_H
+#include "menuItem.h"
 
-
-
-class DrinkItem
+class DrinkItem : virtual public MenuItem
 {
 public:
 	enum eGlassType { LOWBOAL, WINE, BEER, HIGHBOAL, PAPERCUP };
@@ -12,9 +12,9 @@ public:
 	DrinkItem(char* name, int volume, eGlassType glass);
 
 
-	inline char* getName() const;
-	inline int getVolume() const;
-	inline eGlassType getGlass() const;
+	inline const char* getName() const { return name; }
+	inline int getVolume() const { return volume; };
+	inline eGlassType getGlass() const { return glass; };
 	bool setName();
 	bool setVolume();
 	bool setGlass();
@@ -26,3 +26,4 @@ private:
 	eGlassType glass;
 
 };
+#endif// __DRINK_ITEM_H

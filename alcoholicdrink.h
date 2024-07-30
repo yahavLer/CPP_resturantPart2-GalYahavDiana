@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __ALCOHOLICDRINK_H
+#define __ALCOHOLICDRINK_H
 
 
 class AlcoholicDrink
@@ -10,7 +11,6 @@ public:
 	AlcoholicDrink();
 	AlcoholicDrink(int alcoholPercentage);
 	int getAlcoholPercentage() const;
-	bool setAlcoholPercentage();
-
-
+	bool setAlcoholPercentage(int percentage);
 };
+#endif// __ALCOHOLICDRINK_H

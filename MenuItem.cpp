@@ -1,70 +1,80 @@
 #include "MenuItem.h"
-#include "Ingredient.h" // Ensure this file includes the definition of Ingredient
-#include <utility> // For std::move
+#include <iostream>
+#include <utility>
 
-MenuItem::MenuItem(int numOfIngredients, Ingredient** list)
-    : price(0), ingredientList(list) {
-    // You may want to add additional initialization logic here
+// Constructor with parameters
+MenuItem::MenuItem(const int numOfIngredients, Ingredient** list) {
+    price = 0; // Initialize price to a default value, you may want to pass this as a parameter instead
+    ingredientList = new Ingredient * [numOfIngredients];
+    for (int i = 0; i < numOfIngredients; ++i) {
+        // Assuming a deep copy is necessary, otherwise, shallow copy would suffice.
+        ingredientList[i] = list[i];
+    }
 }
 
-MenuItem::~MenuItem() {
-    delete[] ingredientList; // Ensure proper deletion of dynamically allocated array
-}
-
+// Default constructor
 MenuItem::MenuItem() : price(0), ingredientList(nullptr) {}
 
-MenuItem::MenuItem(MenuItem&& other)
-    : price(other.price), ingredientList(other.ingredientList) {
-    other.ingredientList = nullptr; // Nullify the source's pointer to avoid double deletion
+// Destructor
+MenuItem::~MenuItem() {
+    if (ingredientList) {
+        delete[] ingredientList;
+    }
 }
 
+// Move constructor
+MenuItem::MenuItem(MenuItem&& other) : price(other.price), ingredientList(other.ingredientList) {
+    other.price = 0;
+    other.ingredientList = nullptr;
+}
+
+// Copy assignment operator
 const MenuItem& MenuItem::operator=(const MenuItem& other) {
     if (this != &other) {
         price = other.price;
-        delete[] ingredientList; // Clean up existing resources
-        // Deep copy the ingredient list
+
+        // Clean up existing ingredientList
+        if (ingredientList) {
+            delete[] ingredientList;
+        }
+
+        // Allocate new memory and copy
         ingredientList = new Ingredient * [sizeof(other.ingredientList) / sizeof(Ingredient*)];
         for (int i = 0; i < sizeof(other.ingredientList) / sizeof(Ingredient*); ++i) {
-            ingredientList[i] = other.ingredientList[i]; // Assuming Ingredient has a proper copy constructor
+            ingredientList[i] = other.ingredientList[i];
         }
     }
     return *this;
 }
 
+// Move assignment operator
 const MenuItem& MenuItem::operator=(MenuItem&& other) {
     if (this != &other) {
         price = other.price;
-        delete[] ingredientList; // Clean up existing resources
-        ingredientList = other.ingredientList;
-        other.ingredientList = nullptr; // Nullify the source's pointer to avoid double deletion
+        std::swap(ingredientList, other.ingredientList);
+
+        other.price = 0;
+        other.ingredientList = nullptr;
     }
     return *this;
 }
 
-int MenuItem::getPrice() const {
-    return price;
-}
-
-const Ingredient**& MenuItem::getIngredientList() const {
-    return const_cast<const Ingredient**&>(ingredientList); // Cast to match the return type
-}
-
+// Set price
 bool MenuItem::setPrice(int newPrice) {
-    if (newPrice >= 0) {
-        price = newPrice;
-        return true;
-    }
-    return false;
+    price = newPrice;
+    return true;
 }
 
-bool MenuItem::setIngredients(Ingredient** newIngredientList, int size) {
-    if (newIngredientList) {
-        delete[] ingredientList; // Clean up existing resources
-        ingredientList = new Ingredient * [size];
-        for (int i = 0; i < size; ++i) {
-            ingredientList[i] = newIngredientList[i]; // Assuming Ingredient has a proper copy constructor
-        }
-        return true;
+// Set ingredients
+bool MenuItem::setIngredients(Ingredient** list, int size) {
+    if (ingredientList) {
+        delete[] ingredientList;
     }
-    return false;
+
+    ingredientList = new Ingredient * [size];
+    for (int i = 0; i < size; ++i) {
+        // Assuming a deep copy is necessary, otherwise, shallow copy would suffice.
+        ingredientList[i] = list[i];
+    }
+    return true;
 }
