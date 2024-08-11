@@ -1,15 +1,8 @@
 #pragma warning (disable: 4996)
 
-#include <iostream>
-using namespace std;
-
 #include "Ingredient.h"
-#include <cstring>
 
 const char* sections[] = { "Herbs","Dairy","Meat","Fish","Vegetables" };
-
-
-
 
 Ingredient::Ingredient() {
     name[0] = '\0';
@@ -21,18 +14,14 @@ Ingredient::Ingredient(const char* ingredientName, eSection ingredientSection) {
     section = ingredientSection;
 }
 
-char* Ingredient::getName() const {
-    return const_cast<char*>(name);
-}
-
-Ingredient::eSection Ingredient::getSection() const {
-    return section;
-}
-
 bool Ingredient::setName(const char* newName) {
     if (newName) {
-        strncpy(name, newName, sizeof(name) - 1);
-        name[sizeof(name) - 1] = '\0';
+        int i = 0;
+        while (i < sizeof(name) - 1 && newName[i] != '\0') {
+            name[i] = newName[i];
+            i++;
+        }
+        name[i] = '\0'; 
         return true;
     }
     return false;

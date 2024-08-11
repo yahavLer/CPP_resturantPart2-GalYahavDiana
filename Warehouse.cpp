@@ -1,97 +1,104 @@
 #include "Warehouse.h"
-#include "ingredient.h"
-#include <cstring>
+#include "Ingredient.h"
 
-Warehouse::Warehouse() : ingrediantList(nullptr), ingrediantQuantityList(nullptr) {}
+Warehouse::Warehouse() : ingredientList(nullptr), ingredientQuantityList(nullptr), numIngredients(0) {}
 
-Warehouse::Warehouse(Warehouse&& other)
-    : ingrediantList(other.ingrediantList), ingrediantQuantityList(other.ingrediantQuantityList) {
-    other.ingrediantList = nullptr;
-    other.ingrediantQuantityList = nullptr;
+// Move constructor
+Warehouse::Warehouse(Warehouse&& other) noexcept
+    : ingredientList(other.ingredientList), ingredientQuantityList(other.ingredientQuantityList), numIngredients(other.numIngredients) {
+    other.ingredientList = nullptr;
+    other.ingredientQuantityList = nullptr;
+    other.numIngredients = 0;
 }
 
+// Destructor
 Warehouse::~Warehouse() {
-    delete[] ingrediantList;
-    delete[] ingrediantQuantityList;
+    clear();
 }
 
-const Warehouse& Warehouse::operator=(const Warehouse& other) {
+// Move assignment operator
+Warehouse& Warehouse::operator=(Warehouse&& other) noexcept {
     if (this != &other) {
-        delete[] ingrediantList;
-        delete[] ingrediantQuantityList;
-        // Deep copy ingredient list
-        ingrediantList = new Ingrediant * [sizeof(other.ingrediantList) / sizeof(Ingrediant*)];
-        for (int i = 0; i < sizeof(other.ingrediantList) / sizeof(Ingrediant*); ++i) {
-            ingrediantList[i] = other.ingrediantList[i]; // Assuming Ingrediant has a proper copy constructor
-        }
-        // Deep copy ingredient quantity list
-        ingrediantQuantityList = new int[sizeof(other.ingrediantQuantityList) / sizeof(int)];
-        std::memcpy(ingrediantQuantityList, other.ingrediantQuantityList, sizeof(other.ingrediantQuantityList));
+        clear();  
+
+        ingredientList = other.ingredientList;
+        ingredientQuantityList = other.ingredientQuantityList;
+        numIngredients = other.numIngredients;
+
+        other.ingredientList = nullptr;
+        other.ingredientQuantityList = nullptr;
+        other.numIngredients = 0;
     }
     return *this;
 }
 
-const Warehouse& Warehouse::operator=(Warehouse&& other) {
-    if (this != &other) {
-        delete[] ingrediantList;
-        delete[] ingrediantQuantityList;
-        ingrediantList = other.ingrediantList;
-        ingrediantQuantityList = other.ingrediantQuantityList;
-        other.ingrediantList = nullptr;
-        other.ingrediantQuantityList = nullptr;
-    }
-    return *this;
+// Getters
+Ingredient** Warehouse::getIngredientList() const {
+    return ingredientList;
 }
 
-Ingrediant** Warehouse::getIngrediantList() const {
-    return ingrediantList;
+int* Warehouse::getIngredientQuantityList() const {
+    return ingredientQuantityList;
 }
 
-int* Warehouse::getIngrediantQuantityList() const {
-    return ingrediantQuantityList;
-}
-
-bool Warehouse::updateIngredientQuantity(Ingrediant ingrediant, int quantity) {
-    for (int i = 0; ingrediantList[i] != nullptr; ++i) {
-        if (std::strcmp(ingrediantList[i]->getName(), ingrediant.getName()) == 0) {
-            ingrediantQuantityList[i] = quantity;
+// Update ingredient quantity
+bool Warehouse::updateIngredientQuantity(const Ingredient& ingredient, int quantity) {
+    for (int i = 0; i < numIngredients; ++i) {
+        if (compareStrings(ingredientList[i]->getName(), ingredient.getName())) {
+            ingredientQuantityList[i] = quantity;
             return true;
         }
     }
     return false;
 }
 
-bool Warehouse::addIngredientToWarehouse(char* ingredientName, int section) {
-    // Determine the size of the existing lists
-    int size = 0;
-    while (ingrediantList && ingrediantList[size] != nullptr) {
-        ++size;
-    }
-
+// Add ingredient to warehouse
+bool Warehouse::addIngredientToWarehouse(const char* ingredientName, int section) {
     // Create new lists with one additional slot
-    Ingrediant** newIngrediantList = new Ingrediant * [size + 2];
-    int* newIngrediantQuantityList = new int[size + 1];
+    Ingredient** newIngredientList = new Ingredient*[numIngredients + 1];
+    int* newIngredientQuantityList = new int[numIngredients + 1];
 
     // Copy existing data to new lists
-    for (int i = 0; i < size; ++i) {
-        newIngrediantList[i] = ingrediantList[i];
-        newIngrediantQuantityList[i] = ingrediantQuantityList[i];
+    for (int i = 0; i < numIngredients; ++i) {
+        newIngredientList[i] = ingredientList[i];
+        newIngredientQuantityList[i] = ingredientQuantityList[i];
     }
 
     // Add the new ingredient
-    newIngrediantList[size] = new Ingrediant(ingredientName, static_cast<Ingrediant::eSection>(section));
-    newIngrediantQuantityList[size] = 0;
-
-    // Null terminate the ingredient list
-    newIngrediantList[size + 1] = nullptr;
+    newIngredientList[numIngredients] = new Ingredient(ingredientName, static_cast<Ingredient::eSection>(section));
+    newIngredientQuantityList[numIngredients] = 0;
 
     // Clean up old lists
-    delete[] ingrediantList;
-    delete[] ingrediantQuantityList;
+    delete[] ingredientList;
+    delete[] ingredientQuantityList;
 
     // Assign new lists to class members
-    ingrediantList = newIngrediantList;
-    ingrediantQuantityList = newIngrediantQuantityList;
+    ingredientList = newIngredientList;
+    ingredientQuantityList = newIngredientQuantityList;
+    numIngredients++;
 
     return true;
+}
+
+// פונקציה פנימית לניקוי זיכרון
+void Warehouse::clear() {
+    if (ingredientList) {
+        for (int i = 0; i < numIngredients; ++i) {
+            delete ingredientList[i]; // ניקוי כל רכיב בנפרד אם הם מוקצים דינמית
+        }
+        delete[] ingredientList;
+        delete[] ingredientQuantityList;
+    }
+    ingredientList = nullptr;
+    ingredientQuantityList = nullptr;
+    numIngredients = 0;
+}
+
+// פונקציה להשוואת מחרוזות
+bool Warehouse::compareStrings(const char* str1, const char* str2) const {
+    while (*str1 && (*str1 == *str2)) {
+        ++str1;
+        ++str2;
+    }
+    return *str1 == *str2;
 }

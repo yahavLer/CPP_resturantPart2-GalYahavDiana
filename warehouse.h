@@ -1,22 +1,28 @@
 #pragma once
 
-struct Ingrediant;
+#include "Ingredient.h"
 
 class Warehouse
 {
 private:
-	Ingrediant** ingrediantList;
-	int* ingrediantQuantityList;
+	Ingredient** ingredientList; 
+	int* ingredientQuantityList;
+	int numIngredients;
+
 public:
 	Warehouse();
 	Warehouse(const Warehouse& other) = delete;
-	Warehouse(Warehouse&& other);
+	Warehouse(Warehouse&& other) noexcept;
 	~Warehouse();
-	const Warehouse& operator=(const Warehouse& other);
-	const Warehouse& operator=(Warehouse&& other);
+    Warehouse& operator=(const Warehouse& other) = delete;
+    Warehouse& operator=(Warehouse&& other) noexcept;
 	
-	Ingrediant** getIngrediantList() const;
-	int* getIngrediantQuantityList()const;
-	bool updateIngredientQuantity(Ingrediant ingrediant, int quantity);
-	bool addIngredientToWarehouse(char* ingredientName, int section);
+	Ingredient** getIngredientList() const; 
+	int* getIngredientQuantityList() const;
+	bool updateIngredientQuantity(const Ingredient& ingredient, int quantity);  
+	bool addIngredientToWarehouse(const char* ingredientName, int section);
+
+private:
+    void clear();  
+    bool compareStrings(const char* str1, const char* str2) const;   
 };

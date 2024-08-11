@@ -3,19 +3,24 @@
 
 #include <iostream>
 using namespace std;
-
-
 class Ingredient
 {
 public:
 	enum eSection { HERBS, DAIRY, MEAT, FISH, VEGETABLES };
-	const char* sections[5] = { "Herbs","Dairy","Meat","Fish","Vegetables" };
+	const char* sections[5];
+	
 	Ingredient();
 	Ingredient(const char* name, eSection section);
 
 
-	inline char* getName()  const;
-	inline eSection getSection() const;
+	inline char* getName() const {
+        return const_cast<char*>(name);
+    }
+
+    inline eSection getSection() const {
+        return section;
+    }
+
 	bool setName(const char* name);
 	bool setSection(eSection section);
 

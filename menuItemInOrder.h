@@ -11,25 +11,25 @@ private:
 
 public:
 	MenuItemInOrder();
-	MenuItemInOrder(const MenuItem& menuItem, int quantity, char& comment);
+	MenuItemInOrder(const MenuItem& menuItem, int quantity, const  char* comment);
 	MenuItemInOrder(const MenuItem& menuItem, int quantity);
+
 	friend MenuItemInOrder operator-(int num, const MenuItemInOrder& item);
 	friend MenuItemInOrder operator-(const MenuItemInOrder& item, int num);
 	friend MenuItemInOrder operator+(int num, const MenuItemInOrder& item);
 	friend MenuItemInOrder operator+(const MenuItemInOrder& item, int num);
-	const MenuItemInOrder& operator+=(int num);
-	const MenuItemInOrder& operator-=(int num);
-	MenuItemInOrder operator++(int);
-	const MenuItemInOrder& operator++();
 
-
+	MenuItemInOrder& operator+=(int num);
+	MenuItemInOrder& operator-=(int num);
+	// MenuItemInOrder operator++(int);
+	MenuItemInOrder& operator++();
 
 	MenuItem& getMenuItem() const;
 	int getQuantity() const;
-	char* getComment() const;
+	const char* getComment() const;
 
 	bool setQuantity(int quantity);
-	bool setComment(char& comment);
+	bool setComment(const char* comment);
 
 	void print() const;
 };
