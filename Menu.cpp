@@ -2,57 +2,53 @@
 
 #include <iostream>
 using namespace std;
-#include "Menu.h"
-#include <iostream>
+#include "menu.h"
 
-struct MenuItem {
-    // Assuming some members and methods for MenuItem
-};
+Menu::Menu() : menuItems(nullptr), specials(nullptr), menuItemCount(0), specialsCount(0) {}
 
-Menu::Menu() : menuItems(nullptr), specials(nullptr) {
-    // Constructor implementation
-}
-
-Menu::Menu(Menu&& other) : menuItems(other.menuItems), specials(other.specials) {
+Menu::Menu(Menu&& other) noexcept : menuItems(other.menuItems), specials(other.specials),
+                                    menuItemCount(other.menuItemCount), specialsCount(other.specialsCount) {
     other.menuItems = nullptr;
     other.specials = nullptr;
+    other.menuItemCount = 0;
+    other.specialsCount = 0;
 }
 
 Menu::~Menu() {
-    // Destructor implementation
-    delete[] menuItems;
-    delete[] specials;
+    clear();
 }
 
-const Menu& Menu::operator=(const Menu& other) {
-    if (this == &other) return *this;
+// const Menu& Menu::operator=(const Menu& other) {
+//     if (this == &other) return *this;
 
-    // Deep copy logic, assuming deep copy of MenuItem pointers is required
-    delete[] menuItems;
-    delete[] specials;
+//     // Deep copy logic, assuming deep copy of MenuItem pointers is required
+//     delete[] menuItems;
+//     delete[] specials;
 
-    // Assuming some method to get the count of items to allocate the correct size
-    // Here you would also need to allocate and copy each MenuItem
-    // menuItems = new MenuItem*[other.getMenuItemCount()];
-    // specials = new MenuItem*[other.getSpecialsCount()];
+//     // Assuming some method to get the count of items to allocate the correct size
+//     // Here you would also need to allocate and copy each MenuItem
+//     // menuItems = new MenuItem*[other.getMenuItemCount()];
+//     // specials = new MenuItem*[other.getSpecialsCount()];
 
-    // Deep copy code here
+//     // Deep copy code here
 
-    return *this;
-}
+//     return *this;
+// }
 
-const Menu& Menu::operator=(Menu&& other) {
-    if (this == &other) return *this;
+Menu& Menu::operator=(Menu&& other) noexcept {
+    if (this != &other) {
+        clear();
 
-    delete[] menuItems;
-    delete[] specials;
+        menuItems = other.menuItems;
+        specials = other.specials;
+        menuItemCount = other.menuItemCount;
+        specialsCount = other.specialsCount;
 
-    menuItems = other.menuItems;
-    specials = other.specials;
-
-    other.menuItems = nullptr;
-    other.specials = nullptr;
-
+        other.menuItems = nullptr;
+        other.specials = nullptr;
+        other.menuItemCount = 0;
+        other.specialsCount = 0;
+    }
     return *this;
 }
 
@@ -65,8 +61,25 @@ MenuItem** Menu::getSpecials() const {
 }
 
 bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
-    // Logic to add item to menu
-    // This could involve resizing the array and adding the new item
+    if (special) {
+        MenuItem** newSpecials = new MenuItem*[specialsCount + 1];
+        for (int i = 0; i < specialsCount; ++i) {
+            newSpecials[i] = specials[i];
+        }
+        newSpecials[specialsCount] = new MenuItem(menuItem);
+        delete[] specials;
+        specials = newSpecials;
+        specialsCount++;
+    } else {
+        MenuItem** newMenuItems = new MenuItem*[menuItemCount + 1];
+        for (int i = 0; i < menuItemCount; ++i) {
+            newMenuItems[i] = menuItems[i];
+        }
+        newMenuItems[menuItemCount] = new MenuItem(menuItem);
+        delete[] menuItems;
+        menuItems = newMenuItems;
+        menuItemCount++;
+    }
     return true;
 }
 
@@ -77,10 +90,34 @@ bool Menu::removeItemFromMenu(MenuItem& menuItem) {
 }
 
 void Menu::print() const {
-    // Logic to print the menu items and specials
     std::cout << "Menu Items:" << std::endl;
-    // Print menuItems here
+    for (int i = 0; i < menuItemCount; ++i) {
+        // assuming MenuItem has a print method
+        // menuItems[i]->print();
+    }
 
     std::cout << "Specials:" << std::endl;
-    // Print specials here
+    for (int i = 0; i < specialsCount; ++i) {
+        // assuming MenuItem has a print method
+        // specials[i]->print();
+    }
+}
+
+void Menu::clear() {
+    if (menuItems) {
+        for (int i = 0; i < menuItemCount; ++i) {
+            delete menuItems[i];
+        }
+        delete[] menuItems;
+        menuItems = nullptr;
+    }
+    if (specials) {
+        for (int i = 0; i < specialsCount; ++i) {
+            delete specials[i];
+        }
+        delete[] specials;
+        specials = nullptr;
+    }
+    menuItemCount = 0;
+    specialsCount = 0;
 }

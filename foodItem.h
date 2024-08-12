@@ -2,18 +2,17 @@
 
 class FoodItem
 {
-public:
-	FoodItem();
-	FoodItem(int calories, bool kosher);
-	inline int getCalories() const;
-	inline bool getKosher() const;
-	bool setCalories();
-	bool setKosher();
-
-
-
 private:
 	int calories;
 	bool kosher;
 
+public:
+	FoodItem();
+	FoodItem(int calories, bool kosher);
+
+	inline int getCalories() const { return calories; }
+	inline bool getKosher() const { return kosher; }
+
+	bool setCalories(int newCalories);
+	bool setKosher(bool isKosher);
 };

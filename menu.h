@@ -1,26 +1,31 @@
 #pragma once
 
-struct MenuItem;
+#include "menuItem.h"
 
 class Menu
 {
 private:
-	MenuItem** menuItems;
-	MenuItem** specials;
+	MenuItem **menuItems;
+	MenuItem **specials;
+	int menuItemCount;
+	int specialsCount;
 
 public:
 	Menu();
-	Menu(const Menu& other) = delete;
-	Menu(Menu&& other);
+	Menu(Menu &&other) noexcept;
 	~Menu();
-	const Menu& operator=(const Menu& other);
-	const Menu& operator=(Menu&& other);
 
+	// Menu(const Menu &other) = delete;
+	// const Menu &operator=(const Menu &other);
+	Menu &operator=(Menu &&other) noexcept;
 
-	MenuItem** getMenuItems() const;
-	MenuItem** getSpecials() const;
-	bool addItemToMenu(const MenuItem& menuItem, bool special);
-	bool removeItemFromMenu(MenuItem& menuItem);
+	MenuItem **getMenuItems() const;
+	MenuItem **getSpecials() const;
+	bool addItemToMenu(const MenuItem &menuItem, bool special);
+	bool removeItemFromMenu(MenuItem &menuItem);
 
 	void print() const;
+
+private:
+	void clear();
 };

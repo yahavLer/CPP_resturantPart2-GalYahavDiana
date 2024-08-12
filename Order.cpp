@@ -1,55 +1,44 @@
+#include "Order.h"
 #include <iostream>
 using namespace std;
 
-#include "Order.h"
+Order::Order() : orderedItems(nullptr), numItems(0) {}
 
-// Assuming basic structure and methods for MenuItem and MenuItemInOrder
-struct MenuItem {
-    // Members and methods for MenuItem
-};
-
-Order::Order() : orderedItems(nullptr) {
-    // Default constructor implementation
-}
-
-Order::Order(Order&& other) : orderedItems(other.orderedItems) {
+Order::Order(Order&& other) noexcept : orderedItems(other.orderedItems), numItems(other.numItems) {
     other.orderedItems = nullptr;
+    other.numItems = 0;
 }
 
 Order::~Order() {
-    delete[] orderedItems;
+    clear();
 }
 
-const Order& Order::operator=(const Order& other) {
-    if (this == &other) return *this;
+Order& Order::operator=(Order&& other) noexcept {
+    if (this != &other) {
+        clear();
 
-    delete[] orderedItems;
+        orderedItems = other.orderedItems;
+        numItems = other.numItems;
 
-    // Assuming deep copy logic for MenuItemInOrder pointers
-    // orderedItems = new MenuItemInOrder*[other.getOrderedItemsSize()];
-    // Deep copy code here
-
+        other.orderedItems = nullptr;
+        other.numItems = 0;
+    }
     return *this;
 }
 
-const Order& Order::operator=(Order&& other) {
-    if (this == &other) return *this;
-
-    delete[] orderedItems;
-
-    orderedItems = other.orderedItems;
-    other.orderedItems = nullptr;
-
-    return *this;
-}
-
-MenuItemInOrder**& Order::getOrderedItems() const {
-    return const_cast<MenuItemInOrder**&>(orderedItems);
+MenuItemInOrder** Order::getOrderedItems() const {
+    return orderedItems;
 }
 
 bool Order::addItemToOrder(const MenuItem& menuItem) {
-    // Logic to add item to order
-    // This could involve resizing the array and adding the new item
+    MenuItemInOrder** newOrderedItems = new MenuItemInOrder*[numItems + 1];
+    for (int i = 0; i < numItems; ++i) {
+        newOrderedItems[i] = orderedItems[i];
+    }
+    newOrderedItems[numItems] = new MenuItemInOrder(menuItem, 1);  // Assuming 1 quantity by default
+    delete[] orderedItems;
+    orderedItems = newOrderedItems;
+    numItems++;
     return true;
 }
 
@@ -58,22 +47,33 @@ int Order::closeBill() const {
         return 0;
     }
     int total = 0;
-    // Logic to calculate the total bill from orderedItems
-    // for (int i = 0; i < getOrderedItemsSize(); ++i) {
-    //     total += orderedItems[i]->getPrice();
-    // }
+    for (int i = 0; i < numItems; ++i) {
+        // Assuming MenuItemInOrder has a method to get the total price of the item
+        // total += orderedItems[i]->getPrice();
+    }
     return total;
 }
 
 void Order::print() const {
     cout << "Ordered Items:" << endl;
     if (orderedItems) {
-        // Print each ordered item
-        // for (int i = 0; i < getOrderedItemsSize(); ++i) {
-        //     orderedItems[i]->print();
-        // }
+        for (int i = 0; i < numItems; ++i) {
+            // Assuming MenuItemInOrder has a print method
+            // orderedItems[i]->print();
+        }
     }
     else {
         cout << "No items in the order." << endl;
     }
+}
+
+void Order::clear() {
+    if (orderedItems) {
+        for (int i = 0; i < numItems; ++i) {
+            delete orderedItems[i];
+        }
+        delete[] orderedItems;
+    }
+    orderedItems = nullptr;
+    numItems = 0;
 }
