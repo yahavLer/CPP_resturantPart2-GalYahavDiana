@@ -1,149 +1,56 @@
-﻿  Alcoholicdrink.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Alcoholicdrink.cpp(15,22): error C2511: 'bool AlcoholicDrink::setAlcoholPercentage(int)': overloaded member function not found in 'AlcoholicDrink'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\AlcoholicDrink.h(4,7): message : see declaration of 'AlcoholicDrink'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Alcoholicdrink.cpp(17,9): error C2597: illegal reference to non-static member 'AlcoholicDrink::alcoholPercentage'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\AlcoholicDrink.h(7,6): message : see declaration of 'AlcoholicDrink::alcoholPercentage'
-  Bar.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\drinkItem.h(6,1): warning C4099: 'DrinkItem': type name first seen using 'struct' now seen using 'class'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\drinkItem.h(5,7): message : see declaration of 'DrinkItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(44,21): error C2664: 'bool Warehouse::updateIngredientQuantity(Ingrediant,int)': cannot convert argument 1 from 'char *' to 'Ingrediant'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(44,47): message : use of undefined type 'Ingrediant'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\warehouse.h(3,8): message : see declaration of 'Ingrediant'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\warehouse.h(20,7): message : see declaration of 'Warehouse::updateIngredientQuantity'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(44,21): message : while trying to match the argument list '(char *, int)'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(49,22): error C2039: 'addIngredient': is not a member of 'Warehouse'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\warehouse.h(5,7): message : see declaration of 'Warehouse'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(59,12): error C2440: 'return': cannot convert from 'const Warehouse' to 'Warehouse &'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(59,12): message : Conversion loses qualifiers
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(61,1): error C2059: syntax error: '.'
+﻿  Bar.cpp
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\menuItem.h(7,18): warning C4099: 'Ingredient': type name first seen using 'class' now seen using 'struct'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Ingredient.h(6,7): message : see declaration of 'Ingredient'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\drinkItem.h(5,17): warning C4099: 'DrinkItem': type name first seen using 'struct' now seen using 'class'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\drinkItem.h(5,7): message : see declaration of 'DrinkItem'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(44,21): error C2664: 'bool Warehouse::updateIngredientQuantity(const Ingredient &,int)': cannot convert argument 1 from 'char *' to 'const Ingredient &'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(44,47): message : Reason: cannot convert from 'char *' to 'const Ingredient'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(44,47): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\warehouse.h(22,7): message : see declaration of 'Warehouse::updateIngredientQuantity'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(44,21): message : while trying to match the argument list '(char *, int)'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(49,22): error C2039: 'addIngredient': is not a member of 'Warehouse'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\warehouse.h(5,7): message : see declaration of 'Warehouse'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(59,12): error C2440: 'return': cannot convert from 'const Warehouse' to 'Warehouse &'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(59,12): message : Conversion loses qualifiers
   Cocktail.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.h(21,7): error C2086: 'Cocktail::eAlcoholLevel ': redefinition
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.h(6,7): message : see declaration of 'Cocktail::eAlcoholLevel'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(7,69): error C2075: 'alcoholLevel': initialization requires a brace-enclosed initializer list
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(10,12): error C2440: 'return': cannot convert from 'const char *const [4]' to 'Cocktail::eAlcoholLevel'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(10,12): message : There is no context in which this conversion is possible
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(18,18): error C3863: array type 'const char *[4]' is not assignable
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.h(20,7): error C2086: 'Cocktail::eAlcoholLevel ': redefinition
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.h(6,7): message : see declaration of 'Cocktail::eAlcoholLevel'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(7,69): error C2075: 'alcoholLevel': initialization requires a brace-enclosed initializer list
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(10,12): error C2440: 'return': cannot convert from 'const char *const [4]' to 'Cocktail::eAlcoholLevel'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(10,12): message : There is no context in which this conversion is possible
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(18,18): error C3863: array type 'const char *[4]' is not assignable
   Department.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\department.h(7,30): error C2144: syntax error: 'int' should be preceded by ';'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\department.h(7,36): error C2208: 'int': no members defined using this type
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\department.h(7,36): warning C4091: 'inline ': ignored on left of 'int' when no variable is declared
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.cpp(9,12): error C2065: 'numOfWorkers': undeclared identifier
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.cpp(14,12): error C2065: 'wareHouse': undeclared identifier
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.cpp(19,12): error C2065: 'wareHouse': undeclared identifier
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Department.cpp(10,12): error C2065: 'numOfWorkers': undeclared identifier
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Department.cpp(15,12): error C2065: 'wareHouse': undeclared identifier
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Department.cpp(20,12): error C2065: 'wareHouse': undeclared identifier
   DrinkItem.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.cpp(14,5): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.cpp(32,17): error C2511: 'bool DrinkItem::setName(char *)': overloaded member function not found in 'DrinkItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.h(5,7): message : see declaration of 'DrinkItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.cpp(34,17): error C2597: illegal reference to non-static member 'DrinkItem::name'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.h(24,7): message : see declaration of 'DrinkItem::name'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.cpp(35,30): error C2597: illegal reference to non-static member 'DrinkItem::name'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.cpp(35,30): error C3867: 'DrinkItem::name': non-standard syntax; use '&' to create a pointer to member
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.cpp(35,30): error C2568: '[': unable to resolve function overload
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.cpp(41,17): error C2511: 'bool DrinkItem::setVolume(int)': overloaded member function not found in 'DrinkItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.h(5,7): message : see declaration of 'DrinkItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.cpp(43,9): error C2597: illegal reference to non-static member 'DrinkItem::volume'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.h(25,6): message : see declaration of 'DrinkItem::volume'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.cpp(49,17): error C2511: 'bool DrinkItem::setGlass(DrinkItem::eGlassType)': overloaded member function not found in 'DrinkItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.h(5,7): message : see declaration of 'DrinkItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.cpp(50,5): error C2597: illegal reference to non-static member 'DrinkItem::glass'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\DrinkItem.h(26,13): message : see declaration of 'DrinkItem::glass'
-  FoodItem.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\FoodItem.cpp(19,16): error C2511: 'bool FoodItem::setCalories(int)': overloaded member function not found in 'FoodItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\FoodItem.h(3,7): message : see declaration of 'FoodItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\FoodItem.cpp(21,9): error C2597: illegal reference to non-static member 'FoodItem::calories'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\FoodItem.h(16,6): message : see declaration of 'FoodItem::calories'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\FoodItem.cpp(27,16): error C2511: 'bool FoodItem::setKosher(bool)': overloaded member function not found in 'FoodItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\FoodItem.h(3,7): message : see declaration of 'FoodItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\FoodItem.cpp(28,5): error C2597: illegal reference to non-static member 'FoodItem::kosher'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\FoodItem.h(17,7): message : see declaration of 'FoodItem::kosher'
-  Ingredient.cpp
   Kitchen.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(55,5): error C2280: 'Warehouse::Warehouse(const Warehouse &)': attempting to reference a deleted function
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\warehouse.h(12,2): message : see declaration of 'Warehouse::Warehouse'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\warehouse.h(12,2): message : 'Warehouse::Warehouse(const Warehouse &)': function was explicitly deleted
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(29,15): error C2280: 'Warehouse &Warehouse::operator =(const Warehouse &)': attempting to reference a deleted function
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\warehouse.h(17,16): message : see declaration of 'Warehouse::operator ='
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\warehouse.h(17,16): message : 'Warehouse &Warehouse::operator =(const Warehouse &)': function was explicitly deleted
   Main.cpp
   Menu.cpp
   MenuItem.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Ingredient.h(6,1): warning C4099: 'Ingredient': type name first seen using 'struct' now seen using 'class'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Ingredient.h(5,7): message : see declaration of 'Ingredient'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.cpp(52,16): error C2511: 'bool MenuItem::setPrice(int)': overloaded member function not found in 'MenuItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.h(6,7): message : see declaration of 'MenuItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.cpp(54,9): error C2597: illegal reference to non-static member 'MenuItem::price'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.h(26,6): message : see declaration of 'MenuItem::price'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.cpp(60,16): error C2511: 'bool MenuItem::setIngredients(Ingredient **,int)': overloaded member function not found in 'MenuItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.h(6,7): message : see declaration of 'MenuItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.cpp(62,32): error C2541: 'delete': cannot delete objects that are not pointers
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.cpp(63,9): error C2597: illegal reference to non-static member 'MenuItem::ingredientList'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.h(27,15): message : see declaration of 'MenuItem::ingredientList'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.cpp(65,29): error C2597: illegal reference to non-static member 'MenuItem::ingredientList'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.cpp(65,29): error C3867: 'MenuItem::ingredientList': non-standard syntax; use '&' to create a pointer to member
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItem.cpp(65,29): error C2568: '[': unable to resolve function overload
   MenuItemInOrder.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(11,99): error C2280: 'MenuItem::MenuItem(const MenuItem &)': attempting to reference a deleted function
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\menuItem.h(12,2): message : see declaration of 'MenuItem::MenuItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\menuItem.h(12,2): message : 'MenuItem::MenuItem(const MenuItem &)': function was explicitly deleted
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(14,5): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(18,84): error C2280: 'MenuItem::MenuItem(const MenuItem &)': attempting to reference a deleted function
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\menuItem.h(12,2): message : see declaration of 'MenuItem::MenuItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\menuItem.h(12,2): message : 'MenuItem::MenuItem(const MenuItem &)': function was explicitly deleted
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(27,27): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'MenuItemInOrder'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(27,27): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(34,27): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'MenuItemInOrder'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(34,27): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(40,27): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'MenuItemInOrder'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(40,27): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(46,27): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'MenuItemInOrder'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(46,27): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(64,25): error C2280: 'MenuItemInOrder::MenuItemInOrder(const MenuItemInOrder &)': attempting to reference a deleted function
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.h(35,1): message : compiler has generated 'MenuItemInOrder::MenuItemInOrder' here
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.h(35,1): message : 'MenuItemInOrder::MenuItemInOrder(const MenuItemInOrder &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'MenuItem::MenuItem(const MenuItem &)'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\menuItem.h(12,2): message : 'MenuItem::MenuItem(const MenuItem &)': function was explicitly deleted
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(76,12): error C2440: 'return': cannot convert from 'const MenuItem' to 'MenuItem &'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(76,12): message : Conversion loses qualifiers
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(84,12): error C2440: 'return': cannot convert from 'const char [20]' to 'char *'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(84,12): message : Conversion loses qualifiers
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(98,5): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\MenuItemInOrder.cpp(104,39): error C2039: 'getName': is not a member of 'MenuItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\menuItem.h(6,7): message : see declaration of 'MenuItem'
   Order.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Order.cpp(7,17): error C2011: 'MenuItem': 'class' type redefinition
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\menuItem.h(6,7): message : see declaration of 'MenuItem'
   Restaurant.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(7,10): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(8,10): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(13,10): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(14,10): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(20,10): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(21,10): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(27,10): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(28,10): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(44,14): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(45,14): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(51,14): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(52,14): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(67,5): error C2280: 'Menu::Menu(const Menu &)': attempting to reference a deleted function
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\menu.h(13,2): message : see declaration of 'Menu::Menu'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\menu.h(13,2): message : 'Menu::Menu(const Menu &)': function was explicitly deleted
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(80,10): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(85,10): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(96,36): error C2027: use of undefined type 'Department'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.h(6,8): message : see declaration of 'Department'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(128,39): error C2027: use of undefined type 'Department'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.h(6,8): message : see declaration of 'Department'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(145,5): error C2662: 'void Restaurant::presentMenu(void)': cannot convert 'this' pointer from 'const Restaurant' to 'Restaurant &'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(145,5): message : Conversion loses qualifiers
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(90,18): message : see declaration of 'Restaurant::presentMenu'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Restaurant.cpp(145,5): message : while trying to match the argument list '()'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\department.h(4,1): warning C4099: 'Department': type name first seen using 'struct' now seen using 'class'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\department.h(3,7): message : see declaration of 'Department'
   Table.cpp
-  Warehouse.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Warehouse.cpp(54,17): error C2027: use of undefined type 'Ingrediant'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Warehouse.h(3,8): message : see declaration of 'Ingrediant'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Warehouse.cpp(56,12): error C2027: use of undefined type 'Ingrediant'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Warehouse.h(3,8): message : see declaration of 'Ingrediant'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Warehouse.cpp(56,18): error C2660: 'strcmp': function does not take 1 arguments
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\ucrt\string.h(100,13): message : see declaration of 'strcmp'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Warehouse.cpp(56,18): message : while trying to match the argument list '()'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Warehouse.cpp(82,86): error C2027: use of undefined type 'Ingrediant'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Warehouse.h(3,8): message : see declaration of 'Ingrediant'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Warehouse.cpp(82,94): error C2061: syntax error: identifier 'eSection'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(16,8): error C2382: 'Table::Table': redefinition; different exception specifications
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.h(14,2): message : see declaration of 'Table::Table'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(47,15): error C2511: 'Table &Table::operator =(const Table &&)': overloaded member function not found in 'Table'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.h(5,7): message : see declaration of 'Table'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(48): error C2671: 'Table::=': static member functions do not have 'this' pointers
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(48,33): error C2671: 'Table::=': static member functions do not have 'this' pointers
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(50,17): error C2541: 'delete': cannot delete objects that are not pointers
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(52,5): error C2597: illegal reference to non-static member 'Table::order'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.h(8,9): message : see declaration of 'Table::order'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(53,5): error C2597: illegal reference to non-static member 'Table::number'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.h(9,6): message : see declaration of 'Table::number'
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(55,10): error C3490: 'order' cannot be modified because it is being accessed through a const object
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(56,10): error C3490: 'number' cannot be modified because it is being accessed through a const object
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(58,13): error C2671: 'Table::=': static member functions do not have 'this' pointers
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(65,19): error C2084: function 'int Table::getNumber(void) const' already has a body
+C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.h(22,6): message : see previous definition of 'getNumber'
   Generating Code...

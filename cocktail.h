@@ -8,7 +8,6 @@ public:
 
 	Cocktail(int doubleDosePrice);
 
-
 	eAlcoholLevel getAlcoholLevel() const;
 	int getDoubleDosePrice() const;
 

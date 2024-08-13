@@ -44,7 +44,7 @@ const Table& Table::operator=(const Table& other) {
     return *this;
 }
 
-const Table& Table::operator=(Table&& other) {
+Table& Table::operator=(const Table&& other) {
     if (this == &other) return *this;
 
     delete order;
@@ -62,7 +62,7 @@ Order* Table::getOrder() const {
     return order;
 }
 
-int Table::getNumber() const {
+inline int Table::getNumber() const {
     return number;
 }
 

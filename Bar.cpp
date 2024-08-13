@@ -58,4 +58,3 @@ DrinkItem** Bar::getDrinkItemList() const {
 Warehouse& Bar::getWareHouse() const {
     return wareHouse;
 }
-.

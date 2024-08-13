@@ -3,9 +3,10 @@
 #include <iostream>
 using namespace std;
 #include "department.h"
+#include "warehouse.h"
 
 // Get number of workers
-int Department::getNumOfWorkers() const {
+inline int Department::getNumOfWorkers() const {
     return numOfWorkers;
 }
 

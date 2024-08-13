@@ -1,4 +1,7 @@
-#include "Restaurant.h"
+#define _CRT_SECURE_NO_WARNINGS
+#include "restaurant.h"
+#include "department.h"
+#include "menu.h"
 #include <cstring>
 #include <iostream>
 
@@ -63,7 +66,7 @@ Department**& Restaurant::getDepartments() const {
     return const_cast<Department**&>(departments);
 }
 
-Menu Restaurant::getMenu() const {
+const Menu& Restaurant::getMenu() const {
     return menu;
 }
 
@@ -87,13 +90,15 @@ bool Restaurant::setAdress(char* address) {
 }
 
 // Method implementations
-void Restaurant::presentMenu() {
+void Restaurant::presentMenu() const{
     menu.print();
 }
 
+
 bool Restaurant::updateIngredientQuantity(char* name, int quantity, int kitchen) {
     if (departments && departments[kitchen]) {
-        return departments[kitchen]->updateIngredientQuantity(name, quantity);
+        Department** temp = this->getDepartments();
+        return temp[kitchen]->updateIngredientQuantity(name, quantity);
     }
     return false;
 }

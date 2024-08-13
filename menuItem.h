@@ -23,7 +23,7 @@ public:
 	MenuItem& operator=(MenuItem&& other) noexcept;
 
 	inline int getPrice() const { return price; }
-	const Ingredient** getIngredientList() const { return ingredientList; }
+	Ingredient** const getIngredientList() const { return ingredientList; }
 	bool setPrice(int newPrice);
 	bool setIngredients(Ingredient** list, int size);
 

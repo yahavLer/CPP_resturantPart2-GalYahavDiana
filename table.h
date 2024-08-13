@@ -15,11 +15,11 @@ public:
 	~Table();
 	// Table(const Table &other) = delete;
 
-	// const Table &operator=(const Table &other);
-	Table &operator=(Table &&other) noexcept;
+	const Table &operator=(const Table &other);
+	//Table &operator=(Table &&other) noexcept;
 
 	Order *getOrder() const;
-	inline int getNumber() const { return number; }
+	int getNumber() const { return number; }
 
 	bool setNumber(int newNumber);
 	bool createNewOrder();

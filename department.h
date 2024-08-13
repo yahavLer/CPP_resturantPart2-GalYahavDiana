@@ -4,7 +4,7 @@ class Department
 {
 
 public:
-	int getNumOfWorkers() const inline;
+	inline int getNumOfWorkers() const;
 	bool updateIngredientQuantity(char* name, int quantity);
 	bool addIngredientToWarehouse(char* ingredientName, int section);
 
