@@ -10,14 +10,14 @@ private:
 
 public:
 	Order();
-	// Order(const Order& other) = delete;
+	Order(const Order& other);
 	Order(Order &&other) noexcept;
 	~Order();
 
 	// const Order& operator=(const Order& other);
 	Order &operator=(Order &&other) noexcept;
 	MenuItemInOrder **getOrderedItems() const;
-	bool addItemToOrder(const MenuItem &menuItem);
+	bool addItemToOrder(const MenuItem &menuItem, int quantity, char *comments);
 	int closeBill() const;
 	void print() const;
 

@@ -6,12 +6,11 @@ using namespace std;
 #include "drinkItem.h"
 
 // Default constructor
-Bar::Bar() : drinkItemList(nullptr), numOfWorkers(0) {}
+Bar::Bar() : drinkItemList(nullptr){}
 
 // Move constructor
-Bar::Bar(Bar&& other) : wareHouse(std::move(other.wareHouse)), drinkItemList(other.drinkItemList), numOfWorkers(other.numOfWorkers) {
+Bar::Bar(Bar&& other) noexcept : Department(std::move(other)), drinkItemList(other.drinkItemList) {
     other.drinkItemList = nullptr;
-    other.numOfWorkers = 0;
 }
 
 // Destructor
@@ -22,14 +21,11 @@ Bar::~Bar() {
 // Move assignment operator
 const Bar& Bar::operator=(Bar&& other) {
     if (this != &other) {
+        Department::operator=(std::move(other));
+
         delete[] drinkItemList;
-
-        wareHouse = std::move(other.wareHouse);
         drinkItemList = other.drinkItemList;
-        numOfWorkers = other.numOfWorkers;
-
         other.drinkItemList = nullptr;
-        other.numOfWorkers = 0;
     }
     return *this;
 }
@@ -40,13 +36,13 @@ int Bar::getNumOfWorkers() const {
 }
 
 // Update ingredient quantity in the warehouse
-bool Bar::updateIngredientQuantity(char* name, int quantity) {
-    return wareHouse.updateIngredientQuantity(name, quantity);
+bool Bar::updateIngredientQuantity(const char* name, int quantity) {
+    return wareHouse->updateIngredientQuantity(name, quantity);
 }
 
 // Add ingredient to the warehouse
 bool Bar::addIngredientToWarehouse(char* ingredientName, int section) {
-    return wareHouse.addIngredient(ingredientName, section);
+    return wareHouse->addIngredient(ingredientName, section);
 }
 
 // Get drink item list

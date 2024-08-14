@@ -102,3 +102,13 @@ bool Warehouse::compareStrings(const char* str1, const char* str2) const {
     }
     return *str1 == *str2;
 }
+
+// פונקציה למציאת רכיב לפי שם
+Ingredient* Warehouse::getIngredientByName(const char* ingredientName) const {
+    for (int i = 0; i < numIngredients; ++i) {
+        if (compareStrings(ingredientList[i]->getName(), ingredientName)) {
+            return ingredientList[i];
+        }
+    }
+    return nullptr;
+}

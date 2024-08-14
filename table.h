@@ -1,6 +1,6 @@
 #pragma once
 
-struct Order;
+#include "order.h";
 
 class Table
 {
@@ -15,15 +15,15 @@ public:
 	~Table();
 	// Table(const Table &other) = delete;
 
-	const Table &operator=(const Table &other);
-	//Table &operator=(Table &&other) noexcept;
+	// Table &operator=(const Table &other);
+	// Table &operator=(Table &&other) noexcept;
 
 	Order *getOrder() const;
-	int getNumber() const { return number; }
+	inline int getNumber() const { return number; }
 
 	bool setNumber(int newNumber);
 	bool createNewOrder();
-	bool AddItemToOrder(int menuIemNum, int quantity);
+	bool AddItemToOrder(const MenuItem& menuItem, int quantity, char *comments);
 	int closeBill();
 
 	void printTable() const;
