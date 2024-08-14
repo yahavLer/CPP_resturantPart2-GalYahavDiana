@@ -1,18 +1,6 @@
-﻿  Alcoholicdrink.cpp
-  Bar.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\menuItem.h(7,18): warning C4099: 'Ingredient': type name first seen using 'class' now seen using 'struct'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Ingredient.h(6,7): message : see declaration of 'Ingredient'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\drinkItem.h(5,17): warning C4099: 'DrinkItem': type name first seen using 'struct' now seen using 'class'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\drinkItem.h(5,7): message : see declaration of 'DrinkItem'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(9,36): error C2668: 'Department::Department': ambiguous call to overloaded function
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(11,5): message : could be 'Department::Department(int)'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(10,2): message : or       'Department::Department(void)'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(9,36): message : while trying to match the argument list '()'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(12,6): error C2382: 'Bar::Bar': redefinition; different exception specifications
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\bar.h(15,2): message : see declaration of 'Bar::Bar'
-  Cocktail.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.h(20,7): error C2086: 'Cocktail::eAlcoholLevel ': redefinition
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.h(6,7): message : see declaration of 'Cocktail::eAlcoholLevel'
+﻿  Cocktail.cpp
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.h(13,21): warning C4240: nonstandard extension used: access to 'Cocktail::eAlcoholLevel' now defined to be 'public', previously it was defined to be 'private'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.h(10,7): message : see declaration of 'Cocktail::eAlcoholLevel'
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(7,69): error C2075: 'alcoholLevel': initialization requires a brace-enclosed initializer list
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(10,12): error C2440: 'return': cannot convert from 'const char *const [4]' to 'Cocktail::eAlcoholLevel'
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(10,12): message : There is no context in which this conversion is possible
@@ -25,13 +13,7 @@ C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavD
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.cpp(16,12): error C2065: 'wareHouse': undeclared identifier
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.cpp(21,12): error C2065: 'wareHouse': undeclared identifier
   DrinkItem.cpp
-  FoodItem.cpp
-  Ingredient.cpp
   Kitchen.cpp
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(11,60): error C2668: 'Department::Department': ambiguous call to overloaded function
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(11,5): message : could be 'Department::Department(int)'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(10,2): message : or       'Department::Department(void)'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(11,60): message : while trying to match the argument list '()'
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(11,45): error C2614: 'Kitchen': illegal member initialization: 'numOfWrkers' is not a base or member
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,58): error C2039: 'warehouse': is not a member of 'Kitchen'
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.h(7,7): message : see declaration of 'Kitchen'
@@ -41,10 +23,6 @@ C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavD
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\type_traits(1436,48): message : or       'remove_reference<_Ty>::type &&std::move(_Ty &&) noexcept'
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,123): error C2039: 'numOfWrkers': is not a member of 'Kitchen'
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.h(7,7): message : see declaration of 'Kitchen'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,136): error C2668: 'Department::Department': ambiguous call to overloaded function
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(11,5): message : could be 'Department::Department(int)'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(10,2): message : or       'Department::Department(void)'
-C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,136): message : while trying to match the argument list '()'
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,37): error C2614: 'Kitchen': illegal member initialization: 'warehouse' is not a base or member
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,105): error C2614: 'Kitchen': illegal member initialization: 'numOfWrkers' is not a base or member
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(17,11): error C2039: 'numOfWrkers': is not a member of 'Kitchen'
@@ -73,10 +51,6 @@ C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavD
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\table.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\restaurant.h(7,13): warning C4099: 'Order': type name first seen using 'class' now seen using 'struct'
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\order.h(5,7): message : see declaration of 'Order'
-  Menu.cpp
-  MenuItem.cpp
-  MenuItemInOrder.cpp
-  Order.cpp
   Restaurant.cpp
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\table.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\restaurant.h(7,13): warning C4099: 'Order': type name first seen using 'class' now seen using 'struct'
