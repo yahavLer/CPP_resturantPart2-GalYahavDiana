@@ -8,10 +8,10 @@ protected:
 
 public:
 	Department();
-  //  Department(int workers = 0);
+	Department(int workers);
     virtual ~Department() = default;
 
-	inline int getNumOfWorkers() const;
+	inline int getNumOfWorkers() const { return numOfWorkers; }
 	bool updateIngredientQuantity(const char* name, int quantity);
 	bool addIngredientToWarehouse(const char* ingredientName, int section);
 

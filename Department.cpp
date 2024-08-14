@@ -5,6 +5,10 @@ using namespace std;
 #include "department.h"
 #include "warehouse.h"
 
+Department::Department() : wareHouse(nullptr), numOfWorkers(0) {}
+
+Department::Department(int workers) : wareHouse(nullptr), numOfWorkers(workers) {}
+
 // Get number of workers
 inline int Department::getNumOfWorkers() const {
     return numOfWorkers;
@@ -12,8 +16,11 @@ inline int Department::getNumOfWorkers() const {
 
 // Update ingredient quantity
 bool Department::updateIngredientQuantity(const char* name, int quantity) {
-    Ingredient* ingradient = wareHouse->getIngredientByName(name);
-    return wareHouse->updateIngredientQuantity(ingradient, quantity);
+    Ingredient* ingredient = wareHouse->getIngredientByName(name);
+    if (ingredient) {
+        return wareHouse->updateIngredientQuantity(ingredient, quantity);
+    }
+    return false;  // Return false if ingredient not found
 }
 
 // Add ingredient to the warehouse

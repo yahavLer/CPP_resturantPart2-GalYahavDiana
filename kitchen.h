@@ -11,15 +11,13 @@ private:
 
 public:
 	Kitchen();
-	Kitchen(const Kitchen &other) = delete;
-	Kitchen(Kitchen &&other);
+	// Kitchen(const Kitchen &other) = delete;
+	Kitchen(Kitchen &&other) noexcept;
 	~Kitchen();
-	const Kitchen &operator=(const Kitchen &other);
-	const Kitchen &operator=(Kitchen &&other);
+	Kitchen &operator=(const Kitchen &other);
+	Kitchen &operator=(Kitchen &&other) noexcept;
 
-	inline Warehouse getWareHouse() const;
-	inline FoodItem **getFoodItemList() const;
-	inline int getNumOfWorkers() const;
+	FoodItem **getFoodItemList() const;
 	bool updateIngredientQuantity(char *name, int quantity);
 	bool addIngredientToWarehouse(char *ingredientName, int section);
 };
