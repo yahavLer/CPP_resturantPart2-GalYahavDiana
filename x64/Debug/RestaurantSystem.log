@@ -1,56 +1,94 @@
-﻿  Bar.cpp
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\menuItem.h(7,18): warning C4099: 'Ingredient': type name first seen using 'class' now seen using 'struct'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Ingredient.h(6,7): message : see declaration of 'Ingredient'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\drinkItem.h(5,17): warning C4099: 'DrinkItem': type name first seen using 'struct' now seen using 'class'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\drinkItem.h(5,7): message : see declaration of 'DrinkItem'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(44,21): error C2664: 'bool Warehouse::updateIngredientQuantity(const Ingredient &,int)': cannot convert argument 1 from 'char *' to 'const Ingredient &'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(44,47): message : Reason: cannot convert from 'char *' to 'const Ingredient'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(44,47): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\warehouse.h(22,7): message : see declaration of 'Warehouse::updateIngredientQuantity'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(44,21): message : while trying to match the argument list '(char *, int)'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(49,22): error C2039: 'addIngredient': is not a member of 'Warehouse'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\warehouse.h(5,7): message : see declaration of 'Warehouse'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(59,12): error C2440: 'return': cannot convert from 'const Warehouse' to 'Warehouse &'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Bar.cpp(59,12): message : Conversion loses qualifiers
+﻿  Alcoholicdrink.cpp
+  Bar.cpp
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\menuItem.h(7,18): warning C4099: 'Ingredient': type name first seen using 'class' now seen using 'struct'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Ingredient.h(6,7): message : see declaration of 'Ingredient'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\drinkItem.h(5,17): warning C4099: 'DrinkItem': type name first seen using 'struct' now seen using 'class'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\drinkItem.h(5,7): message : see declaration of 'DrinkItem'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(9,36): error C2668: 'Department::Department': ambiguous call to overloaded function
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(11,5): message : could be 'Department::Department(int)'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(10,2): message : or       'Department::Department(void)'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(9,36): message : while trying to match the argument list '()'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Bar.cpp(12,6): error C2382: 'Bar::Bar': redefinition; different exception specifications
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\bar.h(15,2): message : see declaration of 'Bar::Bar'
   Cocktail.cpp
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.h(20,7): error C2086: 'Cocktail::eAlcoholLevel ': redefinition
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.h(6,7): message : see declaration of 'Cocktail::eAlcoholLevel'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(7,69): error C2075: 'alcoholLevel': initialization requires a brace-enclosed initializer list
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(10,12): error C2440: 'return': cannot convert from 'const char *const [4]' to 'Cocktail::eAlcoholLevel'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(10,12): message : There is no context in which this conversion is possible
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(18,18): error C3863: array type 'const char *[4]' is not assignable
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.h(20,7): error C2086: 'Cocktail::eAlcoholLevel ': redefinition
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.h(6,7): message : see declaration of 'Cocktail::eAlcoholLevel'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(7,69): error C2075: 'alcoholLevel': initialization requires a brace-enclosed initializer list
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(10,12): error C2440: 'return': cannot convert from 'const char *const [4]' to 'Cocktail::eAlcoholLevel'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(10,12): message : There is no context in which this conversion is possible
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Cocktail.cpp(18,18): error C3863: array type 'const char *[4]' is not assignable
   Department.cpp
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Department.cpp(10,12): error C2065: 'numOfWorkers': undeclared identifier
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Department.cpp(15,12): error C2065: 'wareHouse': undeclared identifier
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Department.cpp(20,12): error C2065: 'wareHouse': undeclared identifier
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\department.h(6,12): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\department.h(6,12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\department.h(6,22): error C2238: unexpected token(s) preceding ';'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.cpp(15,30): error C2065: 'wareHouse': undeclared identifier
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.cpp(16,12): error C2065: 'wareHouse': undeclared identifier
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.cpp(21,12): error C2065: 'wareHouse': undeclared identifier
   DrinkItem.cpp
+  FoodItem.cpp
+  Ingredient.cpp
   Kitchen.cpp
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(29,15): error C2280: 'Warehouse &Warehouse::operator =(const Warehouse &)': attempting to reference a deleted function
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\warehouse.h(17,16): message : see declaration of 'Warehouse::operator ='
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\warehouse.h(17,16): message : 'Warehouse &Warehouse::operator =(const Warehouse &)': function was explicitly deleted
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(11,60): error C2668: 'Department::Department': ambiguous call to overloaded function
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(11,5): message : could be 'Department::Department(int)'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(10,2): message : or       'Department::Department(void)'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(11,60): message : while trying to match the argument list '()'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(11,45): error C2614: 'Kitchen': illegal member initialization: 'numOfWrkers' is not a base or member
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,58): error C2039: 'warehouse': is not a member of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.h(7,7): message : see declaration of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,47): error C2672: 'std::move': no matching overloaded function found
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xutility(4219,21): message : could be '_OutIt std::move(_InIt,_InIt,_OutIt)'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,47): message : '_OutIt std::move(_InIt,_InIt,_OutIt)': expects 3 arguments - 1 provided
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\type_traits(1436,48): message : or       'remove_reference<_Ty>::type &&std::move(_Ty &&) noexcept'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,123): error C2039: 'numOfWrkers': is not a member of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.h(7,7): message : see declaration of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,136): error C2668: 'Department::Department': ambiguous call to overloaded function
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(11,5): message : could be 'Department::Department(int)'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Department.h(10,2): message : or       'Department::Department(void)'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,136): message : while trying to match the argument list '()'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,37): error C2614: 'Kitchen': illegal member initialization: 'warehouse' is not a base or member
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(15,105): error C2614: 'Kitchen': illegal member initialization: 'numOfWrkers' is not a base or member
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(17,11): error C2039: 'numOfWrkers': is not a member of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.h(7,7): message : see declaration of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(29,5): error C2065: 'warehouse': undeclared identifier
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(29,23): error C2039: 'warehouse': is not a member of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.h(7,7): message : see declaration of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(30,5): error C2065: 'numOfWrkers': undeclared identifier
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(30,25): error C2039: 'numOfWrkers': is not a member of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.h(7,7): message : see declaration of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(44,5): error C2065: 'warehouse': undeclared identifier
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(44,28): error C2039: 'warehouse': is not a member of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.h(7,7): message : see declaration of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(44,17): error C2672: 'std::move': no matching overloaded function found
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xutility(4219,21): message : could be '_OutIt std::move(_InIt,_InIt,_OutIt)'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(44,17): message : '_OutIt std::move(_InIt,_InIt,_OutIt)': expects 3 arguments - 1 provided
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\type_traits(1436,48): message : or       'remove_reference<_Ty>::type &&std::move(_Ty &&) noexcept'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(46,5): error C2065: 'numOfWrkers': undeclared identifier
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(46,25): error C2039: 'numOfWrkers': is not a member of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.h(7,7): message : see declaration of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(49,11): error C2039: 'numOfWrkers': is not a member of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.h(7,7): message : see declaration of 'Kitchen'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(55,12): error C2065: 'warehouse': undeclared identifier
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Kitchen.cpp(63,12): error C2065: 'numOfWrkers': undeclared identifier
   Main.cpp
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\table.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\restaurant.h(7,13): warning C4099: 'Order': type name first seen using 'class' now seen using 'struct'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\order.h(5,7): message : see declaration of 'Order'
   Menu.cpp
   MenuItem.cpp
   MenuItemInOrder.cpp
   Order.cpp
   Restaurant.cpp
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\department.h(4,1): warning C4099: 'Department': type name first seen using 'struct' now seen using 'class'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\department.h(3,7): message : see declaration of 'Department'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\table.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\restaurant.h(7,13): warning C4099: 'Order': type name first seen using 'class' now seen using 'struct'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\order.h(5,7): message : see declaration of 'Order'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\department.h(4,1): warning C4099: 'Department': type name first seen using 'struct' now seen using 'class'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\department.h(3,7): message : see declaration of 'Department'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\department.h(6,12): error C2143: syntax error: missing ';' before '*'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\department.h(6,12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\department.h(6,22): error C2238: unexpected token(s) preceding ';'
   Table.cpp
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(16,8): error C2382: 'Table::Table': redefinition; different exception specifications
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.h(14,2): message : see declaration of 'Table::Table'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(47,15): error C2511: 'Table &Table::operator =(const Table &&)': overloaded member function not found in 'Table'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.h(5,7): message : see declaration of 'Table'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(48): error C2671: 'Table::=': static member functions do not have 'this' pointers
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(48,33): error C2671: 'Table::=': static member functions do not have 'this' pointers
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(50,17): error C2541: 'delete': cannot delete objects that are not pointers
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(52,5): error C2597: illegal reference to non-static member 'Table::order'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.h(8,9): message : see declaration of 'Table::order'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(53,5): error C2597: illegal reference to non-static member 'Table::number'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.h(9,6): message : see declaration of 'Table::number'
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(55,10): error C3490: 'order' cannot be modified because it is being accessed through a const object
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(56,10): error C3490: 'number' cannot be modified because it is being accessed through a const object
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(58,13): error C2671: 'Table::=': static member functions do not have 'this' pointers
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.cpp(65,19): error C2084: function 'int Table::getNumber(void) const' already has a body
-C:\Users\Gurvi\source\repos\Class24B-Hospital-GalYahavDiana\Table.h(22,6): message : see previous definition of 'getNumber'
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Table.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Table.cpp(8,8): error C2382: 'Table::Table': redefinition; different exception specifications
+C:\Users\yahav\Documents\student\year3\semesterB\c++\Class24B-Hospital-GalYahavDiana\Table.h(14,2): message : see declaration of 'Table::Table'
+  Warehouse.cpp
   Generating Code...

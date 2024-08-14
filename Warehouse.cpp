@@ -42,9 +42,9 @@ int* Warehouse::getIngredientQuantityList() const {
 }
 
 // Update ingredient quantity
-bool Warehouse::updateIngredientQuantity(const Ingredient& ingredient, int quantity) {
+bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quantity) {
     for (int i = 0; i < numIngredients; ++i) {
-        if (compareStrings(ingredientList[i]->getName(), ingredient.getName())) {
+        if (compareStrings(ingredientList[i]->getName(), ingredient->getName())) {
             ingredientQuantityList[i] = quantity;
             return true;
         }

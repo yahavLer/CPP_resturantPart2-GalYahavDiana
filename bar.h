@@ -12,14 +12,14 @@ private:
 public:
 	Bar();
 	Bar(const Bar &other) = delete;
-	Bar(Bar &&other);
+	Bar(Bar &&other)noexcept;
 	~Bar();
 	const Bar &operator=(const Bar &other);
 	const Bar &operator=(Bar &&other);
 
 	inline int getNumOfWorkers() const;
 	bool updateIngredientQuantity(const char *name, int quantity);
-	bool addIngredientToWarehouse(char *ingredientName, int section);
+	bool addIngredientToWarehouse(const char *ingredientName, int section);
 	inline DrinkItem **getDrinkItemList() const;
 	inline Warehouse &getWareHouse() const;
 };

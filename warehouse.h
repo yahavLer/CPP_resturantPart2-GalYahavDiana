@@ -20,7 +20,7 @@ public:
 	Ingredient** getIngredientList() const;
 	Ingredient* getIngredientByName(const char* ingredientName) const; 
 	int* getIngredientQuantityList() const;
-	bool updateIngredientQuantity(const Ingredient& ingredient, int quantity);  
+	bool updateIngredientQuantity(const Ingredient* ingredient, int quantity);  
 	bool addIngredientToWarehouse(const char* ingredientName, int section);
 
 private:

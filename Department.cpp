@@ -11,11 +11,12 @@ inline int Department::getNumOfWorkers() const {
 }
 
 // Update ingredient quantity
-bool Department::updateIngredientQuantity(char* name, int quantity) {
-    return wareHouse.updateIngredientQuantity(name, quantity);
+bool Department::updateIngredientQuantity(const char* name, int quantity) {
+    Ingredient* ingradient = wareHouse->getIngredientByName(name);
+    return wareHouse->updateIngredientQuantity(ingradient, quantity);
 }
 
 // Add ingredient to the warehouse
-bool Department::addIngredientToWarehouse(char* ingredientName, int section) {
-    return wareHouse.addIngredient(ingredientName, section);
+bool Department::addIngredientToWarehouse(const char* ingredientName, int section) {
+    return wareHouse->addIngredientToWarehouse(ingredientName, section);
 }

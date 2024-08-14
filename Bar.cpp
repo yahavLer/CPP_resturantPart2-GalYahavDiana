@@ -6,7 +6,8 @@ using namespace std;
 #include "drinkItem.h"
 
 // Default constructor
-Bar::Bar() : drinkItemList(nullptr){}
+Bar::Bar():Department(),drinkItemList(nullptr) {
+}
 
 // Move constructor
 Bar::Bar(Bar&& other) noexcept : Department(std::move(other)), drinkItemList(other.drinkItemList) {
@@ -32,17 +33,17 @@ const Bar& Bar::operator=(Bar&& other) {
 
 // Get number of workers
 int Bar::getNumOfWorkers() const {
-    return numOfWorkers;
+    return Department::getNumOfWorkers();
 }
 
 // Update ingredient quantity in the warehouse
 bool Bar::updateIngredientQuantity(const char* name, int quantity) {
-    return wareHouse->updateIngredientQuantity(name, quantity);
+    return Department::updateIngredientQuantity(name, quantity);
 }
 
 // Add ingredient to the warehouse
-bool Bar::addIngredientToWarehouse(char* ingredientName, int section) {
-    return wareHouse->addIngredient(ingredientName, section);
+bool Bar::addIngredientToWarehouse(const char* ingredientName, int section) {
+    return Department::addIngredientToWarehouse(ingredientName, section);
 }
 
 // Get drink item list
@@ -52,5 +53,5 @@ DrinkItem** Bar::getDrinkItemList() const {
 
 // Get warehouse
 Warehouse& Bar::getWareHouse() const {
-    return wareHouse;
+    return *wareHouse;
 }
