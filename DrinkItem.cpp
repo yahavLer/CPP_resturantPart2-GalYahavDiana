@@ -4,17 +4,14 @@ using namespace std;
 
 const char* DrinkItem::glassTypes[5] = { "Lowball", "Wine", "Beer", "Highball", "Paper cup" };
 
-DrinkItem::DrinkItem() {
-    name[0] = '\0';
-    volume = 0;
-    glass = PAPERCUP; // Default glass type
+DrinkItem::DrinkItem() : name(""), volume(0), glass(LOWBOAL) {}
+
+
+DrinkItem::DrinkItem(const char* drinkName, int drinkVolume, eGlassType drinkGlass)
+    : volume(drinkVolume), glass(drinkGlass) {
+    setName(drinkName);
 }
 
-DrinkItem::DrinkItem(const char* drinkName, int drinkVolume, eGlassType drinkGlass) {
-    setName(drinkName);
-    volume = drinkVolume;
-    glass = drinkGlass;
-}
 
 bool DrinkItem::setName(const char* newName) {
     if (newName) {

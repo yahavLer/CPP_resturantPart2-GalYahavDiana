@@ -4,7 +4,8 @@
 using namespace std;
 #include "Cocktail.h"
 
-Cocktail::Cocktail(int price) : doubleDosePrice(price), alcoholLevel(regular) {}
+Cocktail::Cocktail(int doubleDosePrice)
+    : DrinkItem(), AlcoholicDrink(), alcoholLevel(regular), doubleDosePrice(doubleDosePrice) {}
 
 Cocktail::eAlcoholLevel Cocktail::getAlcoholLevel() const {
     return alcoholLevel;
@@ -28,5 +29,7 @@ bool Cocktail::setDoubleDosePrice(int newPrice) {
 }
 
 void Cocktail::print() const {
-    // Implementation for print, could use printf or std::cout
+    std::cout << "Cocktail details:" << std::endl;
+    std::cout << "Alcohol Level: " << alcoholLevel << std::endl;
+    std::cout << "Double Dose Price: " << doubleDosePrice << std::endl;
 }

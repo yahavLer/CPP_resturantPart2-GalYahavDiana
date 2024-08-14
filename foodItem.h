@@ -1,6 +1,7 @@
 #pragma once
+#include "menuItem.h"
 
-class FoodItem
+class FoodItem : virtual public MenuItem
 {
 private:
 	int calories;

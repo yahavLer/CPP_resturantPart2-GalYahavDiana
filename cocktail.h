@@ -1,12 +1,8 @@
 #pragma once
-#include <iostream>
-using namespace std;
+#include "DrinkItem.h"
+#include "AlcoholicDrink.h"
 
-
-
-#include <iostream>
-using namespace std;
-class Cocktail
+class Cocktail : virtual public DrinkItem, virtual public AlcoholicDrink
 {
 private:
 	enum eAlcoholLevel;
