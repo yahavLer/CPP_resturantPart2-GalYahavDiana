@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-struct Ingredient;
+class Ingredient;
 
 class MenuItem
 {

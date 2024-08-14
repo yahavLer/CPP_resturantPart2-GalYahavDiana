@@ -3,16 +3,11 @@
 #include <iostream>
 using namespace std;
 #include "department.h"
-#include "warehouse.h"
 
 Department::Department() : wareHouse(nullptr), numOfWorkers(0) {}
 
 Department::Department(int workers) : wareHouse(nullptr), numOfWorkers(workers) {}
 
-// Get number of workers
-inline int Department::getNumOfWorkers() const {
-    return numOfWorkers;
-}
 
 // Update ingredient quantity
 bool Department::updateIngredientQuantity(const char* name, int quantity) {

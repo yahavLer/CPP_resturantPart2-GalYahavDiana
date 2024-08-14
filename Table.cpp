@@ -5,7 +5,7 @@ using namespace std;
 
 Table::Table() : order(nullptr), number(0) {}
 
-Table::Table(Table&& other) : order(other.order), number(other.number) {
+Table::Table(Table&& other) noexcept : order(other.order), number(other.number) {
     other.order = nullptr;
     other.number = 0;
 }
@@ -89,4 +89,13 @@ void Table::printTable() const {
     else {
         cout << "No current order." << endl;
     }
+
+}
+
+void Table::clear() {
+    if (order) {
+        delete order;  // מחיקת ההזמנה אם קיימת
+        order = nullptr;  // איפוס המצביע
+    }
+    number = 0;  // איפוס מספר השולחן
 }

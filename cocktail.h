@@ -4,13 +4,14 @@
 
 class Cocktail : virtual public DrinkItem, virtual public AlcoholicDrink
 {
-private:
-	enum eAlcoholLevel;
-	int doubleDosePrice;
 public:
 	enum eAlcoholLevel { regular, doubleDose, weak, virgin };
-	const char* alcoholLevel[4] = { "regular","doubleDose","weak","virgin" };
-
+	static const char* alcoholLevelNames[4];
+private:
+	eAlcoholLevel alcoholLevel;
+	int doubleDosePrice;
+public:
+	
 	Cocktail(int doubleDosePrice);
 
 	eAlcoholLevel getAlcoholLevel() const;

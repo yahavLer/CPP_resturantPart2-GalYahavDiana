@@ -3,8 +3,8 @@
 #include "table.h"
 #include "menu.h"
 
-struct Department;
-struct Order;
+class Department;
+class Order;
 
 class Restaurant
 {

@@ -1,4 +1,5 @@
 #pragma once
+#include "warehouse.h"
 
 class Department
 {
