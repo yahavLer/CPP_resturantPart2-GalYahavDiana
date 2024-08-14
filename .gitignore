@@ -1,4 +1,9 @@
 
 # Ignore Visual Studio files
+.vs/
+x64/
+Debug/
+*.vcxproj.user
 *.suo
 *.db
+*.opendb
