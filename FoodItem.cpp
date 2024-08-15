@@ -23,3 +23,20 @@ bool FoodItem::setKosher(bool isKosher)
     kosher = isKosher;
     return true;
 }
+void FoodItem::print() {
+    cout << "Food Item:" << endl;
+    cout << "Calories: " << getCalories() << endl;
+    cout << "Kosher: " << (getKosher() ? "Yes" : "No") << endl;
+    cout << "Price: " << getPrice() << endl;
+
+    cout << "Ingredients:" << endl;
+    Ingredient** ingredients = getIngredientList();
+    if (ingredients) {
+        for (int i = 0; i < numOfIngredients; ++i) {
+            ingredients[i]->print(); // assuming Ingredient has a print method
+        }
+    }
+    else {
+        cout << "No ingredients listed." << endl;
+    }
+}

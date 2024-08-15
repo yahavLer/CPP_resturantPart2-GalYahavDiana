@@ -38,3 +38,23 @@ bool DrinkItem::setGlass(eGlassType newGlass) {
     glass = newGlass;
     return true;
 }
+void DrinkItem::print() {
+    cout << "Drink Item:" << endl;
+    cout << "Name: " << getName() << endl;
+    cout << "Volume: " << getVolume() << " ml" << endl;
+    cout << "Glass Type: " << glassTypes[getGlass()] << endl;
+    cout << "Price: " << getPrice() << endl;
+
+    cout << "Ingredients:" << endl;
+    Ingredient** ingredients = getIngredientList();
+    if (ingredients) {
+        int i = 0;
+        while (ingredients[i] != nullptr) {
+            ingredients[i]->print(); // assuming Ingredient has a print method
+            i++;
+        }
+    }
+    else {
+        cout << "No ingredients listed." << endl;
+    }
+}

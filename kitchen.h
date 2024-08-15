@@ -2,7 +2,7 @@
 
 #include "warehouse.h"
 #include "Department.h"
-struct FoodItem;
+#include "FoodItem.h";
 
 class Kitchen : public Department
 {
@@ -20,4 +20,5 @@ public:
 	FoodItem **getFoodItemList() const;
 	bool updateIngredientQuantity(char *name, int quantity);
 	bool addIngredientToWarehouse(char *ingredientName, int section);
+	void print() override;
 };

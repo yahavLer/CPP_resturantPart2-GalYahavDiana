@@ -31,3 +31,9 @@ bool Ingredient::setSection(eSection newSection) {
     section = newSection;
     return true;
 }
+
+void Ingredient::print()
+{
+    cout << "Ingredient Name: " << name << endl;
+    cout << "Section: " << sections[section] << endl;
+}

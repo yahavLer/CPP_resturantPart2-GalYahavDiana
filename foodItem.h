@@ -16,4 +16,6 @@ public:
 
 	bool setCalories(int newCalories);
 	bool setKosher(bool isKosher);
+	void print() override;
+
 };

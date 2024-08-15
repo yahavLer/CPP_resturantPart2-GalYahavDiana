@@ -22,6 +22,7 @@ public:
 	int* getIngredientQuantityList() const;
 	bool updateIngredientQuantity(const Ingredient* ingredient, int quantity);  
 	bool addIngredientToWarehouse(const char* ingredientName, int section);
+	void print() const;
 
 private:
     void clear();  

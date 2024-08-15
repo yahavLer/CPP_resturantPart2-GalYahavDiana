@@ -1,34 +1,38 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "restaurant.h"
-#include "department.h"
-#include "menu.h"
-#include <cstring>
+
 #include <iostream>
+
+// Helper function to copy strings
+void copyString(char* destination, const char* source, size_t size) {
+    for (size_t i = 0; i < size - 1 && source[i] != '\0'; ++i) {
+        destination[i] = source[i];
+    }
+    destination[size - 1] = '\0';
+}
 
 // Default constructor
 Restaurant::Restaurant() : departments(nullptr), dailyOrders(nullptr) {
-    std::strcpy(name, "");
-    std::strcpy(address, "");
+    name[0] = '\0';
+    address[0] = '\0';
 }
 
 // Parameterized constructor
-Restaurant::Restaurant(char* name, char* address) : departments(nullptr), dailyOrders(nullptr) {
-    std::strcpy(this->name, name);
-    std::strcpy(this->address, address);
+Restaurant::Restaurant(const char* name, const char* address) : departments(nullptr), dailyOrders(nullptr) {
+    copyString(this->name, name, sizeof(this->name));
+    copyString(this->address, address, sizeof(this->address));
 }
 
 // Move constructor
-Restaurant::Restaurant(Restaurant&& other)
-    : menu(std::move(other.menu)) {
-    std::strcpy(name, other.name);
-    std::strcpy(address, other.address);
-    departments = other.departments;
-    dailyOrders = other.dailyOrders;
+Restaurant::Restaurant(Restaurant&& other) noexcept
+    : menu(std::move(other.menu)), departments(other.departments), dailyOrders(other.dailyOrders) {
+    copyString(this->name, other.name, sizeof(this->name));
+    copyString(this->address, other.address, sizeof(this->address));
 
     other.departments = nullptr;
     other.dailyOrders = nullptr;
-    std::strcpy(other.name, "");
-    std::strcpy(other.address, "");
+    other.name[0] = '\0';
+    other.address[0] = '\0';
 }
 
 // Destructor
@@ -38,67 +42,66 @@ Restaurant::~Restaurant() {
 }
 
 // Move assignment operator
-const Restaurant& Restaurant::operator=(Restaurant&& other) {
+Restaurant& Restaurant::operator=(Restaurant&& other) noexcept {
     if (this != &other) {
         delete[] departments;
         delete[] dailyOrders;
 
         menu = std::move(other.menu);
-        std::strcpy(name, other.name);
-        std::strcpy(address, other.address);
+        copyString(this->name, other.name, sizeof(this->name));
+        copyString(this->address, other.address, sizeof(this->address));
         departments = other.departments;
         dailyOrders = other.dailyOrders;
 
         other.departments = nullptr;
         other.dailyOrders = nullptr;
-        std::strcpy(other.name, "");
-        std::strcpy(other.address, "");
+        other.name[0] = '\0';
+        other.address[0] = '\0';
     }
     return *this;
 }
 
 // Getters
 Table& Restaurant::getTables() const {
-    return const_cast<Table&>(tables[0]);  // Assuming a single table is returned, you might need to adjust this based on your design
+    return const_cast<Table&>(tables[0]);
 }
 
-Department**& Restaurant::getDepartments() const {
-    return const_cast<Department**&>(departments);
+Department** Restaurant::getDepartments() const {
+    return departments;
 }
 
 const Menu& Restaurant::getMenu() const {
     return menu;
 }
 
-char& Restaurant::getName() const {
-    return const_cast<char&>(name[0]);
+const char* Restaurant::getName() const {
+    return name;
 }
 
-char& Restaurant::getAdress() const {
-    return const_cast<char&>(address[0]);
+
+const char* Restaurant::getAddress() const {
+    return address;
 }
 
 // Setters
-bool Restaurant::setName(char* name) {
-    std::strcpy(this->name, name);
+bool Restaurant::setName(const char* name) {
+    copyString(this->name, name, sizeof(this->name));
     return true;
 }
 
-bool Restaurant::setAdress(char* address) {
-    std::strcpy(this->address, address);
+bool Restaurant::setAddress(const char* address) {
+    copyString(this->address, address, sizeof(this->address));
     return true;
 }
 
 // Method implementations
-void Restaurant::presentMenu() const{
+void Restaurant::presentMenu() const {
     menu.print();
 }
 
-
-bool Restaurant::updateIngredientQuantity(char* name, int quantity, int kitchen) {
+bool Restaurant::updateIngredientQuantity(const char* name, int quantity, int kitchen) {
     if (departments && departments[kitchen]) {
-        Department** temp = this->getDepartments();
-        return temp[kitchen]->updateIngredientQuantity(name, quantity);
+        return departments[kitchen]->updateIngredientQuantity(name, quantity);
     }
     return false;
 }
@@ -117,7 +120,6 @@ bool Restaurant::createNewOrderInTable(int tableNum) {
 }
 
 bool Restaurant::AddItemToOrder(int menuItemNum, int quantity) {
-    // Assuming logic to add item to an order
     return true;
 }
 
@@ -128,7 +130,7 @@ bool Restaurant::closeBill(int tableNum) {
     return false;
 }
 
-bool Restaurant::addIngredientToWarehouse(char* ingredientName, int section, int forKitchen) {
+bool Restaurant::addIngredientToWarehouse(const char* ingredientName, int section, int forKitchen) {
     if (departments && departments[forKitchen]) {
         return departments[forKitchen]->addIngredientToWarehouse(ingredientName, section);
     }
@@ -136,12 +138,45 @@ bool Restaurant::addIngredientToWarehouse(char* ingredientName, int section, int
 }
 
 bool Restaurant::addTables(int numOfTables) {
-    // Assuming logic to add tables
     return true;
 }
 
 void Restaurant::presentDailyIncome() {
-    // Assuming logic to present daily income
+    // Logic to present daily income
+}
+
+void Restaurant::showKitchenWarehouse() {
+    if (departments) {
+        int i = 0;
+        while (departments[i] != nullptr) {
+            if (departments[i]) {
+                departments[i]->print();
+            }
+            i++;
+        }
+    }
+}
+
+void Restaurant::showBarWarehouse() {
+    if (departments) {
+        int i = 0;
+        while (departments[i] != nullptr) {
+            if (departments[i]) {
+                departments[i]->print();
+            }
+            i++;
+        }
+    }
+}
+
+void Restaurant::showMenuWarehouse() {
+    menu.print();
+}
+
+void Restaurant::showTablesWarehouse() {
+    for (int i = 0; i < 10; ++i) {
+        tables[i].printTable();
+    }
 }
 
 void Restaurant::print() const {

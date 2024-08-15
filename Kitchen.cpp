@@ -58,3 +58,21 @@ bool Kitchen::addIngredientToWarehouse(char *ingredientName, int section)
 {
         return wareHouse->addIngredientToWarehouse(ingredientName, section);
 }
+
+void Kitchen::print() {
+    cout << "Kitchen Department:" << endl;
+    cout << "Number of Workers: " << getNumOfWorkers() << endl;
+
+    if (foodItemList) {
+        cout << "Food Items in the Kitchen:" << endl;
+        for (int i = 0; foodItemList[i] != nullptr; ++i) {
+            foodItemList[i]->print();
+        }
+    }
+    else {
+        cout << "No food items in the kitchen." << endl;
+    }
+
+    cout << "Warehouse status:" << endl;
+    wareHouse->print();  // הנחה ש-wareHouse כולל פונקציה להדפסת המצב שלו
+}

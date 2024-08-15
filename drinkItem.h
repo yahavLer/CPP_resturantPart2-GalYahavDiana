@@ -1,6 +1,6 @@
 #ifndef __DRINK_ITEM_H
 #define __DRINK_ITEM_H
-#include "menuItem.h"
+#include  "menuItem.h"
 
 class DrinkItem : virtual public MenuItem
 {
@@ -25,6 +25,7 @@ public:
 	bool setName(const char* newName);
 	bool setVolume(int newVolume);
 	bool setGlass(eGlassType newGlass);
+	void print() override;
 
 private:
 	char name[20];

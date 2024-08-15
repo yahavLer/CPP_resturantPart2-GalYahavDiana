@@ -2,8 +2,7 @@
 
 #include "table.h"
 #include "menu.h"
-
-class Department;
+#include "department.h"
 class Order;
 
 class Restaurant
@@ -19,29 +18,30 @@ private:
 
 public:
 	Restaurant();
-	Restaurant(char* name, char* address);                                                                                                    
+	Restaurant(const char* name,const char* address);                                                                                                    
 	Restaurant(const Restaurant& other) = delete;
 	Restaurant(Restaurant&& other);
 	~Restaurant();
 
-	const Restaurant& operator=(const Restaurant& other);
-	const Restaurant& operator=(Restaurant&& other);
+
+	Restaurant& operator=(const Restaurant& other) = delete;
+	Restaurant& operator=(Restaurant&& other) noexcept;
 
 	Table& getTables() const;
-	Department**& getDepartments() const;
+	Department** getDepartments() const;
 	const Menu& getMenu() const;
-	char& getName() const;
-	char& getAdress() const;
+	const char* getName() const;
+	const char* getAddress() const;
 
-	bool setName(char* name);
-	bool setAdress(char* address);
+	bool setName(const char* name);
+	bool setAddress(const char* address);
 	void presentMenu() const;
-	bool updateIngredientQuantity(char* name, int quantity, int kitchen);
+	bool updateIngredientQuantity(const char* name, int quantity, int kitchen);
 	void presentTables() const;
 	bool createNewOrderInTable(int tableNum);
 	bool AddItemToOrder(int menuIemNum, int quantity);
 	bool closeBill(int tableNum);
-	bool addIngredientToWarehouse(char* ingredientName, int section, int  forKitchen);
+	bool addIngredientToWarehouse(const char* ingredientName, int section, int  forKitchen);
 	bool addTables(int numOfTables);
 	void presentDailyIncome();
 	void showKitchenWarehouse();

@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-class Ingredient;
+#include "Ingredient.h";
 
 class MenuItem
 {
@@ -26,6 +26,7 @@ public:
 	Ingredient** const getIngredientList() const { return ingredientList; }
 	bool setPrice(int newPrice);
 	bool setIngredients(Ingredient** list, int size);
+	virtual void print() = 0;
 
 private:
 	void clearIngredients(); 

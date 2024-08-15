@@ -55,3 +55,23 @@ DrinkItem** Bar::getDrinkItemList() const {
 Warehouse& Bar::getWareHouse() const {
     return *wareHouse;
 }
+
+void Bar::print() {
+    cout << "Bar Department:" << endl;
+    cout << "Number of Workers: " << getNumOfWorkers() << endl;
+
+    if (drinkItemList) {
+        cout << "Drink Items in the Bar:" << endl;
+        // הנחה שיש לך פונקציה שתדפיס את פרטי כל משקה ב-bar
+        for (int i = 0; drinkItemList[i] != nullptr; ++i) {
+            // דוגמה להדפסה של משקה - הנח שיש לפונקציה זו מתודת print משלה
+            drinkItemList[i]->print();
+        }
+    }
+    else {
+        cout << "No drinks in the bar." << endl;
+    }
+
+    cout << "Warehouse status:" << endl;
+    getWareHouse().print();  // הנחה ש-wareHouse כולל פונקציה להדפסת המצב שלו
+}

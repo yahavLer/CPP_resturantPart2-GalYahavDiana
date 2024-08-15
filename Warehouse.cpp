@@ -80,6 +80,21 @@ bool Warehouse::addIngredientToWarehouse(const char* ingredientName, int section
     return true;
 }
 
+void Warehouse::print() const {
+    if (ingredientList && ingredientQuantityList) {
+        for (int i = 0; i < numIngredients; ++i) {
+            if (ingredientList[i]) {
+                ingredientList[i]->print(); // מדפיס את המידע על המרכיב
+                std::cout << "Quantity: " << ingredientQuantityList[i] << std::endl; // מדפיס את הכמות של המרכיב
+            }
+        }
+    }
+    else {
+        std::cout << "Warehouse is empty or uninitialized." << std::endl;
+    }
+}
+
+
 // פונקציה פנימית לניקוי זיכרון
 void Warehouse::clear() {
     if (ingredientList) {

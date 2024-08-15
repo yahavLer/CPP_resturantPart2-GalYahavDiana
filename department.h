@@ -15,7 +15,6 @@ public:
 	inline int getNumOfWorkers() const { return numOfWorkers; }
 	bool updateIngredientQuantity(const char* name, int quantity);
 	bool addIngredientToWarehouse(const char* ingredientName, int section);
-
-    virtual void manageDepartment() = 0; 
+    virtual void print() = 0; 
 
 };

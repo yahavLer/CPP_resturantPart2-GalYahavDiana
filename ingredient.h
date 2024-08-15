@@ -23,6 +23,7 @@ public:
 
 	bool setName(const char* name);
 	bool setSection(eSection section);
+	void print();
 
 private:
 	char name[20];

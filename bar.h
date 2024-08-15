@@ -22,4 +22,5 @@ public:
 	bool addIngredientToWarehouse(const char *ingredientName, int section);
 	inline DrinkItem **getDrinkItemList() const;
 	inline Warehouse &getWareHouse() const;
+	void print() override;
 };
