@@ -62,13 +62,25 @@ MenuItem** Menu::getSpecials() const {
 }
 
 bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
-    if (special) {
+    MenuItem* newItem = nullptr;
 
+    // נבדוק האם האובייקט הוא מסוג FoodItem או DrinkItem ונמיר אותו נכון
+    if (const FoodItem* food = dynamic_cast<const FoodItem*>(&menuItem)) {
+        newItem = new FoodItem(*food);
+    }
+    else if (const DrinkItem* drink = dynamic_cast<const DrinkItem*>(&menuItem)) {
+        newItem = new DrinkItem(*drink);
+    }
+    else {
+        return false;
+    }
+
+    if (special) {
         MenuItem** newSpecials = new MenuItem * [specialsCount + 1];
         for (int i = 0; i < specialsCount; ++i) {
             newSpecials[i] = specials[i];
         }
-        newSpecials[specialsCount] = new MenuItem(menuItem);
+        newSpecials[specialsCount] = newItem; 
         delete[] specials;
         specials = newSpecials;
         specialsCount++;
@@ -78,11 +90,12 @@ bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
         for (int i = 0; i < menuItemCount; ++i) {
             newMenuItems[i] = menuItems[i];
         }
-        newMenuItems[menuItemCount] = new MenuItem(menuItem);
+        newMenuItems[menuItemCount] = newItem; 
         delete[] menuItems;
         menuItems = newMenuItems;
         menuItemCount++;
     }
+
     return true;
 }
 

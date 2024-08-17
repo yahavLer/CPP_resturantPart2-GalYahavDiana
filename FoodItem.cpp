@@ -4,9 +4,11 @@
 using namespace std;
 #include "FoodItem.h"
 
-FoodItem::FoodItem() : calories(0), kosher(true) {}
+FoodItem::FoodItem() : MenuItem(), calories(0), kosher(true) {}
 
-FoodItem::FoodItem(int foodCalories, bool isKosher) : calories(foodCalories), kosher(isKosher) {}
+FoodItem::FoodItem(int foodCalories, bool isKosher, int price, Ingredient** ingredients, int numOfIngredients, const char* name)
+    : MenuItem(name,numOfIngredients, ingredients, price), calories(foodCalories), kosher(isKosher) {
+}
 
 bool FoodItem::setCalories(int newCalories)
 {

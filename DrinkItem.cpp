@@ -4,27 +4,28 @@ using namespace std;
 
 const char* DrinkItem::glassTypes[5] = { "Lowball", "Wine", "Beer", "Highball", "Paper cup" };
 
-DrinkItem::DrinkItem() : name(""), volume(0), glass(LOWBOAL) {}
+DrinkItem::DrinkItem() : MenuItem(), volume(0), glass(LOWBOAL) {}
 
 
-DrinkItem::DrinkItem(const char* drinkName, int drinkVolume, eGlassType drinkGlass)
-    : volume(drinkVolume), glass(drinkGlass) {
-    setName(drinkName);
-}
+// בנאי עם פרמטרים
+DrinkItem::DrinkItem(const char* drinkName, int drinkVolume, eGlassType drinkGlass, int price, Ingredient** ingredients, int numOfIngredients)
+    : MenuItem(drinkName, numOfIngredients, ingredients, price), volume(drinkVolume), glass(drinkGlass) {}
 
 
-bool DrinkItem::setName(const char* newName) {
-    if (newName) {
-        int i = 0;
-        while (i < sizeof(name) - 1 && newName[i] != '\0') {
-            name[i] = newName[i];
-            i++;
-        }
-        name[i] = '\0';
-        return true;
+// בנאי העתקה
+DrinkItem::DrinkItem(const DrinkItem& other)
+    : MenuItem(other), volume(other.volume), glass(other.glass) {}
+
+// אופרטור השמה
+DrinkItem& DrinkItem::operator=(const DrinkItem& other) {
+    if (this != &other) {
+        MenuItem::operator=(other);
+        volume = other.volume;
+        glass = other.glass;
     }
-    return false;
+    return *this;
 }
+
 
 bool DrinkItem::setVolume(int newVolume) {
     if (newVolume >= 0) {

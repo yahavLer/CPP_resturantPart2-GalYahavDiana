@@ -16,19 +16,17 @@ public:
 	static const char *glassTypes[5];
 
 	DrinkItem();
-	DrinkItem(const char* name, int volume, eGlassType glass);
+	DrinkItem(const char* name, int volume, eGlassType glass ,int price, Ingredient** ingredients, int numOfIngredients);
+	DrinkItem(const DrinkItem& other);
+	DrinkItem& operator=(const DrinkItem& other);
 
-	inline const char* getName() const { return name; }
 	inline int getVolume() const { return volume; };
 	inline eGlassType getGlass() const { return glass; };
-
-	bool setName(const char* newName);
 	bool setVolume(int newVolume);
 	bool setGlass(eGlassType newGlass);
 	void print() override;
 
 private:
-	char name[20];
 	int volume;
 	eGlassType glass;
 };
