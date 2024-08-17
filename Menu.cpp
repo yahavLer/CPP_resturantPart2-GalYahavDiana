@@ -3,7 +3,8 @@
 #include <iostream>
 using namespace std;
 #include "menu.h"
-
+#include "drinkItem.h"
+#include "foodItem.h"
 Menu::Menu() : menuItems(nullptr), specials(nullptr), menuItemCount(0), specialsCount(0) {}
 
 Menu::Menu(Menu&& other) noexcept : menuItems(other.menuItems), specials(other.specials),
@@ -62,7 +63,8 @@ MenuItem** Menu::getSpecials() const {
 
 bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
     if (special) {
-        MenuItem** newSpecials = new MenuItem*[specialsCount + 1];
+
+        MenuItem** newSpecials = new MenuItem * [specialsCount + 1];
         for (int i = 0; i < specialsCount; ++i) {
             newSpecials[i] = specials[i];
         }
@@ -70,8 +72,9 @@ bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
         delete[] specials;
         specials = newSpecials;
         specialsCount++;
-    } else {
-        MenuItem** newMenuItems = new MenuItem*[menuItemCount + 1];
+    }
+    else {
+        MenuItem** newMenuItems = new MenuItem * [menuItemCount + 1];
         for (int i = 0; i < menuItemCount; ++i) {
             newMenuItems[i] = menuItems[i];
         }

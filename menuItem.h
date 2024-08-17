@@ -8,7 +8,7 @@ using namespace std;
 
 class MenuItem
 {
-private:
+protected:
 	int price;
 	Ingredient** ingredientList;
 	int numOfIngredients;
@@ -26,7 +26,7 @@ public:
 	Ingredient** const getIngredientList() const { return ingredientList; }
 	bool setPrice(int newPrice);
 	bool setIngredients(Ingredient** list, int size);
-	virtual void print() ;
+	virtual void print()=0 ;
 
 private:
 	void clearIngredients(); 

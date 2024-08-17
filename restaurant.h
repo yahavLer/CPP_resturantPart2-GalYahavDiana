@@ -20,7 +20,7 @@ public:
 	Restaurant();
 	Restaurant(const char* name,const char* address);                                                                                                    
 	Restaurant(const Restaurant& other) = delete;
-	Restaurant(Restaurant&& other);
+	Restaurant(Restaurant&& other) noexcept;
 	~Restaurant();
 
 
