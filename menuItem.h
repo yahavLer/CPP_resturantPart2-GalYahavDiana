@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-#include "Ingredient.h";
+#include "Ingredient.h"
 
 class MenuItem
 {
@@ -29,6 +29,7 @@ public:
 	bool setPrice(int newPrice);
 	bool setIngredients(Ingredient** list, int size);
 	virtual void print()=0 ;
+	virtual MenuItem* clone() const = 0;
 
 private:
 	void clearIngredients(); 

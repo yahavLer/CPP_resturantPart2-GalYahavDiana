@@ -7,16 +7,16 @@ const char* DrinkItem::glassTypes[5] = { "Lowball", "Wine", "Beer", "Highball", 
 DrinkItem::DrinkItem() : MenuItem(), volume(0), glass(LOWBOAL) {}
 
 
-// брай тн фшоишйн
+// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 DrinkItem::DrinkItem(const char* drinkName, int drinkVolume, eGlassType drinkGlass, int price, Ingredient** ingredients, int numOfIngredients)
     : MenuItem(drinkName, numOfIngredients, ingredients, price), volume(drinkVolume), glass(drinkGlass) {}
 
 
-// брай дтъчд
+// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 DrinkItem::DrinkItem(const DrinkItem& other)
     : MenuItem(other), volume(other.volume), glass(other.glass) {}
 
-// аефшиеш дщод
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 DrinkItem& DrinkItem::operator=(const DrinkItem& other) {
     if (this != &other) {
         MenuItem::operator=(other);
@@ -58,4 +58,8 @@ void DrinkItem::print() {
     else {
         cout << "No ingredients listed." << endl;
     }
+}
+
+DrinkItem* DrinkItem::clone() const {
+    return new DrinkItem(*this); // Ч™Ч¦Ч™ЧЁЧЄ ЧўЧ•ЧЄЧ§ Ч—Ч“Ч© Ч©Чњ Ч”ЧђЧ•Ч‘Ч™Ч™Ч§ЧВ Ч”Ч Ч•Ч›Ч—Ч™
 }

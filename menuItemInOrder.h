@@ -5,27 +5,29 @@
 class MenuItemInOrder
 {
 private:
-    MenuItem* menuItem; // îöáéò ìîçì÷ú äáñéñ
+    MenuItem *menuItem; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
     int quantity;
     char comment[20];
 
 public:
     MenuItemInOrder();
-    MenuItemInOrder(MenuItem* menuItem, int quantity, const  char* comment);
-    MenuItemInOrder(MenuItem* menuItem, int quantity);
+    MenuItemInOrder(const MenuItem &menuItem, int quantity, const char *comment);
+    MenuItemInOrder(MenuItem *menuItem, int quantity);
     ~MenuItemInOrder(); // Destructor to clean up
 
-    MenuItemInOrder& operator+=(int num);
-    MenuItemInOrder& operator-=(int num);
-    MenuItemInOrder& operator++();
-    // MenuItemInOrder operator++(int); // ðéúï ìù÷åì ìîîù àú æä âí àí öøéê
+    MenuItemInOrder &operator+=(int num);
+    MenuItemInOrder &operator-=(int num);
+    MenuItemInOrder operator+(int num);
+    MenuItemInOrder operator-(int num);
+    MenuItemInOrder &operator++();
+    // MenuItemInOrder operator++(int); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    MenuItem* getMenuItem() const;
+    MenuItem *getMenuItem() const;
     int getQuantity() const;
-    const char* getComment() const;
+    const char *getComment() const;
 
     bool setQuantity(int quantity);
-    bool setComment(const char* comment);
+    bool setComment(const char *comment);
 
     void print() const;
 };

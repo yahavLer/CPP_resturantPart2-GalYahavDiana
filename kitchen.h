@@ -2,7 +2,7 @@
 
 #include "warehouse.h"
 #include "Department.h"
-#include "FoodItem.h";
+#include "FoodItem.h"
 
 class Kitchen : public Department
 {

@@ -7,3 +7,5 @@ Debug/
 *.suo
 *.db
 *.opendb
+vc140.pdb
+*.obj

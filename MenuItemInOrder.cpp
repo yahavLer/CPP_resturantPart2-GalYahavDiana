@@ -9,15 +9,9 @@ MenuItemInOrder::MenuItemInOrder() : menuItem(nullptr), quantity(0) {
 }
 
 // Constructor with menuItem, quantity, and comment
-MenuItemInOrder::MenuItemInOrder(MenuItem* menuItem, int quantity, const char* comment)
-    : menuItem(menuItem), quantity(quantity) {
-    // Copy comment into member variable, ensure it's null-terminated
-    int i = 0;
-    while (comment[i] != '\0' && i < sizeof(this->comment) - 1) {
-        this->comment[i] = comment[i];
-        i++;
-    }
-    this->comment[i] = '\0';
+MenuItemInOrder::MenuItemInOrder(const MenuItem &menuItem, int quantity, const char* comment)
+    : menuItem(menuItem.clone()), quantity(quantity) {
+    setComment(comment);
 }
 
 // Constructor with menuItem and quantity only
@@ -28,32 +22,9 @@ MenuItemInOrder::MenuItemInOrder(MenuItem* menuItem, int quantity)
 
 // Destructor
 MenuItemInOrder::~MenuItemInOrder() {
-    // Optionally, you might want to manage the menuItem pointer here if it was dynamically allocated
-    // delete menuItem; // Uncomment if menuItem was dynamically allocated
+    delete menuItem;
 }
 
-// Operator overloads for addition and subtraction
-MenuItemInOrder operator-(int num, const MenuItemInOrder& item) {
-    int newQuantity = num - item.getQuantity();
-    if (newQuantity < 0) newQuantity = 0;
-    return MenuItemInOrder(item.getMenuItem(), newQuantity, item.getComment());
-}
-
-MenuItemInOrder operator-(const MenuItemInOrder& item, int num) {
-    int newQuantity = item.getQuantity() - num;
-    if (newQuantity < 0) newQuantity = 0;
-    return MenuItemInOrder(item.getMenuItem(), newQuantity, item.getComment());
-}
-
-MenuItemInOrder operator+(int num, const MenuItemInOrder& item) {
-    int newQuantity = num + item.getQuantity();
-    return MenuItemInOrder(item.getMenuItem(), newQuantity, item.getComment());
-}
-
-MenuItemInOrder operator+(const MenuItemInOrder& item, int num) {
-    int newQuantity = item.getQuantity() + num;
-    return MenuItemInOrder(item.getMenuItem(), newQuantity, item.getComment());
-}
 
 MenuItemInOrder& MenuItemInOrder::operator+=(int num) {
     this->quantity += num;
@@ -66,11 +37,20 @@ MenuItemInOrder& MenuItemInOrder::operator-=(int num) {
     return *this;
 }
 
-// MenuItemInOrder MenuItemInOrder::operator++(int) {
-//     MenuItemInOrder temp(*this);
-//     ++(*this);
-//     return temp;
-// }
+// Operator +
+MenuItemInOrder MenuItemInOrder::operator+(int num) {
+    MenuItemInOrder result(*this); // Copy the current object
+    result.quantity += num; // Add the number to the quantity
+    return result;
+}
+
+// Operator -
+MenuItemInOrder MenuItemInOrder::operator-(int num) {
+    MenuItemInOrder result(*this); // Copy the current object
+    result.quantity -= num; // Subtract the number from the quantity
+    if (result.quantity < 0) result.quantity = 0; // Ensure quantity is not negative
+    return result;
+}
 
 MenuItemInOrder& MenuItemInOrder::operator++() {
     ++quantity;
@@ -110,7 +90,7 @@ bool MenuItemInOrder::setComment(const char* comment) {
 
 void MenuItemInOrder::print() const {
     if (menuItem != nullptr) {
-        menuItem->print();  // ÷øéàä ìîúåãú print ùì ä-MenuItem (îàôùø éøåùä)
+        menuItem->print();  // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ print ï¿½ï¿½ ï¿½-MenuItem (ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)
     }
     else {
         std::cout << "No menu item assigned." << std::endl;

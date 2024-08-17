@@ -58,7 +58,7 @@ int Order::closeBill() const {
     }
     int total = 0;
     for (int i = 0; i < numItems; ++i) {
-        total += orderedItems[i]->getMenuItem().getPrice() * orderedItems[i]->getQuantity();
+        total += orderedItems[i]->getMenuItem()->getPrice() * orderedItems[i]->getQuantity();
     }
     return total;
 }

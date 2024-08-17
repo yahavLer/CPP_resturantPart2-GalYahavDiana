@@ -25,6 +25,7 @@ public:
 	bool setVolume(int newVolume);
 	bool setGlass(eGlassType newGlass);
 	void print() override;
+	virtual DrinkItem* clone() const override; 
 
 private:
 	int volume;

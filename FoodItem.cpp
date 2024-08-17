@@ -44,3 +44,7 @@ void FoodItem::print() {
         cout << "No ingredients listed." << endl;
     }
 }
+
+FoodItem* FoodItem::clone() const {
+    return new FoodItem(*this); // יצירת עותק חדש של האובייקט הנוכחי
+}
