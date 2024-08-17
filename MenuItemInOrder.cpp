@@ -3,11 +3,14 @@ using namespace std;
 
 #include "MenuItemInOrder.h"
 
-MenuItemInOrder::MenuItemInOrder() : quantity(0) {
+// Constructor without arguments
+MenuItemInOrder::MenuItemInOrder() : menuItem(nullptr), quantity(0) {
     comment[0] = '\0'; // Initialize comment as an empty string
 }
 
-MenuItemInOrder::MenuItemInOrder(const MenuItem& menuItem, int quantity, const char* comment) : menuItem(menuItem), quantity(quantity) {
+// Constructor with menuItem, quantity, and comment
+MenuItemInOrder::MenuItemInOrder(MenuItem* menuItem, int quantity, const char* comment)
+    : menuItem(menuItem), quantity(quantity) {
     // Copy comment into member variable, ensure it's null-terminated
     int i = 0;
     while (comment[i] != '\0' && i < sizeof(this->comment) - 1) {
@@ -17,30 +20,39 @@ MenuItemInOrder::MenuItemInOrder(const MenuItem& menuItem, int quantity, const c
     this->comment[i] = '\0';
 }
 
-MenuItemInOrder::MenuItemInOrder(const MenuItem& menuItem, int quantity) : menuItem(menuItem), quantity(quantity) {
+// Constructor with menuItem and quantity only
+MenuItemInOrder::MenuItemInOrder(MenuItem* menuItem, int quantity)
+    : menuItem(menuItem), quantity(quantity) {
     comment[0] = '\0'; // Initialize comment as an empty string
 }
 
+// Destructor
+MenuItemInOrder::~MenuItemInOrder() {
+    // Optionally, you might want to manage the menuItem pointer here if it was dynamically allocated
+    // delete menuItem; // Uncomment if menuItem was dynamically allocated
+}
+
+// Operator overloads for addition and subtraction
 MenuItemInOrder operator-(int num, const MenuItemInOrder& item) {
-    int newQuantity = num - item.quantity;
+    int newQuantity = num - item.getQuantity();
     if (newQuantity < 0) newQuantity = 0;
-    return MenuItemInOrder(item.menuItem, newQuantity, item.comment);
+    return MenuItemInOrder(item.getMenuItem(), newQuantity, item.getComment());
 }
 
 MenuItemInOrder operator-(const MenuItemInOrder& item, int num) {
-    int newQuantity = item.quantity - num;
+    int newQuantity = item.getQuantity() - num;
     if (newQuantity < 0) newQuantity = 0;
-    return MenuItemInOrder(item.menuItem, newQuantity, item.comment);
+    return MenuItemInOrder(item.getMenuItem(), newQuantity, item.getComment());
 }
 
 MenuItemInOrder operator+(int num, const MenuItemInOrder& item) {
-    int newQuantity = num + item.quantity;
-    return MenuItemInOrder(item.menuItem, newQuantity, item.comment);
+    int newQuantity = num + item.getQuantity();
+    return MenuItemInOrder(item.getMenuItem(), newQuantity, item.getComment());
 }
 
 MenuItemInOrder operator+(const MenuItemInOrder& item, int num) {
-    int newQuantity = item.quantity + num;
-    return MenuItemInOrder(item.menuItem, newQuantity, item.comment);
+    int newQuantity = item.getQuantity() + num;
+    return MenuItemInOrder(item.getMenuItem(), newQuantity, item.getComment());
 }
 
 MenuItemInOrder& MenuItemInOrder::operator+=(int num) {
@@ -65,8 +77,8 @@ MenuItemInOrder& MenuItemInOrder::operator++() {
     return *this;
 }
 
-MenuItem& MenuItemInOrder::getMenuItem() const {
-    return const_cast<MenuItem&>(menuItem);  // Return non-const reference to allow modification
+MenuItem* MenuItemInOrder::getMenuItem() const {
+    return menuItem;
 }
 
 int MenuItemInOrder::getQuantity() const {
@@ -96,6 +108,18 @@ bool MenuItemInOrder::setComment(const char* comment) {
     return true;
 }
 
-// void MenuItemInOrder::print() const {
-//     cout << "Menu Item: " << menuItem.getName() << ", Quantity: " << quantity << ", Comment: " << comment << endl;
-// }
+void MenuItemInOrder::print() const {
+    if (menuItem != nullptr) {
+        menuItem->print();  // קריאה למתודת print של ה-MenuItem (מאפשר ירושה)
+    }
+    else {
+        std::cout << "No menu item assigned." << std::endl;
+    }
+
+    std::cout << "Quantity: " << quantity << std::endl;
+
+    if (strlen(comment) > 0) {
+        std::cout << "Comment: " << comment << std::endl;
+    }
+}
+

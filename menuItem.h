@@ -26,7 +26,7 @@ public:
 	Ingredient** const getIngredientList() const { return ingredientList; }
 	bool setPrice(int newPrice);
 	bool setIngredients(Ingredient** list, int size);
-	virtual void print() = 0;
+	virtual void print() ;
 
 private:
 	void clearIngredients(); 

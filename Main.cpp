@@ -61,7 +61,7 @@ int main() {
 			std::cout << "Restaurant Address: " << address << "\n";
 
 			restaurant.setName(name);
-			restaurant.setAdress(address);
+			restaurant.setAddress(address);
 
 			break;
 		}

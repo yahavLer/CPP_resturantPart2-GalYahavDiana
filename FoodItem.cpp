@@ -32,8 +32,10 @@ void FoodItem::print() {
     cout << "Ingredients:" << endl;
     Ingredient** ingredients = getIngredientList();
     if (ingredients) {
-        for (int i = 0; i < numOfIngredients; ++i) {
+        int i = 0;
+        while (ingredients[i]) {
             ingredients[i]->print(); // assuming Ingredient has a print method
+            i++;
         }
     }
     else {
