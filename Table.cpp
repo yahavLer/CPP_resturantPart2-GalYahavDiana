@@ -55,8 +55,8 @@ bool Table::setNumber(int newNumber) {
 }
 
 bool Table::createNewOrder() {
-    if (order) {
-        delete order;
+    if (order != nullptr) {
+        return false;
     }
     order = new Order(); 
     return true;

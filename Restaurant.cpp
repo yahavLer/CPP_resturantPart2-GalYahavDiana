@@ -13,13 +13,13 @@ void copyString(char* destination, const char* source, size_t size) {
 }
 
 // Default constructor
-Restaurant::Restaurant() : departments(nullptr), dailyOrders(nullptr) {
+Restaurant::Restaurant() : departments(nullptr), dailyOrders(nullptr), dailyIncome(0) {
     name[0] = '\0';
     address[0] = '\0';
 }
 
 // Parameterized constructor
-Restaurant::Restaurant(const char* name, const char* address) : departments(new Department* [2]), dailyOrders(nullptr) {
+Restaurant::Restaurant(const char* name, const char* address) : departments(new Department* [2]), dailyOrders(nullptr), dailyIncome(0 {
     copyString(this->name, name, sizeof(this->name));
     copyString(this->address, address, sizeof(this->address));
     // אתחול המחלקות עם המחלקות הנכונות - 0 עבור הבר, 1 עבור המטבח
@@ -29,7 +29,7 @@ Restaurant::Restaurant(const char* name, const char* address) : departments(new 
 
 // Move constructor
 Restaurant::Restaurant(Restaurant&& other) noexcept
-    : menu(std::move(other.menu)), departments(other.departments), dailyOrders(other.dailyOrders) {
+    : menu(std::move(other.menu)), departments(other.departments), dailyOrders(other.dailyOrders), dailyIncome(0 {
     copyString(this->name, other.name, sizeof(this->name));
     copyString(this->address, other.address, sizeof(this->address));
 
@@ -63,6 +63,7 @@ Restaurant& Restaurant::operator=(Restaurant&& other) noexcept {
         other.dailyOrders = nullptr;
         other.name[0] = '\0';
         other.address[0] = '\0';
+        other.dailyIncom = 0;
     }
     return *this;
 }
@@ -131,7 +132,9 @@ bool Restaurant::AddItemToOrder(int menuItemNum, int quantity) {
 
 bool Restaurant::closeBill(int tableNum) {
     if (tableNum >= 0 && tableNum < 10) {
-        return tables[tableNum].closeBill() > 0;
+        int total = tables[tableNum].closeBill();
+        dailyIncome += total;
+        return total > 0;
     }
     return false;
 }
@@ -148,7 +151,7 @@ bool Restaurant::addTables(int numOfTables) {
 }
 
 void Restaurant::presentDailyIncome() {
-    // Logic to present daily income
+    cout << "The daily income of the resturunt is " << dailyIncome << endl;
 }
 
 void Restaurant::showKitchenWarehouse() {
