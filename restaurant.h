@@ -14,6 +14,7 @@ private:
 	Menu menu;
 	char name[20];
 	char address[20];
+	int dailyIncome;
 
 
 public:

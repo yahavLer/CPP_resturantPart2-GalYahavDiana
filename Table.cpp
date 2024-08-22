@@ -56,7 +56,7 @@ bool Table::setNumber(int newNumber) {
 
 bool Table::createNewOrder() {
     if (order) {
-        return false;
+        delete order;
     }
     order = new Order(); 
     return true;
