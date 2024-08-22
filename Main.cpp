@@ -37,7 +37,7 @@ void displayMenu() {
 int main() {
     int choice;
     bool exit = false;
-    Restaurant restaurant;
+    Restaurant* restaurant = new Restaurant();
 
     while (!exit) {
         displayMenu();
@@ -55,14 +55,13 @@ int main() {
             cin.getline(name, MAX_NAME_LENGTH + 1);
 
             cout << "Enter the address of the restaurant (20 characters max): ";
-            cin.ignore();
             cin.getline(address, MAX_ADDRESS_LENGTH + 1);
 
-            cout << "Restaurant Name: " << name << "\n";
-            cout << "Restaurant Address: " << address << "\n";
+            delete restaurant;  // מחיקת המסעדה הקודמת
+            restaurant = new Restaurant(name, address);
 
-            restaurant.setName(name);
-            restaurant.setAddress(address);
+            cout << "Restaurant Name: " << restaurant->getName() << "\n";
+            cout << "Restaurant Address: " << restaurant->getAddress() << "\n";
 
             break;
         }
@@ -83,7 +82,7 @@ int main() {
 
             cout << "Choose to which warehouse the ingredient belongs to:\n0 - Bar Warehouse\n1 - Kitchen Warehouse\n";
             cin >> forKitchen;
-            if (!restaurant.updateIngredientQuantity(ingredientName, quantity, forKitchen))
+            if (!restaurant->updateIngredientQuantity(ingredientName, quantity, forKitchen))
                 cout << "No ingredient found with following name in the warehouse: " << ingredientName << "\n";
 
             break;
@@ -91,22 +90,22 @@ int main() {
         case 3:
         {
             int tableNum, menuItemNum, quantity, addMore = 1;
-            restaurant.presentTables();
+            restaurant->presentTables();
             cout << "Please enter the table's number you want to open a new order in:\n";
             tableNum = userIntValidation();
 
-            if (!restaurant.createNewOrderInTable(tableNum))
+            if (!restaurant->createNewOrderInTable(tableNum))
                 cout << "Couldn't find a table with the table number provided or there is already an order opened in table\n";
             else
             {
                 while (addMore)
                 {
                     cout << "Please enter the menu item's number you want to add to order:\n";
-                    restaurant.presentMenu();
+                    restaurant->presentMenu();
                     cin >> menuItemNum;
                     cout << "How many do you want to add to the order?\n";
                     cin >> quantity;
-                    restaurant.AddItemToOrder(menuItemNum, quantity);
+                    restaurant->AddItemToOrder(menuItemNum, quantity);
                     cout << "Do you want to add more to order? press 1 for yes and 0 for no\n";
                     cin >> addMore;
                 }
@@ -119,13 +118,13 @@ int main() {
             char menuItemName[MAX_NAME_LENGTH + 1];
 
             cout << "Please enter the table's number you want to add items to order:\n";
-            restaurant.presentTables();
+            restaurant->presentTables();
             tableNum = userIntValidation();
 
             while (addMore)
             {
                 cout << "Please enter the menu item's name you want to add to order:\n";
-                restaurant.presentMenu();
+                restaurant->presentMenu();
                 cin.ignore();
                 cin.getline(menuItemName, MAX_NAME_LENGTH + 1);
                 cout << "How many do you want to add to the order?\n";
@@ -139,10 +138,10 @@ int main() {
         {
             int tableNum;
             cout << "Please enter the table's number you want to close order's bill:\n";
-            restaurant.presentTables();
+            restaurant->presentTables();
             tableNum = userIntValidation();
 
-            if (!restaurant.closeBill(tableNum))
+            if (!restaurant->closeBill(tableNum))
                 cout << "No table or order found\n";
             break;
         }
@@ -157,7 +156,7 @@ int main() {
             section = userIntValidation();
             cout << "Choose to which warehouse the ingredient belongs to:\n0 - Bar Warehouse\n1 - Kitchen Warehouse\n";
             forKitchen = userIntValidation();
-            restaurant.addIngredientToWarehouse(newIngredientName, section, forKitchen);
+            restaurant->addIngredientToWarehouse(newIngredientName, section, forKitchen);
             break;
         }
         case 7:
@@ -165,32 +164,32 @@ int main() {
             int numOfTables;
             cout << "Enter the desired number of tables you want to add to the restaurant\n";
             numOfTables = userIntValidation();
-            restaurant.addTables(numOfTables);
+            restaurant->addTables(numOfTables);
             break;
         }
         case 8:
         {
-            restaurant.presentDailyIncome();
+            restaurant->presentDailyIncome();
             break;
         }
         case 9:
         {
-            restaurant.showKitchenWarehouse();
+            restaurant->showKitchenWarehouse();
             break;
         }
         case 10:
         {
-            restaurant.showBarWarehouse();
+            restaurant->showBarWarehouse();
             break;
         }
         case 11:
         {
-            restaurant.showMenuWarehouse();
+            restaurant->showMenuWarehouse();
             break;
         }
         case 12:
         {
-            restaurant.showTablesWarehouse();
+            restaurant->showTablesWarehouse();
             break;
         }
         case 13:

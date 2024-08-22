@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "restaurant.h"
-
+#include "bar.h"
+#include "kitchen.h"
 #include <iostream>
 
 // Helper function to copy strings
@@ -18,9 +19,12 @@ Restaurant::Restaurant() : departments(nullptr), dailyOrders(nullptr) {
 }
 
 // Parameterized constructor
-Restaurant::Restaurant(const char* name, const char* address) : departments(nullptr), dailyOrders(nullptr) {
+Restaurant::Restaurant(const char* name, const char* address) : departments(new Department* [2]), dailyOrders(nullptr) {
     copyString(this->name, name, sizeof(this->name));
     copyString(this->address, address, sizeof(this->address));
+    // אתחול המחלקות עם המחלקות הנכונות - 0 עבור הבר, 1 עבור המטבח
+    departments[0] = new Bar();      // בר
+    departments[1] = new Kitchen();  // מטבח
 }
 
 // Move constructor
@@ -37,6 +41,8 @@ Restaurant::Restaurant(Restaurant&& other) noexcept
 
 // Destructor
 Restaurant::~Restaurant() {
+    delete departments[0];  // מחיקת הבר
+    delete departments[1];  // מחיקת המטבח
     delete[] departments;
     delete[] dailyOrders;
 }
