@@ -37,7 +37,7 @@ void displayMenu() {
 int main() {
     int choice;
     bool exit = false;
-    Restaurant* restaurant = new Restaurant();
+    Restaurant* restaurant = nullptr;
 
     while (!exit) {
         displayMenu();
@@ -56,12 +56,12 @@ int main() {
 
             cout << "Enter the address of the restaurant (20 characters max): ";
             cin.getline(address, MAX_ADDRESS_LENGTH + 1);
-
-            delete restaurant;  // îçé÷ú äîñòãä ä÷åãîú
+            if(restaurant != nullptr)
+                delete restaurant;  // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             restaurant = new Restaurant(name, address);
 
-            cout << "Restaurant Name: " << restaurant->getName() << "\n";
-            cout << "Restaurant Address: " << restaurant->getAddress() << "\n";
+            cout << "\nRestaurant Name: " << restaurant->getName() << "\n";
+            cout << "Restaurant Address: " << restaurant->getAddress() << "\n\n";
 
             break;
         }
@@ -77,11 +77,15 @@ int main() {
             cout << "Enter the quantity of the ingredient: ";
             quantity = userIntValidation();
 
-            cout << "Ingredient Name: " << ingredientName << "\n";
-            cout << "Quantity: " << quantity << "\n";
+            cout << "\nIngredient Name: " << ingredientName << "\n";
+            cout << "Quantity: " << quantity << "\n\n";
 
             cout << "Choose to which warehouse the ingredient belongs to:\n0 - Bar Warehouse\n1 - Kitchen Warehouse\n";
             cin >> forKitchen;
+            while (forKitchen != 0 && forKitchen != 1) {
+                cout << "Invalid input. Please enter 0 for Bar Warehouse or 1 for Kitchen Warehouse: ";
+                cin >> forKitchen;
+            }
             if (!restaurant->updateIngredientQuantity(ingredientName, quantity, forKitchen))
                 cout << "No ingredient found with following name in the warehouse: " << ingredientName << "\n";
 

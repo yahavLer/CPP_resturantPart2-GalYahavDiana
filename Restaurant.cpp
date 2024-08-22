@@ -22,9 +22,9 @@ Restaurant::Restaurant() : departments(nullptr), dailyOrders(nullptr) {
 Restaurant::Restaurant(const char* name, const char* address) : departments(new Department* [2]), dailyOrders(nullptr) {
     copyString(this->name, name, sizeof(this->name));
     copyString(this->address, address, sizeof(this->address));
-    // аъзем дозмчеъ тн дозмчеъ дрлереъ - 0 тбеш дбш, 1 тбеш доибз
-    departments[0] = new Bar();      // бш
-    departments[1] = new Kitchen();  // оибз
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - 0 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, 1 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    departments[0] = new Bar();      // пїЅпїЅ
+    departments[1] = new Kitchen();  // пїЅпїЅпїЅпїЅ
 }
 
 // Move constructor
@@ -41,8 +41,9 @@ Restaurant::Restaurant(Restaurant&& other) noexcept
 
 // Destructor
 Restaurant::~Restaurant() {
-    delete departments[0];  // озйчъ дбш
-    delete departments[1];  // озйчъ доибз
+    delete departments[0];  // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+    delete departments[1];  // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    cout << "Restorant destroy.\n";
     delete[] departments;
     delete[] dailyOrders;
 }
