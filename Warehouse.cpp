@@ -84,8 +84,8 @@ void Warehouse::print() const {
     if (ingredientList && ingredientQuantityList) {
         for (int i = 0; i < numIngredients; ++i) {
             if (ingredientList[i]) {
-                ingredientList[i]->print(); // מדפיס את המידע על המרכיב
-                std::cout << "Quantity: " << ingredientQuantityList[i] << std::endl; // מדפיס את הכמות של המרכיב
+                ingredientList[i]->print(); // prints the data of every ingridient
+                std::cout << "Quantity: " << ingredientQuantityList[i] << std::endl;
             }
         }
     }

@@ -13,13 +13,9 @@ public:
 	Ingredient(const char* name, eSection section);
 
 
-	inline char* getName() const {
-        return const_cast<char*>(name);
-    }
+	inline char* getName() const { return const_cast<char*>(name); }
 
-    inline eSection getSection() const {
-        return section;
-    }
+    inline eSection getSection() const { return section; }
 
 	bool setName(const char* name);
 	bool setSection(eSection section);

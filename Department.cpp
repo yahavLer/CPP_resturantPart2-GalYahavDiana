@@ -40,3 +40,8 @@ Department& Department::operator=(const Department& other)
 
     return *this;
 }
+
+void Department::printWarehouse()
+{
+    wareHouse.print();
+}

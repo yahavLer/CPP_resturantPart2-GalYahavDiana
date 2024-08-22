@@ -13,11 +13,12 @@ public:
     virtual ~Department() = default;
 
 	Department(Department&& other) noexcept;
+	Department& operator=(const Department& other);
 
 	inline int getNumOfWorkers() const { return numOfWorkers; }
 	bool updateIngredientQuantity(const char* name, int quantity);
 	bool addIngredientToWarehouse(const char* ingredientName, int section);
     virtual void print() = 0; 
-	Department& operator=(const Department& other);
+	void printWarehouse();
 
 };
