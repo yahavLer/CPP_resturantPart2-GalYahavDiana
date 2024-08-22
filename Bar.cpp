@@ -52,8 +52,8 @@ DrinkItem** Bar::getDrinkItemList() const {
 }
 
 // Get warehouse
-Warehouse& Bar::getWareHouse() const {
-    return *wareHouse;
+inline const Warehouse& Bar::getWareHouse() const {
+    return wareHouse;
 }
 
 void Bar::print() {

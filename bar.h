@@ -21,6 +21,6 @@ public:
 	bool updateIngredientQuantity(const char *name, int quantity);
 	bool addIngredientToWarehouse(const char *ingredientName, int section);
 	inline DrinkItem **getDrinkItemList() const;
-	inline Warehouse &getWareHouse() const;
+	inline const Warehouse& getWareHouse() const;
 	void print() override;
 };

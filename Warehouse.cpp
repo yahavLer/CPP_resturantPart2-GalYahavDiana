@@ -95,11 +95,11 @@ void Warehouse::print() const {
 }
 
 
-// פונקציה פנימית לניקוי זיכרון
+// Internal function for memory cleaning
 void Warehouse::clear() {
     if (ingredientList) {
         for (int i = 0; i < numIngredients; ++i) {
-            delete ingredientList[i]; // ניקוי כל רכיב בנפרד אם הם מוקצים דינמית
+            delete ingredientList[i]; // deallocate all the aloocated memory in the warehouse
         }
         delete[] ingredientList;
         delete[] ingredientQuantityList;
@@ -109,7 +109,7 @@ void Warehouse::clear() {
     numIngredients = 0;
 }
 
-// פונקציה להשוואת מחרוזות
+// fumction for comparing strings 
 bool Warehouse::compareStrings(const char* str1, const char* str2) const {
     while (*str1 && (*str1 == *str2)) {
         ++str1;
@@ -118,7 +118,7 @@ bool Warehouse::compareStrings(const char* str1, const char* str2) const {
     return *str1 == *str2;
 }
 
-// פונקציה למציאת רכיב לפי שם
+// function for finding ingridient by name 
 Ingredient* Warehouse::getIngredientByName(const char* ingredientName) const {
     for (int i = 0; i < numIngredients; ++i) {
         if (compareStrings(ingredientList[i]->getName(), ingredientName)) {

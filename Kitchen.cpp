@@ -47,16 +47,16 @@ inline FoodItem **Kitchen::getFoodItemList() const
 
 bool Kitchen::updateIngredientQuantity(char *name, int quantity)
 {
-    Ingredient* ingredient = wareHouse->getIngredientByName(name);
+    Ingredient* ingredient = wareHouse.getIngredientByName(name);
     if (ingredient) {
-        return wareHouse->updateIngredientQuantity(ingredient, quantity);
+        return wareHouse.updateIngredientQuantity(ingredient, quantity);
     }
     return false;
 }
 
 bool Kitchen::addIngredientToWarehouse(char *ingredientName, int section)
 {
-        return wareHouse->addIngredientToWarehouse(ingredientName, section);
+        return wareHouse.addIngredientToWarehouse(ingredientName, section);
 }
 
 void Kitchen::print() {
@@ -74,5 +74,5 @@ void Kitchen::print() {
     }
 
     cout << "Warehouse status:" << endl;
-    wareHouse->print();  // הנחה ש-wareHouse כולל פונקציה להדפסת המצב שלו
+    wareHouse.print();  // הנחה ש-wareHouse כולל פונקציה להדפסת המצב שלו
 }
