@@ -35,5 +35,5 @@ bool Ingredient::setSection(eSection newSection) {
 void Ingredient::print()
 {
     cout << "Ingredient Name: " << name << endl;
-    cout << "Section: " << sections[section] << endl;
+    cout << "Section: " << sections[(int)section] << endl;
 }

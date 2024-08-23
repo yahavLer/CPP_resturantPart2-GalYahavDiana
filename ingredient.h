@@ -7,7 +7,6 @@ class Ingredient
 {
 public:
 	enum eSection { HERBS, DAIRY, MEAT, FISH, VEGETABLES };
-	const char* sections[5];
 	
 	Ingredient();
 	Ingredient(const char* name, eSection section);

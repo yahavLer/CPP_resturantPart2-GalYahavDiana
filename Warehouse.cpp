@@ -1,5 +1,6 @@
 #include "Warehouse.h"
 #include "Ingredient.h"
+using namespace std;
 
 Warehouse::Warehouse() : ingredientList(nullptr), ingredientQuantityList(nullptr), numIngredients(0) {}
 
@@ -76,6 +77,7 @@ bool Warehouse::addIngredientToWarehouse(const char* ingredientName, int section
     ingredientList = newIngredientList;
     ingredientQuantityList = newIngredientQuantityList;
     numIngredients++;
+    print();
 
     return true;
 }
@@ -85,12 +87,12 @@ void Warehouse::print() const {
         for (int i = 0; i < numIngredients; ++i) {
             if (ingredientList[i]) {
                 ingredientList[i]->print(); // prints the data of every ingridient
-                std::cout << "Quantity: " << ingredientQuantityList[i] << std::endl;
+                cout << "Quantity: " << ingredientQuantityList[i] << endl;
             }
         }
     }
     else {
-        std::cout << "Warehouse is empty or uninitialized." << std::endl;
+        cout << "Warehouse is empty or uninitialized." << endl;
     }
 }
 
