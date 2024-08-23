@@ -15,6 +15,11 @@ Department::Department(Department&& other) noexcept
     other.numOfWorkers = 0;
 }
 
+inline Warehouse& Department::getWarwhouse()
+{ 
+    return wareHouse; 
+}
+
 // Update ingredient quantity
 bool Department::updateIngredientQuantity(const char* name, int quantity) {
     Ingredient* ingredient = wareHouse.getIngredientByName(name);

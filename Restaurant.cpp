@@ -131,6 +131,14 @@ void Restaurant::presentTables() const
     }
 }
 
+bool  Restaurant::addItemToMenu(const MenuItem& menuItem, bool special)
+{
+
+    if(menu.addItemToMenu(menuItem, special))
+        return true;
+    return false;
+}
+
 bool Restaurant::createNewOrderInTable(int tableNum)
 {
     if (tableNum >= 0 && tableNum < 10) {
@@ -187,14 +195,9 @@ void Restaurant::showKitchenWarehouse()
 }
 
 void Restaurant::showBarWarehouse() {
-    if (departments) {
-        int i = 0;
-        while (departments[i] != nullptr) {
-            if (departments[i]) {
-                departments[i]->print();
-            }
-            i++;
-        }
+    if (departments[0])
+    {
+        departments[0]->printWarehouse();
     }
 }
 

@@ -4,7 +4,7 @@
 using namespace std;
 #include "Cocktail.h"
 
-const char* Cocktail::alcoholLevelNames[4] = { "regular","doubleDose","weak","virgin" };
+const char* alcoholLevelNames[] = { "regular","doubleDose","weak","virgin" };
 
 Cocktail::Cocktail(int doubleDosePrice)
     : DrinkItem(), AlcoholicDrink(), alcoholLevel(regular), doubleDosePrice(doubleDosePrice) {}

@@ -2,7 +2,7 @@
 using namespace std;
 #include "DrinkItem.h"
 
-const char* DrinkItem::glassTypes[5] = { "Lowball", "Wine", "Beer", "Highball", "Paper cup" };
+const char* glass[] = { "Lowball", "Wine", "Beer", "Highball", "Paper cup" };
 
 DrinkItem::DrinkItem() : MenuItem(), volume(0), glass(LOWBOAL) {}
 
@@ -43,7 +43,7 @@ void DrinkItem::print() {
     cout << "Drink Item:" << endl;
     cout << "Name: " << getName() << endl;
     cout << "Volume: " << getVolume() << " ml" << endl;
-    cout << "Glass Type: " << glassTypes[getGlass()] << endl;
+    cout << "Glass Type: " << getGlass() << endl;
     cout << "Price: " << getPrice() << endl;
 
     cout << "Ingredients:" << endl;

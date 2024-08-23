@@ -99,6 +99,36 @@ bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
     return true;
 }
 
+bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
+    // Clone the item to be added
+    MenuItem* newItem = menuItem.clone();
+
+    if (special) {
+        // Expand the specials array
+        MenuItem** newSpecials = new MenuItem * [specialsCount + 1];
+        for (int i = 0; i < specialsCount; ++i) {
+            newSpecials[i] = specials[i];
+        }
+        newSpecials[specialsCount] = newItem;  // Add new item to the end
+        delete[] specials;
+        specials = newSpecials;
+        specialsCount++;
+    }
+    else {
+        // Expand the menuItems array
+        MenuItem** newMenuItems = new MenuItem * [menuItemCount + 1];
+        for (int i = 0; i < menuItemCount; ++i) {
+            newMenuItems[i] = menuItems[i];
+        }
+        newMenuItems[menuItemCount] = newItem;  // Add new item to the end
+        delete[] menuItems;
+        menuItems = newMenuItems;
+        menuItemCount++;
+    }
+
+    return true;
+}
+
 bool Menu::removeItemFromMenu(MenuItem& menuItem) {
     // Logic to remove item from menu
     // This could involve finding the item and removing it from the array

@@ -49,6 +49,6 @@ public:
 	void showBarWarehouse();
 	void showMenuWarehouse();
 	void showTablesWarehouse();
-
+	bool addItemToMenu(const MenuItem& menuItem, bool special);
 	void print() const;
 };
