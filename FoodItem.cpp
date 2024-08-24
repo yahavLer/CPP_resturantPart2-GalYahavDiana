@@ -45,6 +45,8 @@ void FoodItem::print() {
     }
 }
 
+
+
 /*FoodItem* FoodItem::clone() const override
 {
     return new FoodItem(*this); // returns new copy of the object

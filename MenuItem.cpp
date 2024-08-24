@@ -113,3 +113,4 @@ bool MenuItem::setName(const char* newName) {
     }
     return false;
 }
+

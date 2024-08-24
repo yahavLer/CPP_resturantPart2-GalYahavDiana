@@ -138,13 +138,12 @@ void Menu::print() const {
     std::cout << "Menu Items:" << std::endl;
     for (int i = 0; i < menuItemCount; ++i) {
         // assuming MenuItem has a print method
-        // menuItems[i]->print();
+        menuItems[i]->print();
     }
 
     std::cout << "Specials:" << std::endl;
     for (int i = 0; i < specialsCount; ++i) {
-        // assuming MenuItem has a print method
-        // specials[i]->print();
+        specials[i]->print();
     }
 }
 
