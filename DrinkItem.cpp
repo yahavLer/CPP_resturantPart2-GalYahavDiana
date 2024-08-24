@@ -4,19 +4,20 @@ using namespace std;
 
 const char* glass[] = { "Lowball", "Wine", "Beer", "Highball", "Paper cup" };
 
+// Empty constructor
 DrinkItem::DrinkItem() : MenuItem(), volume(0), glass(LOWBOAL) {}
 
 
-// ���� �� �������
+// Constructor for drink item with input data
 DrinkItem::DrinkItem(const char* drinkName, int drinkVolume, eGlassType drinkGlass, int price, Ingredient** ingredients, int numOfIngredients)
     : MenuItem(drinkName, numOfIngredients, ingredients, price), volume(drinkVolume), glass(drinkGlass) {}
 
 
-// ���� �����
+// Copy constructor
 DrinkItem::DrinkItem(const DrinkItem& other)
     : MenuItem(other), volume(other.volume), glass(other.glass) {}
 
-// ������� ����
+// Move constructor
 DrinkItem& DrinkItem::operator=(const DrinkItem& other) {
     if (this != &other) {
         MenuItem::operator=(other);

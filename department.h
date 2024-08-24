@@ -16,8 +16,7 @@ public:
 	Department& operator=(const Department& other);
 
 	inline int getNumOfWorkers() const { return numOfWorkers; }
-	inline Warehouse& getWarwhouse();
-	inline Warehouse& getWarwhouse();
+	Warehouse& getWarwhouse();
 	bool updateIngredientQuantity(const char* name, int quantity);
 	bool addIngredientToWarehouse(const char* ingredientName, int section);
     virtual void print() = 0; 

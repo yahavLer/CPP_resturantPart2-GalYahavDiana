@@ -1,5 +1,6 @@
 #include "Warehouse.h"
 #include "Ingredient.h"
+#include "menuItemInOrder.h"
 using namespace std;
 
 Warehouse::Warehouse() : ingredientList(nullptr), ingredientQuantityList(nullptr), numIngredients(0) {}
@@ -66,7 +67,7 @@ bool Warehouse::addIngredientToWarehouse(const char* ingredientName, int section
     }
 
     // Add the new ingredient
-    newIngredientList[numIngredients] = new Ingredient(ingredientName, static_cast<Ingredient::eSection>(section));
+    newIngredientList[numIngredients] = new Ingredient(ingredientName, static_cast<Ingredient::eSection>(section), 0);
     newIngredientQuantityList[numIngredients] = 0;
 
     // Clean up old lists

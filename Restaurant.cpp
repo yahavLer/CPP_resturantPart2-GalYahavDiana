@@ -131,10 +131,19 @@ void Restaurant::presentTables() const
     }
 }
 
-bool  Restaurant::addItemToMenu(const MenuItem& menuItem, bool special)
+bool  Restaurant::addItemToMenu(const char* itemName, const int numOfIngredients, Ingredient** list, int price, int department, bool special, bool kosher)
 {
-
-    if(menu.addItemToMenu(menuItem, special))
+    MenuItem* newItem = nullptr;
+    if (department == 1)
+    {
+        *newItem = FoodItem(itemName, kosher, price, list, numOfIngredients, 0);  // Create food item to add to menu
+    }
+    else
+    {
+        //DrinkItem dItemNew = DrinkItem()
+        //*newItem = dItemNew;
+    }
+    if(menu.addItemToMenu(*newItem, special))
         return true;
     return false;
 }
@@ -177,6 +186,16 @@ bool Restaurant::addTables(int numOfTable) {
             tables[i].setNumber(numOfTable);
             return true;
         }
+    }
+    return false;
+}
+
+bool Restaurant::isEmptyOfTable()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        if (tables[i].getNumber() != 0)
+            return true;
     }
     return false;
 }

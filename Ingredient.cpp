@@ -4,20 +4,28 @@
 
 const char* sections[] = { "Herbs","Dairy","Meat","Fish","Vegetables" };
 
-Ingredient::Ingredient() {
+Ingredient::Ingredient() 
+{
     name[0] = '\0';
     section = VEGETABLES; // Default section
+    quantityIng = 0;
 }
 
-Ingredient::Ingredient(const char* ingredientName, eSection ingredientSection) {
-    setName(ingredientName);
+Ingredient::Ingredient(const char* ingredientName, eSection ingredientSection, int quantity) 
+{
+    strcpy(name,ingredientName);
+    //setName(ingredientName);
     section = ingredientSection;
+    quantityIng = quantity;
 }
 
-bool Ingredient::setName(const char* newName) {
-    if (newName) {
+bool Ingredient::setName(const char* newName) 
+{
+    if (newName) 
+    {
         int i = 0;
-        while (i < sizeof(name) - 1 && newName[i] != '\0') {
+        while (i < sizeof(name) - 1 && newName[i] != '\0') 
+        {
             name[i] = newName[i];
             i++;
         }
@@ -27,10 +35,18 @@ bool Ingredient::setName(const char* newName) {
     return false;
 }
 
-bool Ingredient::setSection(eSection newSection) {
+bool Ingredient::setSection(eSection newSection) 
+{
     section = newSection;
     return true;
 }
+
+bool Ingredient::setQuantity(int quantity)
+{
+    quantityIng = quantity;
+    return true;
+}
+
 
 void Ingredient::print()
 {

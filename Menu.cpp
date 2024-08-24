@@ -61,10 +61,9 @@ MenuItem** Menu::getSpecials() const {
     return specials;
 }
 
-bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
-    MenuItem* newItem = nullptr;
+/*bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
 
-    // נבדוק האם האובייקט הוא מסוג FoodItem או DrinkItem ונמיר אותו נכון
+    MenuItem* newItem = nullptr;
     if (const FoodItem* food = dynamic_cast<const FoodItem*>(&menuItem)) {
         newItem = new FoodItem(*food);
     }
@@ -97,7 +96,7 @@ bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
     }
 
     return true;
-}
+}*/
 
 bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
     // Clone the item to be added

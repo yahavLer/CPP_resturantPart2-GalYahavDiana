@@ -26,4 +26,6 @@ public:
 
 	void print() const;
 
+private: 
+	void clear();
 };

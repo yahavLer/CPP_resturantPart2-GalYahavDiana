@@ -44,11 +44,12 @@ public:
 	bool closeBill(int tableNum);
 	bool addIngredientToWarehouse(const char* ingredientName, int section, int  forKitchen);
 	bool addTables(int numOfTables);
+	bool isEmptyOfTable();
 	void presentDailyIncome();
 	void showKitchenWarehouse();
 	void showBarWarehouse();
 	void showMenuWarehouse();
 	void showTablesWarehouse();
-	bool addItemToMenu(const MenuItem& menuItem, bool special);
+	bool addItemToMenu(const char* itemName, const int numOfIngredients, Ingredient** list, int price, int department, bool special, bool kosher);
 	void print() const;
 };
