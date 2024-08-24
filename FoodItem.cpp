@@ -45,6 +45,7 @@ void FoodItem::print() {
     }
 }
 
-FoodItem* FoodItem::clone() const {
-    return new FoodItem(*this); // יצירת עותק חדש של האובייקט הנוכחי
-}
+/*FoodItem* FoodItem::clone() const override
+{
+    return new FoodItem(*this); // returns new copy of the object
+}*/

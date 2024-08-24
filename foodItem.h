@@ -18,6 +18,9 @@ public:
 	bool setKosher(bool isKosher);
 	void print() override;
 
-	virtual FoodItem* clone() const override;
+	FoodItem* clone() const override
+	{
+		return new FoodItem(*this);
+	}
 
 };

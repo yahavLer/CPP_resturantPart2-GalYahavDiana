@@ -149,6 +149,7 @@ int main() {
 
                 cout << "Do you wnat to add another ingredient y/n?\n";
                 cin >> answer;
+                cin.ignore();
 
             }while (answer == 'y');
 
@@ -168,6 +169,7 @@ int main() {
 
             // passing the data to the resturant
             restaurant->addItemToMenu(mealName, numOfIngredients, ingredientList, price, department, special, kosher);
+            break;
         }
         case 5:
         {

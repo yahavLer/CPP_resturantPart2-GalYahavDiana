@@ -144,7 +144,7 @@ bool  Restaurant::addItemToMenu(const char* itemName, const int numOfIngredients
         //DrinkItem dItemNew = DrinkItem()
         //*newItem = dItemNew;
     }
-    if(menu.addItemToMenu(*newItem, special))
+    if(menu.addItemToMenu(newItem, special))
         return true;
     return false;
 }
