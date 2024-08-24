@@ -32,7 +32,7 @@ public:
 	virtual MenuItem* clone() const = 0;
 
 private:
-	void clearIngredients(); 
+	//void clearIngredients(); 
 
 
 };

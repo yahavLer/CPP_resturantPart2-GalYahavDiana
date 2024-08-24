@@ -136,7 +136,8 @@ bool  Restaurant::addItemToMenu(const char* itemName, const int numOfIngredients
     MenuItem* newItem = nullptr;
     if (department == 1)
     {
-        *newItem = FoodItem(itemName, kosher, price, list, numOfIngredients, 0);  // Create food item to add to menu
+        FoodItem item = FoodItem(itemName, kosher, price, list, numOfIngredients, 0);  // Create food item to add to menu
+        newItem = &item;
     }
     else
     {

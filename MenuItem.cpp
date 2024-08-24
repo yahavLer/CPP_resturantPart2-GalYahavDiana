@@ -10,11 +10,11 @@ MenuItem::MenuItem(const char* itemName, const int numOfIngredients, Ingredient*
 
 // Default constructor
 MenuItem::MenuItem() : price(0), ingredientList(nullptr), numOfIngredients(0) {
-    name[0] = '\0'; // אתחול שם כריק
+    name[0] = '\0'; 
 }
 // Destructor
 MenuItem::~MenuItem() {
-    clearIngredients();
+    //clearIngredients();
 }
 
 // Move constructor
@@ -41,7 +41,7 @@ MenuItem::MenuItem(const MenuItem& other)
 // Copy assignment operator
 MenuItem& MenuItem::operator=(const MenuItem& other) {
     if (this != &other) {
-        clearIngredients();
+       // clearIngredients();
 
         price = other.price;
         numOfIngredients = other.numOfIngredients;
@@ -59,7 +59,7 @@ MenuItem& MenuItem::operator=(const MenuItem& other) {
 // Move assignment operator
 MenuItem& MenuItem::operator=(MenuItem&& other) noexcept {
     if (this != &other) {
-        clearIngredients();
+        //clearIngredients();
 
         price = other.price;
         ingredientList = other.ingredientList;
@@ -82,7 +82,7 @@ bool MenuItem::setPrice(int newPrice) {
 
 // Set ingredients
 bool MenuItem::setIngredients(Ingredient** list, int size) {
-    clearIngredients();
+    //clearIngredients();
 
     ingredientList = new Ingredient*[size];
     numOfIngredients = size;
@@ -92,23 +92,23 @@ bool MenuItem::setIngredients(Ingredient** list, int size) {
     return true;
 }
 
-void MenuItem::clearIngredients() {
+/*void MenuItem::clearIngredients() {
     if (ingredientList) {
         delete[] ingredientList;
         ingredientList = nullptr;
         numOfIngredients = 0;
     }
-}
+}*/
 // Set name
 bool MenuItem::setName(const char* newName) {
     if (newName) {
         int i = 0;
-        // העתקת התווים אחד אחד, תוך שמירה על הגבול של אורך השם
+        
         while (i < sizeof(name) - 1 && newName[i] != '\0') {
             name[i] = newName[i];
             i++;
         }
-        name[i] = '\0'; // הוספת תו סיום מחרוזת
+        name[i] = '\0'; 
         return true;
     }
     return false;
