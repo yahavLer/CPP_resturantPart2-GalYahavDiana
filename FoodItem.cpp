@@ -6,8 +6,8 @@ using namespace std;
 
 FoodItem::FoodItem() : MenuItem(), calories(0), kosher(true) {}
 
-FoodItem::FoodItem(const char* nam, bool isKosher, int price, Ingredient** ingredients, int numOfIngredients, int calories)
-    : MenuItem(name,numOfIngredients, ingredients, price), calories(0), kosher(isKosher) {
+FoodItem::FoodItem(const char* name, bool kosher, int price, Ingredient** ingredients, int numOfIngredients, int calories)
+    : MenuItem(name,numOfIngredients, ingredients, price), calories(0), kosher(kosher) {
 }
 
 bool FoodItem::setCalories(int newCalories)

@@ -67,7 +67,10 @@ int main() {
             int numOfTables;
             cout << "Enter the desired number of tables you want to add to the restaurant\n";
             numOfTables = userIntValidation();
-            restaurant->addTables(numOfTables);
+            if (restaurant->addTables(numOfTables))
+                cout << "table added successfully\n";
+            else
+                cout << "table added cencel - the resturant is full\n";
             break;
         }
         case 2:
@@ -113,11 +116,13 @@ int main() {
         }
         case 4:
         {
+            /* 
             if (restaurant->isEmptyOfTable())
             {
                 break;
             }
-
+            */
+            
             char mealName[MAX_NAME_LENGTH + 1];
             char ingredientName[MAX_NAME_LENGTH + 1];
             int price, numOfIngredients = 0, department, quantity;
