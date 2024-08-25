@@ -135,13 +135,14 @@ bool Menu::removeItemFromMenu(MenuItem& menuItem) {
 }
 
 void Menu::print() const {
-    std::cout << "Menu Items:" << std::endl;
+    cout << "Menu Items:\n" << endl;
     for (int i = 0; i < menuItemCount; ++i) {
+        cout<<i <<endl;
         // assuming MenuItem has a print method
         menuItems[i]->print();
     }
 
-    std::cout << "Specials:" << std::endl;
+    cout << "Specials:" << endl;
     for (int i = 0; i < specialsCount; ++i) {
         specials[i]->print();
     }

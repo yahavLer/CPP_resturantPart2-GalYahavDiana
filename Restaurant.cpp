@@ -155,8 +155,9 @@ bool Restaurant::createNewOrderInTable(int tableNum)
     return false;
 }
 
-bool Restaurant::AddItemToOrder(int menuItemNum, int quantity)
+bool Restaurant::AddItemToOrder(int menuItemNum, int quantity, int tableNum)
 {
+    //to do this function
     return true;
 }
 

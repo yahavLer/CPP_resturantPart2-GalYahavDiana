@@ -18,47 +18,24 @@ int userIntValidation() {
     return temp;
 }
 void init(Restaurant* restaurant) {
-    // Initialize the restaurant with sample data
-    if (restaurant != nullptr)
-        delete restaurant;
-
-    // Sample restaurant name and address
-    const char* sampleName = "Sample Restaurant";
-    const char* sampleAddress = "123 Sample St.";
-    restaurant = new Restaurant(sampleName, sampleAddress);
-
+   
     // Case 1: Add number of tables
     int numOfTables = 10; // Example: adding 10 tables
     restaurant->addTables(numOfTables);
 
     // Case 2: Add new ingredients to the warehouse
     restaurant->addIngredientToWarehouse("Tomato", 4, 1); // Vegetables, Kitchen Warehouse
-    restaurant->addIngredientToWarehouse("Milk", 1, 1); // Dairy, Kitchen Warehouse
+    restaurant->addIngredientToWarehouse("Milk", 1, 0); // Dairy, Bar Warehouse
     restaurant->addIngredientToWarehouse("Vodka", 0, 0); // Herbs, Bar Warehouse
     restaurant->addIngredientToWarehouse("Potato", 4, 1); // Vegetables, Kitchen Warehouse
-    restaurant->addIngredientToWarehouse("Melon", 4, 1); // Vegetables, Kitchen Warehouse
+    restaurant->addIngredientToWarehouse("Melon", 4, 0); // Vegetables, Kitchen Warehouse
 
     // Case 3: Add ingredient shipment to warehouse
     restaurant->updateIngredientQuantity("Tomato", 50, 1); // Add 50 tomatoes to Kitchen Warehouse
-    restaurant->updateIngredientQuantity("Milk", 20, 1); // Add 20 milk to Kitchen Warehouse
+    restaurant->updateIngredientQuantity("Milk", 20, 0); // Add 20 milk to Bar Warehouse
     restaurant->updateIngredientQuantity("Vodka", 15, 0); // Add 15 vodka to Bar Warehouse
     restaurant->updateIngredientQuantity("Potato", 100, 1); // Add 100 potatoes to Kitchen Warehouse
-    restaurant->updateIngredientQuantity("Melon", 30, 1); // Add 30 melons to Kitchen Warehouse
-
-    // Case 4: Add drink to menu
-    Ingredient* drinkIngredients[] = {
-        new Ingredient("Vodka", 0, 1),
-        new Ingredient("Tomato", 4, 2)
-    };
-    restaurant->addDrinkItemToMenu("Bloody Mary", 10, DrinkItem::eGlassType::Lowball, 20, drinkIngredients, 2, true);
-
-    // Case 5: Add meal food to menu
-    Ingredient* mealIngredients[] = {
-        new Ingredient("Tomato", 4, 2),
-        new Ingredient("Milk", 1, 1),
-        new Ingredient("Potato", 4, 3) // Adding Potato as an ingredient
-    };
-    restaurant->addFoodItemToMenu("Tomato Soup", 3, mealIngredients, 30, FOOD_DEPARTMENT, false, true);
+    restaurant->updateIngredientQuantity("Melon", 30, 0); // Add 30 melons to Kitchen Warehouse
 
     cout << "Sample data initialized successfully.\n";
 }
@@ -77,7 +54,7 @@ void displayMenu() {
     cout << "10. Show kitchen warehouse\n";
     cout << "11. Show bar warehouse\n";
     cout << "12. Show menu\n";
-    cout << "12. Show tables\n";
+    cout << "13. Show tables\n";
     cout << "14. Exit\n";
 }
 
@@ -99,7 +76,8 @@ int main() {
     if (restaurant != nullptr)
         delete restaurant;  // in case the pointer of the returunt
     restaurant = new Restaurant(name, address);
-    init(restaurant);
+ //   init(restaurant);
+    restaurant->print();
     cout << "\nRestaurant Name: " << restaurant->getName() << "\n";
     cout << "Restaurant Address: " << restaurant->getAddress() << "\n\n";
 
@@ -283,7 +261,7 @@ int main() {
                     cin >> menuItemNum;
                     cout << "How many do you want to add to the order?\n";
                     cin >> quantity;
-                    restaurant->AddItemToOrder(menuItemNum, quantity);
+                    restaurant->AddItemToOrder(menuItemNum, quantity, tableNum);
                     cout << "Do you want to add more to order? press 1 for yes and 0 for no\n";
                     cin >> addMore;
                 }

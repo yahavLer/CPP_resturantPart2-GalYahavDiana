@@ -2,7 +2,7 @@
 
 #include "warehouse.h"
 #include "Department.h"
-struct DrinkItem;
+#include "DrinkItem.h";
 
 class Bar : public Department
 {

@@ -26,7 +26,7 @@ bool FoodItem::setKosher(bool isKosher)
     return true;
 }
 void FoodItem::print() {
-    cout << "\nFood Item:" << getName()<< endl;
+    cout << "Food Item:" << getName()<< endl;
     cout << "Calories: " << getCalories() << endl;
     cout << "Kosher: " << (getKosher() ? "Yes" : "No") << endl;
     cout << "Price: " << getPrice() << endl;
