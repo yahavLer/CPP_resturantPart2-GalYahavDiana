@@ -22,16 +22,16 @@ void displayMenu() {
     cout << "1. Add number to table in restaurant\n";
     cout << "2. Add new ingredient to warehouse\n";
     cout << "3. Add ingredient shipment to warehouse\n";
-    cout << "4. Add meals to menu\n";
-    cout << "5. Open new order\n";
-    cout << "6. Add food items to order\n";
-    cout << "7. Add drink items to order\n";
+    cout << "4. Add meal food to menu\n";
+    cout << "5. Add drink to menu\n";
+    cout << "6. Open new order\n";
+    cout << "7. Add menu items to order\n";
     cout << "8. Order checkout\n";
     cout << "9. Present Restaurant income report\n";
     cout << "10. Show kitchen warehouse\n";
     cout << "11. Show bar warehouse\n";
     cout << "12. Show menu\n";
-    cout << "13. Show tables\n";
+    cout << "12. Show tables\n";
     cout << "14. Exit\n";
 }
 
@@ -116,8 +116,7 @@ int main() {
             break;
         }
         case 4:
-        {
-           
+        {           
             char mealName[MAX_NAME_LENGTH + 1];
             char ingredientName[MAX_NAME_LENGTH + 1];
             int price, numOfIngredients = 0, department, quantity;
@@ -182,7 +181,6 @@ int main() {
         }
         case 5:
         {
-
             char mealName[MAX_NAME_LENGTH + 1];
             char ingredientName[MAX_NAME_LENGTH + 1];
             int price, numOfIngredients = 0, department, quantity;
