@@ -17,6 +17,7 @@ int userIntValidation() {
     }
     return temp;
 }
+
 void initRestaurant(Restaurant* restaurant) {
     // הוספת שולחנות
     restaurant->addTables(5);
@@ -47,6 +48,77 @@ void initRestaurant(Restaurant* restaurant) {
 	ingredientList2[1] = new Ingredient("Chicken", Ingredient::eSection::MEAT, 2);
 	restaurant->addFoodItemToMenu("Chicken Salad", 2, ingredientList2, 30, FOOD_DEPARTMENT, false, true);
 	restaurant->addFoodItemToMenu("Tomato Salad", 1, ingredientList2, 20, FOOD_DEPARTMENT, true, false);
+}
+
+void gatherDrinkInfo(char* mealName, int& price, int& volume, int& glassType, bool& special) {
+    cout << "Please enter the name of the drink (Max 20 characters):\n";
+    cin.ignore();
+    cin.getline(mealName, MAX_NAME_LENGTH + 1);
+    cout << "Please enter the price of the drink:\n";
+    cin >> price;
+    cout << "what is the volume of alcohol in the drink? \n";
+    cin >> volume;
+    cout << "Is this a special drink? y/n\n";
+    char answer;
+    cin >> answer;
+    special = (answer == 'y');
+    cout << "Which glass do you want? Enter number:\n0: Lowball\n1: Wine\n2: Beer\n3: Highball\n4: Paper cup\n";
+    cin >> glassType;
+}
+
+void gatherDrinkIngredients(Ingredient** ingredientList, int& numOfIngredients, Restaurant* restaurant) {
+	char ingredientName[MAX_NAME_LENGTH + 1];
+	int quantity;
+	char answer = 'n';
+	do {
+		cout << "What is the name of the ingredient?\n";
+		cin.ignore();
+		cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
+		cout << "What is the quantity of the ingredient that is needed?\n";
+		cin >> quantity;
+		Department** temp = restaurant->getDepartments();
+		Warehouse& ware = temp[DRINK_DEPARTMENT]->getWarwhouse();
+		Ingredient* ingredientToCopy = ware.getIngredientByName(ingredientName);
+		ingredientList[numOfIngredients] = new Ingredient(ingredientName, ingredientToCopy->getSection(), quantity);
+		numOfIngredients++;
+		cout << "Do you want to add another ingredient y/n?\n";
+		cin >> answer;
+	} while (answer == 'y');
+}
+
+void gatherFoodInfo(char* mealName, int& price, bool& special, bool& kosher) {
+	cout << "Please enter the name of the meal (Max 20 characters):\n";
+	cin.ignore();
+	cin.getline(mealName, MAX_NAME_LENGTH + 1);
+	cout << "Please enter the price of the meal:\n";
+	cin >> price;
+	cout << "Is this a special meal? y/n\n";
+	char answer;
+	cin >> answer;
+	special = (answer == 'y');
+	cout << "Is this a kosher meal? y/n\n";
+	cin >> answer;
+	kosher = (answer == 'y');
+}
+
+void gatherFoodIngredients(Ingredient** ingredientList, int& numOfIngredients, Restaurant* restaurant) {
+    char ingredientName[MAX_NAME_LENGTH + 1];
+    int quantity;
+    char answer = 'n';
+    do {
+        cout << "What is the name of the ingredient?\n";
+        cin.ignore();
+        cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
+        cout << "What is the quantity of the ingredient that is needed?\n";
+        cin >> quantity;
+        Department** temp = restaurant->getDepartments();
+        Warehouse& ware = temp[FOOD_DEPARTMENT]->getWarwhouse();
+        Ingredient* ingredientToCopy = ware.getIngredientByName(ingredientName);
+        ingredientList[numOfIngredients] = new Ingredient(ingredientName, ingredientToCopy->getSection(), quantity);
+        numOfIngredients++;
+        cout << "Do you want to add another ingredient y/n?\n";
+        cin >> answer;
+    } while (answer == 'y');
 }
 
 void displayMenu() {
@@ -97,7 +169,7 @@ int main() {
         cin >> choice;
 
         switch (choice) {
-        case 1:
+		case 1: // Add number to table in restaurant
         {
             int numOfTables;
             cout << "Enter the desired number of tables you want to add to the restaurant\n";
@@ -108,7 +180,7 @@ int main() {
                 cout << "table added cencel - the resturant is full\n";
             break;
         }
-        case 2:
+		case 2: // Add new ingredient to warehouse
         {
             char newIngredientName[MAX_NAME_LENGTH + 1];
             int section, forKitchen;
@@ -123,7 +195,7 @@ int main() {
             break;
 
         }
-        case 3:
+		case 3: // Add ingredient shipment to warehouse
         {
             char ingredientName[MAX_NAME_LENGTH + 1];
             int quantity, forKitchen;
@@ -149,107 +221,33 @@ int main() {
 
             break;
         }
-        case 4:
+		case 4: // Add drink to menu
         {
             char mealName[MAX_NAME_LENGTH + 1];
-            char ingredientName[MAX_NAME_LENGTH + 1];
-            int price, numOfIngredients = 0, quantity;
-            int volume, glassType;
+            int price, volume, glassType, numOfIngredients = 0;
             bool special;
-            Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];;
-            cout << "Please enter the name of the drink (Max 20 characters):\n";
-            cin.ignore();
-            cin.getline(mealName, MAX_NAME_LENGTH + 1);
-            cout << "Please enter the price of the drink:\n";
-            cin >> price;
+            Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];
 
-            cout << "Please enter the ingridiants of the drink:\n";
-            char answer = 'n';
-            do
-            {
-                cout << "What is the name of the ingridient?\n";
-                cin.ignore();
-                cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
-                cout << "What is the quantety of the ingredient that is needed?\n";
-                cin >> quantity;
-                Department** temp = restaurant->getDepartments();
-                Warehouse& ware = temp[DRINK_DEPARTMENT]->getWarwhouse();
-                Ingredient* ingrediantToCopy = ware.getIngredientByName(ingredientName);
-                ingredientList[numOfIngredients] = new Ingredient(ingredientName, ingrediantToCopy->getSection(), quantity);
-                numOfIngredients++;
+            gatherDrinkInfo(mealName, price, volume, glassType, special);
+            gatherDrinkIngredients(ingredientList, numOfIngredients, restaurant);
 
-                cout << "Do you want to add another ingredient y/n?\n";
-                cin >> answer;
-
-            } while (answer == 'y');
-
-            cout << "what is the volume of alcholl in the drink? \n";
-            cin >> volume;
-            cout << "Is this a special drink? y/n\n";
-            cin >> answer;
-            if (answer == 'y')
-                special = true;
-            else
-            {
-                special = false;
-            }
-            cout << "which glass do you want? enter number of one of the next options:\n 0: Lowball\n 1: Wine\n 2: Beer\n 3: Highball\n 4: Paper cup\n";
-            cin >> glassType;
             restaurant->addDrinkItemToMenu(mealName, volume, static_cast<DrinkItem::eGlassType>(glassType), price, ingredientList, numOfIngredients, special);
             break;
         }
-        case 5:
+		case 5: // Add meal food to menu
         {
             char mealName[MAX_NAME_LENGTH + 1];
-            char ingredientName[MAX_NAME_LENGTH + 1];
-            int price, numOfIngredients = 0, quantity;
+            int price, numOfIngredients = 0;
             bool special, kosher;
             Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];
-            cout << "Please enter the name of the meal (Max 20 characters):\n";
-            cin.ignore();
-            cin.getline(mealName, MAX_NAME_LENGTH + 1);
-            cout << "Please enter the price of the meal:\n";
-            cin >> price;
 
-            cout << "Please enter the ingridiants of the meal:\n";
-            char answer = 'n';
-            do
-            {
-                cout << "What is the name of the ingridient?\n";
-                cin.ignore();
-                cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
-                cout << "What is the quantety of the ingridient that is needed?\n";
-                cin >> quantity;
+            gatherFoodInfo(mealName, price, special, kosher);
+            gatherFoodIngredients(ingredientList, numOfIngredients, restaurant);
 
-                Department** temp = restaurant->getDepartments();
-                Warehouse& ware = temp[FOOD_DEPARTMENT]->getWarwhouse();
-                Ingredient* ingrediantToCopy = ware.getIngredientByName(ingredientName);
-                ingredientList[numOfIngredients] = new Ingredient(ingredientName, ingrediantToCopy->getSection(), quantity);
-                numOfIngredients++;
-
-                cout << "Do you want to add another ingredient y/n?\n";
-                cin >> answer;
-
-            } while (answer == 'y');
-
-            // passing the data to the resturant
-            // Ger input from user about the kosher/special meal
-            cout << "Is this a special meal? y/n\n";
-            cin >> answer;
-            if (answer == 'y')
-                special = true;
-            else
-                special = false;
-            cout << "Is this a kosher meal? y/n\n";
-            cin >> answer;
-            if (answer == 'y')
-                kosher = true;
-            else
-                kosher = false;
             restaurant->addFoodItemToMenu(mealName, numOfIngredients, ingredientList, price, FOOD_DEPARTMENT, special, kosher);
             break;
         }
-        case 6:
+		case 6: // Open new order
         {
             int tableNum, menuItemNum, quantity, addMore = 1, addComment=0;
 			char* comments = nullptr;
@@ -263,8 +261,8 @@ int main() {
             {
                 while (addMore)
                 {
-                    cout << "Please enter the menu item's number you want to add to order:\n";
                     restaurant->presentMenu();
+                    cout << "Please enter the menu item's number you want to add to order:\n";
                     cin >> menuItemNum;
                     cout << "How many do you want to add to the order?\n";
                     cin >> quantity;					
@@ -287,18 +285,18 @@ int main() {
             }
             break;
         }
-        case 7:
+		case 7: // Add menu items to order
         {
             int tableNum, quantity, menuItemNum, addMore = 1,addComment=0;;
             char* comments = nullptr;
-            cout << "Please enter the table's number you want to add items to order:\n";
             restaurant->presentTables();
+            cout << "Please enter the table's number you want to add items to order:\n";
             tableNum = userIntValidation();
 
             while (addMore)
             {
-                cout << "Please enter the menu item's number you want to add to order:\n";
                 restaurant->presentMenu();
+                cout << "Please enter the menu item's number you want to add to order:\n";
                 cin >> menuItemNum;
                 cout << "How many do you want to add to the order?\n";
                 cin >> quantity;
@@ -313,56 +311,55 @@ int main() {
                     cin.getline(comments, 51);
                 }
                 //get the menu item by the number and add it to the order
-                restaurant->createNewOrderInTable(tableNum);
                 restaurant->addItemToOrder(menuItemNum, quantity, tableNum, comments);
                 cout << "Do you want to add more to order? press 1 for yes and 0 for no\n";
                 cin >> addMore;
             }
             break;
         }
-        case 8:
+		case 8: // Order checkout
         {
             int tableNum;
-            cout << "Please enter the table's number you want to close order's bill:\n";
             restaurant->presentTables();
+            cout << "Please enter the table's number you want to close order's bill:\n";
             tableNum = userIntValidation();
 
             if (!restaurant->closeBill(tableNum))
                 cout << "No table or order found\n";
             break;
         }
-        case 9:
+		case 9: // Present Restaurant income report
         {
             restaurant->presentDailyIncome();
             break;
         }
-        case 10:
+		case 10: // Show kitchen warehouse
         {
             restaurant->showKitchenWarehouse();
             break;
         }
-        case 11:
+		case 11: // Show bar warehouse
         {
             restaurant->showBarWarehouse();
             break;
         }
-        case 12:
+		case 12: // Show menu
         {
             restaurant->showMenuWarehouse();
             break;
         }
-        case 13:
+		case 13: // Show tables
         {
             restaurant->showTablesWarehouse();
             break;
         }
-        case 14:
+		case 14: // Exit
         {
             // add delete to allocated items
             exit = true;
             break;
         }
-        default:
+        default: 
         {
             cout << "Invalid choice, please try again.\n";
             break;

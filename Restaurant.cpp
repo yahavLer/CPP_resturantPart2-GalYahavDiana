@@ -149,8 +149,12 @@ bool  Restaurant::addFoodItemToMenu(const char* itemName, const int numOfIngredi
 
 bool Restaurant::createNewOrderInTable(int tableNum)
 {
-    if (tableNum >= 0 && tableNum < 10) {
-        return tables[tableNum].createNewOrder();
+    for (int i = 0; i < 10; i++)
+    {
+		if (tables[i].getNumber() == tableNum)
+		{
+			return tables[i].createNewOrder();
+		}
     }
     return false;
 }
@@ -161,15 +165,15 @@ bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, cha
 	if (tableNum >= 0 && tableNum < 10) {
         MenuItem* item=menu.getItemByIndex(menuItemNum);
         if (item != nullptr) {
-            for (int i = 0; i < 10; i++)
-            {
-                if(tables[i].getNumber() == tableNum)
-				{
-					return tables[i].addItemToOrder(*item, quantity, comments);
-				}
+			int index = getTableIndex(tableNum);
+			if (index == -1)
+			{
+				cout << "Table with that number not found. \n" << endl;
+				return false;
             }
-            cout << "Table with that number not found. \n" << endl;
-            return false;
+            else {
+                return tables[index].addItemToOrder(*item, quantity, comments);
+            }
         }
         else {
             cout << "Menu item not found.\n" << endl;
@@ -181,12 +185,15 @@ bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, cha
 
 bool Restaurant::closeBill(int tableNum)
 {
-    if (tableNum >= 0 && tableNum < 10) {
-        int total = tables[tableNum].closeBill();
-        dailyIncome += total;
-        return total > 0;
-    }
-    return false;
+	int index = getTableIndex(tableNum);
+	if (index == -1)
+	{
+		cout << "Table with that number not found. \n" << endl;
+		return false;
+	}
+    int total = tables[index].closeBill();
+    dailyIncome += total;
+    return total > 0;
 }
 
 bool Restaurant::addIngredientToWarehouse(const char* ingredientName, int section, int forKitchen) {
@@ -249,6 +256,15 @@ void Restaurant::showTablesWarehouse() {
     for (int i = 0; i < 10; ++i) {
         tables[i].printTable();
     }
+}
+
+int Restaurant::getTableIndex(int tableNum) {
+	for (int i = 0; i < 10; ++i) {
+		if (tables[i].getNumber() == tableNum) {
+			return i;
+		}
+	}
+	return -1;
 }
 
 void Restaurant::print() const 

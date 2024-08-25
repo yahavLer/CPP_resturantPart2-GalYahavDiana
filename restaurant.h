@@ -53,5 +53,6 @@ public:
 	void showTablesWarehouse();
 	bool addDrinkItemToMenu(const char* name, int volume, DrinkItem::eGlassType glass, int price, Ingredient** ingredients, int numOfIngredients, bool special);
 	bool addFoodItemToMenu(const char* itemName, const int numOfIngredients, Ingredient** list, int price, int department, bool special, bool kosher);
+	int getTableIndex(int tableNum);
 	void print() const;
 };

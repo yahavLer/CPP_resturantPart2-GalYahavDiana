@@ -51,7 +51,7 @@ int Table::closeBill() {
         return 0;
     }
     order->print();
-    int total = 0; // = order->getTotal();
+    int total = order->closeBill();
     delete order;
     order = nullptr;
     return total;
@@ -61,13 +61,13 @@ void Table::printTable() const {
     cout << "Table Number: " << number << endl;
     if (order) {
         order->print();
+        cout << endl;
     }
     else {
         cout << "No current order." << endl;
     }
 
 }
-
 void Table::clear() {
     if (order) {
         delete order;  // מחיקת ההזמנה אם קיימת

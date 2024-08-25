@@ -85,20 +85,26 @@ MenuItem* Menu::getItemByIndex(int index) const {
 	if (index < menuItemCount) {
 		return menuItems[index];
 	}
+	else if (index < menuItemCount + specialsCount) {
+		return specials[index - menuItemCount];
+	}
 	return nullptr;
 }
 
 void Menu::print() const {
     cout << "Menu Items:\n" << endl;
-    for (int i = 0; i < menuItemCount; ++i) {
+    int i = 0;
+    for (; i < menuItemCount; ++i) {
         cout<<i <<endl;
-        // assuming MenuItem has a print method
         menuItems[i]->print();
+		cout << endl;
     }
 
     cout << "Specials:" << endl;
-    for (int i = 0; i < specialsCount; ++i) {
-        specials[i]->print();
+    for (int j = 0;j < specialsCount; ++j, ++i) {
+        cout << i << endl;
+        specials[j]->print();
+        cout << endl;
     }
 }
 
