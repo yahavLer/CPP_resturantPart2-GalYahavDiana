@@ -51,7 +51,7 @@ void DrinkItem::print() {
     Ingredient** ingredients = getIngredientList();
     if (ingredients) {
         int i = 0;
-        while (ingredients[i] != nullptr) {
+        while (i<numOfIngredients) {
             ingredients[i]->print(); // assuming Ingredient has a print method
             i++;
         }
