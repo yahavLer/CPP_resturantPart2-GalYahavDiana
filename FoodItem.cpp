@@ -26,7 +26,7 @@ bool FoodItem::setKosher(bool isKosher)
     return true;
 }
 void FoodItem::print() {
-    cout << "Food Item:" << endl;
+    cout << "Food Item:" << getName()<< endl;
     cout << "Calories: " << getCalories() << endl;
     cout << "Kosher: " << (getKosher() ? "Yes" : "No") << endl;
     cout << "Price: " << getPrice() << endl;
@@ -35,7 +35,8 @@ void FoodItem::print() {
     Ingredient** ingredients = getIngredientList();
     if (ingredients) {
         int i = 0;
-        while (ingredients[i]) {
+        while (i<numOfIngredients) {
+            cout << i+1 <<  " ingradient: " << endl;
             ingredients[i]->print(); // assuming Ingredient has a print method
             i++;
         }

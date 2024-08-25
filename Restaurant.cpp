@@ -131,19 +131,19 @@ void Restaurant::presentTables() const
     }
 }
 
-bool  Restaurant::addItemToMenu(const char* itemName, const int numOfIngredients, Ingredient** list, int price, int department, bool special, bool kosher)
+bool  Restaurant::addDrinkItemToMenu(const char* name, int volume, eGlassType glass, int price, Ingredient** ingredients, int numOfIngredients)
 {
     MenuItem* newItem = nullptr;
-    if (department == 1)
-    {
-        FoodItem item = FoodItem(itemName, kosher, price, list, numOfIngredients, 0);  // Create food item to add to menu
-        newItem = &item;
-    }
-    else
-    {
-        //DrinkItem dItemNew = DrinkItem()
-        //*newItem = dItemNew;
-    }
+    newItem = new DrinkItem(name, volume, glass, price, ingredients, numOfIngredients);
+    if (menu.addItemToMenu(newItem, special))
+        return true;
+    return false;
+}
+
+bool  Restaurant::addFoodItemToMenu(const char* itemName, const int numOfIngredients, Ingredient** list, int price, int department, bool special, bool kosher)
+{
+    MenuItem* newItem = nullptr;
+    FoodItem* newItem = new FoodItem(itemName, kosher, price, list, numOfIngredients, 0);
     if(menu.addItemToMenu(newItem, special))
         return true;
     return false;

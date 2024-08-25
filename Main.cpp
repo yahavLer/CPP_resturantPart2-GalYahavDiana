@@ -24,14 +24,15 @@ void displayMenu() {
     cout << "3. Add ingredient shipment to warehouse\n";
     cout << "4. Add meals to menu\n";
     cout << "5. Open new order\n";
-    cout << "6. Add menu items to order\n";
-    cout << "7. Order checkout\n";
-    cout << "8. Present Restaurant income report\n";
-    cout << "9. Show kitchen warehouse\n";
-    cout << "10. Show bar warehouse\n";
-    cout << "11. Show menu\n";
-    cout << "12. Show tables\n";
-    cout << "13. Exit\n";
+    cout << "6. Add food items to order\n";
+    cout << "7. Add drink items to order\n";
+    cout << "8. Order checkout\n";
+    cout << "9. Present Restaurant income report\n";
+    cout << "10. Show kitchen warehouse\n";
+    cout << "11. Show bar warehouse\n";
+    cout << "12. Show menu\n";
+    cout << "13. Show tables\n";
+    cout << "14. Exit\n";
 }
 
 int main() {
@@ -116,13 +117,7 @@ int main() {
         }
         case 4:
         {
-            /* 
-            if (restaurant->isEmptyOfTable())
-            {
-                break;
-            }
-            */
-            
+           
             char mealName[MAX_NAME_LENGTH + 1];
             char ingredientName[MAX_NAME_LENGTH + 1];
             int price, numOfIngredients = 0, department, quantity;
@@ -157,26 +152,100 @@ int main() {
                 cin.ignore();
 
             }while (answer == 'y');
-
-            // Ger input from user about the kosher/special meal
-            cout << "Is this a special meal? y/n\n";
-            cin >> answer;
-            if (answer == 'y')
-                special = true;
-            else
-                special = false;
-            cout << "Is this a kosher meal? y/n\n";
-            cin >> answer;
-            if (answer == 'y')
-                kosher = true;
-            else
-                kosher = false;
+              
 
             // passing the data to the resturant
-            restaurant->addItemToMenu(mealName, numOfIngredients, ingredientList, price, department, special, kosher);
+            if (department == 1) {
+                // Ger input from user about the kosher/special meal
+                cout << "Is this a special meal? y/n\n";
+                cin >> answer;
+                if (answer == 'y')
+                    special = true;
+                else
+                    special = false;
+                cout << "Is this a kosher meal? y/n\n";
+                cin >> answer;
+                if (answer == 'y')
+                    kosher = true;
+                else
+                    kosher = false;
+                restaurant->addFoodItemToMenu(mealName, numOfIngredients, ingredientList, price, department, special, kosher);
+            }
+            if (department == 0) {
+
+                int volume;
+                cout << "what is the volume of alcholl in the drink? \n";
+                cin >> volume;
+                restaurant->addDrinkItemToMenu(mealName, volume, glass, price, ingredientList, numOfIngredients);
+            }
             break;
         }
         case 5:
+        {
+
+            char mealName[MAX_NAME_LENGTH + 1];
+            char ingredientName[MAX_NAME_LENGTH + 1];
+            int price, numOfIngredients = 0, department, quantity;
+            bool special, kosher;
+            Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];;
+            cout << "Please enter the type of the meal (0 - drinks item, 1 - food item):\n";
+            cin >> department;
+            cin.ignore();
+            cout << "Please enter the name of the meal (Max 20 characters):\n";
+            cin.getline(mealName, MAX_NAME_LENGTH + 1);
+            cout << "Please enter the price of the meal:\n";
+            cin >> price;
+            cin.ignore();
+
+            cout << "Please eanter the ingridiants of the meal:\n";
+            char answer = 'n';
+            do
+            {
+                cout << "What is the name of the ingridient?\n";
+                cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
+                cout << "What is the quantety of the ingridient that is needed?\n";
+                cin >> quantity;
+
+                Department** temp = restaurant->getDepartments();
+                Warehouse& ware = temp[department]->getWarwhouse();
+                Ingredient* ingrediantToCopy = ware.getIngredientByName(ingredientName);
+                ingredientList[numOfIngredients] = new Ingredient(ingredientName, ingrediantToCopy->getSection(), quantity);
+                numOfIngredients++;
+
+                cout << "Do you wnat to add another ingredient y/n?\n";
+                cin >> answer;
+                cin.ignore();
+
+            } while (answer == 'y');
+
+
+            // passing the data to the resturant
+            if (department == 1) {
+                // Ger input from user about the kosher/special meal
+                cout << "Is this a special meal? y/n\n";
+                cin >> answer;
+                if (answer == 'y')
+                    special = true;
+                else
+                    special = false;
+                cout << "Is this a kosher meal? y/n\n";
+                cin >> answer;
+                if (answer == 'y')
+                    kosher = true;
+                else
+                    kosher = false;
+                restaurant->addFoodItemToMenu(mealName, numOfIngredients, ingredientList, price, department, special, kosher);
+            }
+            if (department == 0) {
+
+                int volume;
+                cout << "what is the volume of alcholl in the drink? \n";
+                cin >> volume;
+                restaurant->addDrinkItemToMenu(mealName, volume, glass, price, ingredientList, numOfIngredients);
+            }
+            break;
+        }
+        case 6:
         {
             int tableNum, menuItemNum, quantity, addMore = 1;
             restaurant->presentTables();
@@ -201,7 +270,7 @@ int main() {
             }
             break;
         }
-        case 6:
+        case 7:
         {
             int tableNum, quantity, addMore = 1;
            char menuItemName[MAX_NAME_LENGTH + 1];
@@ -223,7 +292,7 @@ int main() {
            }
            break;
         }
-        case 7:
+        case 8:
         {
             int tableNum;
            cout << "Please enter the table's number you want to close order's bill:\n";
@@ -234,32 +303,32 @@ int main() {
                cout << "No table or order found\n";
            break;
         }
-        case 8:
+        case 9:
         {
             restaurant->presentDailyIncome();
             break;
         }
-        case 9:
+        case 10:
         {
             restaurant->showKitchenWarehouse();
             break;
         }
-        case 10:
+        case 11:
         {
             restaurant->showBarWarehouse();
             break;
         }
-        case 11:
+        case 12:
         {
             restaurant->showMenuWarehouse();
             break;
         }
-        case 12:
+        case 13:
         {
             restaurant->showTablesWarehouse();
             break;
         }
-        case 13:
+        case 14:
         {
             // add delete to allocated items
             exit = true;
