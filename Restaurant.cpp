@@ -165,7 +165,6 @@ bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, cha
             {
                 if(tables[i].getNumber() == tableNum)
 				{
-					tables[i].createNewOrder();
 					return tables[i].addItemToOrder(*item, quantity, comments);
 				}
             }
@@ -200,10 +199,13 @@ bool Restaurant::addIngredientToWarehouse(const char* ingredientName, int sectio
 bool Restaurant::addTables(int numOfTable) {
     for (int i = 0; i < 10; i++)
     {
-        if (tables[i].getNumber() == 0)
+        if (tables[i].getNumber() == 0 )
         {
             tables[i].setNumber(numOfTable);
             return true;
+        }
+        else if(tables[i].getNumber() == numOfTable){
+			return false;
         }
     }
     return false;

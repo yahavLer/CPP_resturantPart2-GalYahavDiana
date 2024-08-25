@@ -20,22 +20,33 @@ int userIntValidation() {
 void initRestaurant(Restaurant* restaurant) {
     // הוספת שולחנות
     restaurant->addTables(5);
+    restaurant->addTables(3);
 
-    // הוספת מרכיבים למחסן
+    // הוספת מרכיבים למחסן case 2
     restaurant->addIngredientToWarehouse("Tomato", 4, 1); // Kitchen Warehouse
     restaurant->addIngredientToWarehouse("Lemon", 4, 0);  // Bar Warehouse
     restaurant->addIngredientToWarehouse("Chicken", 2, 1); // Kitchen Warehouse
     restaurant->addIngredientToWarehouse("Mint", 0, 0);  // Bar Warehouse
 
-    // הוספת פריטים לתפריט
-    Ingredient* foodIngredients[2];
-    foodIngredients[0] = new Ingredient("Tomato", Ingredient::eSection::DAIRY, 2);
-    foodIngredients[1] = new Ingredient("Chicken", Ingredient::eSection::FISH, 1);
-    restaurant->addFoodItemToMenu("Chicken Salad", 2, foodIngredients, 40, FOOD_DEPARTMENT, false, true);
+    // הוספת פריטים לתפריט case 3
+	restaurant->updateIngredientQuantity("Tomato", 10, 1);
+	restaurant->updateIngredientQuantity("Lemon", 20, 0);
+	restaurant->updateIngredientQuantity("Chicken", 30, 1);
+	restaurant->updateIngredientQuantity("Mint", 40, 0);
 
-    Ingredient* drinkIngredients[1];
-    drinkIngredients[0] = new Ingredient("Lemon", Ingredient::eSection::VEGETABLES, 1);
-    restaurant->addDrinkItemToMenu("Lemonade", 10, DrinkItem::eGlassType::HIGHBOAL, 20, drinkIngredients, 1, false);
+	// הוספת מנות לתפריט case 4
+    Department** temp = restaurant->getDepartments();
+    Warehouse& ware = temp[DRINK_DEPARTMENT]->getWarwhouse();
+	Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];
+    ingredientList[0] = new Ingredient("Lemon", Ingredient::eSection::DAIRY, 2);
+	restaurant->addDrinkItemToMenu("Lemonade", 100, DrinkItem::eGlassType::HIGHBOAL, 15, ingredientList, 1, false);
+    restaurant->addDrinkItemToMenu("Miranda", 50, DrinkItem::eGlassType::LOWBOAL, 25, ingredientList, 1, true);
+
+    Ingredient** ingredientList2 = new Ingredient * [MAX_NAME_LENGTH];
+	ingredientList2[0] = new Ingredient("Tomato", Ingredient::eSection::VEGETABLES, 2);
+	ingredientList2[1] = new Ingredient("Chicken", Ingredient::eSection::MEAT, 2);
+	restaurant->addFoodItemToMenu("Chicken Salad", 2, ingredientList2, 30, FOOD_DEPARTMENT, false, true);
+	restaurant->addFoodItemToMenu("Tomato Salad", 1, ingredientList2, 20, FOOD_DEPARTMENT, true, false);
 }
 
 void displayMenu() {
@@ -74,7 +85,8 @@ int main() {
    if (restaurant != nullptr)
        delete restaurant;  // in case the pointer of the returunt
    restaurant = new Restaurant(name, address);
-    restaurant->print();
+   initRestaurant(restaurant);
+   restaurant->print();
 
     cout << "\nRestaurant Name: " << restaurant->getName() << "\n";
     cout << "Restaurant Address: " << restaurant->getAddress() << "\n\n";
@@ -144,7 +156,6 @@ int main() {
             int price, numOfIngredients = 0, quantity;
             int volume, glassType;
             bool special;
-            //DrinkItem::eGlassType glass;
             Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];;
             cout << "Please enter the name of the drink (Max 20 characters):\n";
             cin.ignore();
@@ -268,6 +279,7 @@ int main() {
                         cin.getline(comments, 51);
                     }
 					//get the menu item by the number and add it to the order
+					restaurant->createNewOrderInTable(tableNum);
 					restaurant->addItemToOrder(menuItemNum, quantity, tableNum, comments);
                     cout << "Do you want to add more to order? press 1 for yes and 0 for no\n";
                     cin >> addMore;
@@ -277,21 +289,32 @@ int main() {
         }
         case 7:
         {
-            int tableNum, quantity, addMore = 1;
-            char menuItemName[MAX_NAME_LENGTH + 1];
-
+            int tableNum, quantity, menuItemNum, addMore = 1,addComment=0;;
+            char* comments = nullptr;
             cout << "Please enter the table's number you want to add items to order:\n";
             restaurant->presentTables();
             tableNum = userIntValidation();
 
             while (addMore)
             {
-                cout << "Please enter the menu item's name you want to add to order:\n";
+                cout << "Please enter the menu item's number you want to add to order:\n";
                 restaurant->presentMenu();
-                cin.ignore();
-                cin.getline(menuItemName, MAX_NAME_LENGTH + 1);
+                cin >> menuItemNum;
                 cout << "How many do you want to add to the order?\n";
                 cin >> quantity;
+                cout << "Do you want to add comments to the order? press 1 for yes and 0 for no (max 20) \n";
+                cin >> addComment;
+                if (addComment == 1)
+                {
+                    comments = new char[51];
+                    comments[0] = '\0';
+                    cout << "Enter your comments (max 50 characters):\n";
+                    cin.ignore();
+                    cin.getline(comments, 51);
+                }
+                //get the menu item by the number and add it to the order
+                restaurant->createNewOrderInTable(tableNum);
+                restaurant->addItemToOrder(menuItemNum, quantity, tableNum, comments);
                 cout << "Do you want to add more to order? press 1 for yes and 0 for no\n";
                 cin >> addMore;
             }

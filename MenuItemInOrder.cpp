@@ -98,13 +98,13 @@ void MenuItemInOrder::print() const {
         menuItem->print();  // ����� ������ print �� �-MenuItem (����� �����)
     }
     else {
-        std::cout << "No menu item assigned." << std::endl;
+        cout << "No menu item assigned." << endl;
     }
 
-    std::cout << "Quantity: " << quantity << std::endl;
+    cout << "Quantity: " << quantity << endl;
 
     if (strlen(comment) > 0) {
-        std::cout << "Comment: " << comment << std::endl;
+        cout << "Comment: " << comment << endl;
     }
 }
 
