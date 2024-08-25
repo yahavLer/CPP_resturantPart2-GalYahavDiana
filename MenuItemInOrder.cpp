@@ -78,6 +78,11 @@ bool MenuItemInOrder::setQuantity(int quantity) {
 }
 
 bool MenuItemInOrder::setComment(const char* comment) {
+    if (comment == nullptr) {
+        this->comment[0] = '\0'; // אם המחרוזת היא nullptr, נוודא שה-comment יהיה ריק
+        return true;
+    }
+
     // Copy the comment into member variable, ensuring it's null-terminated
     int i = 0;
     while (comment[i] != '\0' && i < sizeof(this->comment) - 1) {

@@ -15,13 +15,12 @@ public:
 	Menu(Menu &&other) noexcept;
 	~Menu();
 
-	// Menu(const Menu &other) = delete;
-	// const Menu &operator=(const Menu &other);
 	Menu &operator=(Menu &&other) noexcept;
 	MenuItem **getMenuItems() const;
 	MenuItem **getSpecials() const;
 	bool addItemToMenu(MenuItem* menuItem, bool special);
 	bool removeItemFromMenu(MenuItem &menuItem);
+	MenuItem* getItemByIndex(int index) const;
 
 	void print() const;
 

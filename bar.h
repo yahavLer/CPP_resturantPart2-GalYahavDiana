@@ -2,7 +2,7 @@
 
 #include "warehouse.h"
 #include "Department.h"
-#include "DrinkItem.h";
+#include "DrinkItem.h"
 
 class Bar : public Department
 {
@@ -14,7 +14,7 @@ public:
 	Bar(const Bar &other) = delete;
 	Bar(Bar &&other)noexcept;
 	~Bar();
-	const Bar &operator=(const Bar &other);
+	//const Bar &operator=(const Bar &other);
 	const Bar &operator=(Bar &&other);
 
 	inline int getNumOfWorkers() const;

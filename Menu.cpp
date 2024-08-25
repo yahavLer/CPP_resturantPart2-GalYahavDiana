@@ -19,23 +19,6 @@ Menu::~Menu() {
     clear();
 }
 
-// const Menu& Menu::operator=(const Menu& other) {
-//     if (this == &other) return *this;
-
-//     // Deep copy logic, assuming deep copy of MenuItem pointers is required
-//     delete[] menuItems;
-//     delete[] specials;
-
-//     // Assuming some method to get the count of items to allocate the correct size
-//     // Here you would also need to allocate and copy each MenuItem
-//     // menuItems = new MenuItem*[other.getMenuItemCount()];
-//     // specials = new MenuItem*[other.getSpecialsCount()];
-
-//     // Deep copy code here
-
-//     return *this;
-// }
-
 Menu& Menu::operator=(Menu&& other) noexcept {
     if (this != &other) {
         clear();
@@ -61,42 +44,6 @@ MenuItem** Menu::getSpecials() const {
     return specials;
 }
 
-/*bool Menu::addItemToMenu(const MenuItem& menuItem, bool special) {
-
-    MenuItem* newItem = nullptr;
-    if (const FoodItem* food = dynamic_cast<const FoodItem*>(&menuItem)) {
-        newItem = new FoodItem(*food);
-    }
-    else if (const DrinkItem* drink = dynamic_cast<const DrinkItem*>(&menuItem)) {
-        newItem = new DrinkItem(*drink);
-    }
-    else {
-        return false;
-    }
-
-    if (special) {
-        MenuItem** newSpecials = new MenuItem * [specialsCount + 1];
-        for (int i = 0; i < specialsCount; ++i) {
-            newSpecials[i] = specials[i];
-        }
-        newSpecials[specialsCount] = newItem; 
-        delete[] specials;
-        specials = newSpecials;
-        specialsCount++;
-    }
-    else {
-        MenuItem** newMenuItems = new MenuItem * [menuItemCount + 1];
-        for (int i = 0; i < menuItemCount; ++i) {
-            newMenuItems[i] = menuItems[i];
-        }
-        newMenuItems[menuItemCount] = newItem; 
-        delete[] menuItems;
-        menuItems = newMenuItems;
-        menuItemCount++;
-    }
-
-    return true;
-}*/
 
 bool Menu::addItemToMenu(MenuItem* menuItem, bool special) {
     // Clone the item to be added
@@ -132,6 +79,13 @@ bool Menu::removeItemFromMenu(MenuItem& menuItem) {
     // Logic to remove item from menu
     // This could involve finding the item and removing it from the array
     return true;
+}
+
+MenuItem* Menu::getItemByIndex(int index) const {
+	if (index < menuItemCount) {
+		return menuItems[index];
+	}
+	return nullptr;
 }
 
 void Menu::print() const {

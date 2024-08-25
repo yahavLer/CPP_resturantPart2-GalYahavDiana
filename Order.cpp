@@ -45,7 +45,7 @@ bool Order::addItemToOrder(const MenuItem& menuItem, int quantity, char *comment
     for (int i = 0; i < numItems; ++i) {
         newOrderedItems[i] = orderedItems[i];
     }
-    newOrderedItems[numItems] = new MenuItemInOrder(menuItem, quantity, comments);  // Assuming 1 quantity by default
+    newOrderedItems[numItems] = new MenuItemInOrder(menuItem, quantity, comments);  
     delete[] orderedItems;
     orderedItems = newOrderedItems;
     numItems++;

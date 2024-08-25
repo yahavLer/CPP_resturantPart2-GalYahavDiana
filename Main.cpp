@@ -12,32 +12,30 @@ int userIntValidation() {
     int temp;
     while (!(cin >> temp)) {
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore();
         cout << "Invalid input. Please enter an integer: ";
     }
     return temp;
 }
-void init(Restaurant* restaurant) {
-   
-    // Case 1: Add number of tables
-    int numOfTables = 10; // Example: adding 10 tables
-    restaurant->addTables(numOfTables);
+void initRestaurant(Restaurant* restaurant) {
+    // הוספת שולחנות
+    restaurant->addTables(5);
 
-    // Case 2: Add new ingredients to the warehouse
-    restaurant->addIngredientToWarehouse("Tomato", 4, 1); // Vegetables, Kitchen Warehouse
-    restaurant->addIngredientToWarehouse("Milk", 1, 0); // Dairy, Bar Warehouse
-    restaurant->addIngredientToWarehouse("Vodka", 0, 0); // Herbs, Bar Warehouse
-    restaurant->addIngredientToWarehouse("Potato", 4, 1); // Vegetables, Kitchen Warehouse
-    restaurant->addIngredientToWarehouse("Melon", 4, 0); // Vegetables, Kitchen Warehouse
+    // הוספת מרכיבים למחסן
+    restaurant->addIngredientToWarehouse("Tomato", 4, 1); // Kitchen Warehouse
+    restaurant->addIngredientToWarehouse("Lemon", 4, 0);  // Bar Warehouse
+    restaurant->addIngredientToWarehouse("Chicken", 2, 1); // Kitchen Warehouse
+    restaurant->addIngredientToWarehouse("Mint", 0, 0);  // Bar Warehouse
 
-    // Case 3: Add ingredient shipment to warehouse
-    restaurant->updateIngredientQuantity("Tomato", 50, 1); // Add 50 tomatoes to Kitchen Warehouse
-    restaurant->updateIngredientQuantity("Milk", 20, 0); // Add 20 milk to Bar Warehouse
-    restaurant->updateIngredientQuantity("Vodka", 15, 0); // Add 15 vodka to Bar Warehouse
-    restaurant->updateIngredientQuantity("Potato", 100, 1); // Add 100 potatoes to Kitchen Warehouse
-    restaurant->updateIngredientQuantity("Melon", 30, 0); // Add 30 melons to Kitchen Warehouse
+    // הוספת פריטים לתפריט
+    Ingredient* foodIngredients[2];
+    foodIngredients[0] = new Ingredient("Tomato", Ingredient::eSection::DAIRY, 2);
+    foodIngredients[1] = new Ingredient("Chicken", Ingredient::eSection::FISH, 1);
+    restaurant->addFoodItemToMenu("Chicken Salad", 2, foodIngredients, 40, FOOD_DEPARTMENT, false, true);
 
-    cout << "Sample data initialized successfully.\n";
+    Ingredient* drinkIngredients[1];
+    drinkIngredients[0] = new Ingredient("Lemon", Ingredient::eSection::VEGETABLES, 1);
+    restaurant->addDrinkItemToMenu("Lemonade", 10, DrinkItem::eGlassType::HIGHBOAL, 20, drinkIngredients, 1, false);
 }
 
 void displayMenu() {
@@ -61,23 +59,23 @@ void displayMenu() {
 int main() {
     int choice;
     bool exit = false;
-    Restaurant* restaurant = nullptr;
+    //Restaurant* restaurant = new Restaurant("Sample Restaurant", "123 Sample St.");
+   Restaurant* restaurant = nullptr;
 
+   // open new resturant insert name and address
+   char name[MAX_NAME_LENGTH + 1];
+   char address[MAX_ADDRESS_LENGTH + 1];
 
-    // open new resturant insert name and address
-    char name[MAX_NAME_LENGTH + 1];
-    char address[MAX_ADDRESS_LENGTH + 1];
+   cout << "Enter the name of the restaurant (20 characters max): ";
+   cin.getline(name, MAX_NAME_LENGTH + 1);
 
-    cout << "Enter the name of the restaurant (20 characters max): ";
-    cin.getline(name, MAX_NAME_LENGTH + 1);
-
-    cout << "Enter the address of the restaurant (20 characters max): ";
-    cin.getline(address, MAX_ADDRESS_LENGTH + 1);
-    if (restaurant != nullptr)
-        delete restaurant;  // in case the pointer of the returunt
-    restaurant = new Restaurant(name, address);
- //   init(restaurant);
+   cout << "Enter the address of the restaurant (20 characters max): ";
+   cin.getline(address, MAX_ADDRESS_LENGTH + 1);
+   if (restaurant != nullptr)
+       delete restaurant;  // in case the pointer of the returunt
+   restaurant = new Restaurant(name, address);
     restaurant->print();
+
     cout << "\nRestaurant Name: " << restaurant->getName() << "\n";
     cout << "Restaurant Address: " << restaurant->getAddress() << "\n\n";
 
@@ -153,17 +151,16 @@ int main() {
             cin.getline(mealName, MAX_NAME_LENGTH + 1);
             cout << "Please enter the price of the drink:\n";
             cin >> price;
-            cin.ignore();
 
             cout << "Please enter the ingridiants of the drink:\n";
             char answer = 'n';
             do
             {
                 cout << "What is the name of the ingridient?\n";
+                cin.ignore();
                 cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
                 cout << "What is the quantety of the ingredient that is needed?\n";
                 cin >> quantity;
-                cin.ignore();
                 Department** temp = restaurant->getDepartments();
                 Warehouse& ware = temp[DRINK_DEPARTMENT]->getWarwhouse();
                 Ingredient* ingrediantToCopy = ware.getIngredientByName(ingredientName);
@@ -172,7 +169,6 @@ int main() {
 
                 cout << "Do you want to add another ingredient y/n?\n";
                 cin >> answer;
-                cin.ignore();
 
             } while (answer == 'y');
 
@@ -203,13 +199,13 @@ int main() {
             cin.getline(mealName, MAX_NAME_LENGTH + 1);
             cout << "Please enter the price of the meal:\n";
             cin >> price;
-            cin.ignore();
 
             cout << "Please enter the ingridiants of the meal:\n";
             char answer = 'n';
             do
             {
                 cout << "What is the name of the ingridient?\n";
+                cin.ignore();
                 cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
                 cout << "What is the quantety of the ingridient that is needed?\n";
                 cin >> quantity;
@@ -222,7 +218,6 @@ int main() {
 
                 cout << "Do you want to add another ingredient y/n?\n";
                 cin >> answer;
-                cin.ignore();
 
             } while (answer == 'y');
 
@@ -245,7 +240,8 @@ int main() {
         }
         case 6:
         {
-            int tableNum, menuItemNum, quantity, addMore = 1;
+            int tableNum, menuItemNum, quantity, addMore = 1, addComment=0;
+			char* comments = nullptr;
             restaurant->presentTables();
             cout << "Please enter the table's number you want to open a new order in:\n";
             tableNum = userIntValidation();
@@ -260,8 +256,19 @@ int main() {
                     restaurant->presentMenu();
                     cin >> menuItemNum;
                     cout << "How many do you want to add to the order?\n";
-                    cin >> quantity;
-                    restaurant->AddItemToOrder(menuItemNum, quantity, tableNum);
+                    cin >> quantity;					
+					cout << "Do you want to add comments to the order? press 1 for yes and 0 for no (max 20) \n";
+                    cin >> addComment;
+                    if (addComment == 1)
+                    {
+                        comments = new char[51];
+                        comments[0] = '\0';
+                        cout << "Enter your comments (max 50 characters):\n";
+                        cin.ignore();
+                        cin.getline(comments, 51);
+                    }
+					//get the menu item by the number and add it to the order
+					restaurant->addItemToOrder(menuItemNum, quantity, tableNum, comments);
                     cout << "Do you want to add more to order? press 1 for yes and 0 for no\n";
                     cin >> addMore;
                 }

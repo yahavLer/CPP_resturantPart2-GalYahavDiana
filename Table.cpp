@@ -18,30 +18,6 @@ Table::Table(int number) : order(nullptr), number(number) {
     // Constructor with table number
 }
 
-// Table& Table::operator=(const Table& other) {
-//    if (this != &other) {
-//         delete order;
-//         if (other.order) {
-//             order = new Order(*other.order); 
-//         } else {
-//             order = nullptr;
-//         }
-//         // העתקת מספר השולחן
-//         number = other.number;
-//     }
-//     return *this;
-// }
-
-// Table& Table::operator=(const Table&& other) {
-//     if (this == &other) return *this;
-//     delete order;
-//     order = other.order;
-//     number = other.number;
-//     other.order = nullptr;
-//     other.number = 0;
-//     return *this;
-// }
-
 Order* Table::getOrder() const {
     return order;
 }
@@ -62,7 +38,7 @@ bool Table::createNewOrder() {
     return true;
 }
 
-bool Table::AddItemToOrder(const MenuItem& menuItem, int quantity, char *comments) {
+bool Table::addItemToOrder(const MenuItem& menuItem, int quantity, char *comments) {
     if (!order) {
         return false;
     }

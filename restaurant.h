@@ -41,7 +41,7 @@ public:
 	bool updateIngredientQuantity(const char* name, int quantity, int kitchen);
 	void presentTables() const;
 	bool createNewOrderInTable(int tableNum);
-	bool AddItemToOrder(int menuIemNum, int quantity, int tableNum);
+	bool addItemToOrder(int menuIemNum, int quantity, int tableNum, char* comments);
 	bool closeBill(int tableNum);
 	bool addIngredientToWarehouse(const char* ingredientName, int section, int  forKitchen);
 	bool addTables(int numOfTables);

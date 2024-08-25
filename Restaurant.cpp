@@ -155,9 +155,28 @@ bool Restaurant::createNewOrderInTable(int tableNum)
     return false;
 }
 
-bool Restaurant::AddItemToOrder(int menuItemNum, int quantity, int tableNum)
+bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, char* comments)
 {
-    //to do this function
+	//add item to order
+	if (tableNum >= 0 && tableNum < 10) {
+        MenuItem* item=menu.getItemByIndex(menuItemNum);
+        if (item != nullptr) {
+            for (int i = 0; i < 10; i++)
+            {
+                if(tables[i].getNumber() == tableNum)
+				{
+					tables[i].createNewOrder();
+					return tables[i].addItemToOrder(*item, quantity, comments);
+				}
+            }
+            cout << "Table with that number not found. \n" << endl;
+            return false;
+        }
+        else {
+            cout << "Menu item not found.\n" << endl;
+            return false;
+        }
+	}
     return true;
 }
 

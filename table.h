@@ -23,7 +23,7 @@ public:
 
 	bool setNumber(int newNumber);
 	bool createNewOrder();
-	bool AddItemToOrder(const MenuItem& menuItem, int quantity, char *comments);
+	bool addItemToOrder(const MenuItem& menuItem, int quantity, char *comments);
 	int closeBill();
 
 	void printTable() const;
