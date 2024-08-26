@@ -17,6 +17,7 @@ Menu::Menu(Menu&& other) noexcept : menuItems(other.menuItems), specials(other.s
 
 Menu::~Menu() {
     clear();
+    cout << "menu destroyed.\n";
 }
 
 Menu& Menu::operator=(Menu&& other) noexcept {

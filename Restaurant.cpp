@@ -41,11 +41,36 @@ Restaurant::Restaurant(Restaurant&& other) noexcept
 
 // Destructor
 Restaurant::~Restaurant() {
-    delete departments[0];  // ����� ���
-    delete departments[1];  // ����� �����
-    cout << "Restorant destroy.\n";
-    delete[] departments;
-    delete[] dailyOrders;
+    // שחרור כל האובייקטים בתוך המערך departments
+    if (departments != nullptr) {
+        for (int i = 0; i < 2; ++i) {
+            if (departments[i] != nullptr) {
+                delete departments[i];
+            }
+            // שחרור המערך departments עצמו
+            delete[] departments;
+        }
+        if (departments == nullptr) {
+            cout << "departments destroyed.\n";
+        }
+    }    
+
+    // שחרור כל האובייקטים בתוך המערך dailyOrders
+    if (dailyOrders != nullptr) {
+        for (int i = 0; dailyOrders[i] != nullptr; ++i) {
+            delete dailyOrders[i];
+        }
+        // שחרור המערך dailyOrders עצמו
+        delete[] dailyOrders;
+    }
+    if (dailyOrders == nullptr) {
+        cout << "dailyOrders destroyed.\n";
+    }
+    delete &menu;
+    if (&menu == NULL) {
+        cout << "menu destroyed.\n";
+    }
+    cout << "Restaurant destroyed.\n";
 }
 
 // Move assignment operator
