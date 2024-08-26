@@ -1,14 +1,14 @@
 #include "Warehouse.h"
 #include "Ingredient.h"
 #include "menuItemInOrder.h"
+#include "linkedList.h"
 using namespace std;
 
-Warehouse::Warehouse() : ingredientList(nullptr), ingredientQuantityList(nullptr), numIngredients(0) {}
+Warehouse::Warehouse() : ingredientQuantityList(nullptr), numIngredients(0) {}
 
 // Move constructor
 Warehouse::Warehouse(Warehouse&& other) noexcept
-    : ingredientList(other.ingredientList), ingredientQuantityList(other.ingredientQuantityList), numIngredients(other.numIngredients) {
-    other.ingredientList = nullptr;
+    : ingredientList(std::move(other.ingredientList)), ingredientQuantityList(other.ingredientQuantityList), numIngredients(other.numIngredients) {
     other.ingredientQuantityList = nullptr;
     other.numIngredients = 0;
 }
@@ -23,11 +23,10 @@ Warehouse& Warehouse::operator=(Warehouse&& other) noexcept {
     if (this != &other) {
         clear();  
 
-        ingredientList = other.ingredientList;
+        ingredientList = std::move(other.ingredientList);
         ingredientQuantityList = other.ingredientQuantityList;
         numIngredients = other.numIngredients;
 
-        other.ingredientList = nullptr;
         other.ingredientQuantityList = nullptr;
         other.numIngredients = 0;
     }
@@ -35,7 +34,7 @@ Warehouse& Warehouse::operator=(Warehouse&& other) noexcept {
 }
 
 // Getters
-Ingredient** Warehouse::getIngredientList() const {
+LinkedList<Ingredient>& Warehouse::getIngredientList() {
     return ingredientList;
 }
 
@@ -45,37 +44,54 @@ int* Warehouse::getIngredientQuantityList() const {
 
 // Update ingredient quantity
 bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quantity) {
-    for (int i = 0; i < numIngredients; ++i) {
+
+    //LinkedList<Ingredient>::Node* currentIngredient = ingredientList.getHead();
+    LinkedList<Ingredient>::Iterator temp = ingredientList.getHead();
+    while (temp != nullptr)
+    {
+        int index = 0;
+
+        if (compareStrings((*temp).getName(), ingredient->getName()))
+        {
+            ingredientQuantityList[index] = quantity;
+            return true;
+        }
+
+        ++temp;  // Move to the next node in the ingredient list
+
+    }
+    /*for (int i = 0; i < numIngredients; ++i) {
         if (compareStrings(ingredientList[i]->getName(), ingredient->getName())) {
             ingredientQuantityList[i] = quantity;
             return true;
         }
     }
-    return false;
+    return false;*/ 
 }
 
 // Add ingredient to warehouse
 bool Warehouse::addIngredientToWarehouse(const char* ingredientName, int section) {
     // Create new lists with one additional slot
-    Ingredient** newIngredientList = new Ingredient*[numIngredients + 1];
+    //Ingredient** newIngredientList = new Ingredient*[numIngredients + 1];
     int* newIngredientQuantityList = new int[numIngredients + 1];
 
     // Copy existing data to new lists
     for (int i = 0; i < numIngredients; ++i) {
-        newIngredientList[i] = ingredientList[i];
+        //newIngredientList[i] = ingredientList[i];
         newIngredientQuantityList[i] = ingredientQuantityList[i];
     }
 
     // Add the new ingredient
-    newIngredientList[numIngredients] = new Ingredient(ingredientName, static_cast<Ingredient::eSection>(section), 0);
+    Ingredient ingToAdd =  Ingredient(ingredientName, static_cast<Ingredient::eSection>(section), 0);
+    ingredientList.addToEnd(ingToAdd);
+    //newIngredientList[numIngredients] = new Ingredient(ingredientName, static_cast<Ingredient::eSection>(section), 0);
     newIngredientQuantityList[numIngredients] = 0;
 
-    // Clean up old lists
-    delete[] ingredientList;
+    // Clean up old list
     delete[] ingredientQuantityList;
 
     // Assign new lists to class members
-    ingredientList = newIngredientList;
+    //ingredientList = newIngredientList;
     ingredientQuantityList = newIngredientQuantityList;
     numIngredients++;
     print();
@@ -83,33 +99,52 @@ bool Warehouse::addIngredientToWarehouse(const char* ingredientName, int section
     return true;
 }
 
-void Warehouse::print() const {
-    if (ingredientList && ingredientQuantityList) {
-        for (int i = 0; i < numIngredients; ++i) {
-            if (ingredientList[i]) {
-                ingredientList[i]->print(); // prints the data of every ingridient
-                cout << "Quantity: " << ingredientQuantityList[i] << endl;
-            }
+void Warehouse::print() const 
+{
+    LinkedList<Ingredient>::Node* currentIngredient = ingredientList.getHead();
+    if (currentIngredient != nullptr)
+    {
+        while (currentIngredient != nullptr)
+        {
+            currentIngredient->data.print();
+            currentIngredient = currentIngredient->next;
         }
     }
     else {
         cout << "Warehouse is empty or uninitialized." << endl;
     }
+    /* GPT
+    * Node<Ingredient>* currentIngredient = ingredientList.getHead();
+
+    while (currentIngredient != nullptr && currentQuantity != nullptr)
+    {
+        currentIngredient->data.print(); // Assuming Ingredient has a print() method
+        std::cout << "Quantity: " << currentQuantity->data << std::endl;
+        currentIngredient = currentIngredient->next;
+        currentQuantity = currentQuantity->next;
+    }
+
+    if (ingredientList.isEmpty()) {
+        std::cout << "Warehouse is empty or uninitialized." << std::endl;
+    }
+    */
 }
 
 
 // Internal function for memory cleaning
 void Warehouse::clear() {
-    if (ingredientList) {
-        for (int i = 0; i < numIngredients; ++i) {
-            delete ingredientList[i]; // deallocate all the aloocated memory in the warehouse
-        }
-        delete[] ingredientList;
+    if (numIngredients) {
+        ingredientList.clear();
         delete[] ingredientQuantityList;
     }
-    ingredientList = nullptr;
     ingredientQuantityList = nullptr;
     numIngredients = 0;
+    /*
+    * GPT
+    * ingredientList.clear();  // Assuming you have implemented a clear() function in CustomLinkedList
+    ingredientQuantityList.clear();
+    numIngredients = 0;
+    */
 }
 
 // fumction for comparing strings 
@@ -123,10 +158,23 @@ bool Warehouse::compareStrings(const char* str1, const char* str2) const {
 
 // function for finding ingridient by name 
 Ingredient* Warehouse::getIngredientByName(const char* ingredientName) const {
-    for (int i = 0; i < numIngredients; ++i) {
-        if (compareStrings(ingredientList[i]->getName(), ingredientName)) {
-            return ingredientList[i];
+
+    LinkedList<Ingredient>::Node* currentIngredient = ingredientList.getHead();
+
+    while (currentIngredient != nullptr) {
+        if (compareStrings(currentIngredient->data.getName(), ingredientName)) {
+            return &(currentIngredient->data);
         }
     }
     return nullptr;
+    /*GPT
+      Node<Ingredient>* current = ingredientList.getHead();
+    while (current != nullptr) {
+        if (compareStrings(current->data.getName(), ingredientName)) {
+            return &current->data;
+        }
+        current = current->next;
+    }
+    return nullptr;
+    */
 }

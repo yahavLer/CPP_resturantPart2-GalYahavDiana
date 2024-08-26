@@ -22,9 +22,9 @@ Restaurant::Restaurant() : departments(nullptr), dailyOrders(nullptr), dailyInco
 Restaurant::Restaurant(const char* name, const char* address) : departments(new Department* [2]), dailyOrders(nullptr), dailyIncome(0) {
     copyString(this->name, name, sizeof(this->name));
     copyString(this->address, address, sizeof(this->address));
-    // ����� ������� �� ������� ������� - 0 ���� ���, 1 ���� �����
-    departments[0] = new Bar();      // ��
-    departments[1] = new Kitchen();  // ����
+    // There are only two departnments in the restaurant 
+    departments[0] = new Bar();      
+    departments[1] = new Kitchen();
 }
 
 // Move constructor
@@ -41,7 +41,7 @@ Restaurant::Restaurant(Restaurant&& other) noexcept
 
 // Destructor
 Restaurant::~Restaurant() {
-    // שחרור כל האובייקטים בתוך המערך departments
+    // Free every alocated object from the department
     if (departments != nullptr) {
         for (int i = 0; i < 2; ++i) {
             if (departments[i] != nullptr) {
@@ -55,12 +55,12 @@ Restaurant::~Restaurant() {
         }
     }    
 
-    // שחרור כל האובייקטים בתוך המערך dailyOrders
+    // Free every alocated object from the daily orders 
     if (dailyOrders != nullptr) {
         for (int i = 0; dailyOrders[i] != nullptr; ++i) {
             delete dailyOrders[i];
         }
-        // שחרור המערך dailyOrders עצמו
+        // Delete the array of daily oreders it self
         delete[] dailyOrders;
     }
     if (dailyOrders == nullptr) {

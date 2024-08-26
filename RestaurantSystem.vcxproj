@@ -27,6 +27,7 @@
     <ClInclude Include="foodItem.h" />
     <ClInclude Include="ingredient.h" />
     <ClInclude Include="kitchen.h" />
+    <ClInclude Include="linkedList.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="menuItem.h" />
     <ClInclude Include="menuItemInOrder.h" />
