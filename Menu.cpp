@@ -5,6 +5,10 @@ using namespace std;
 #include "menu.h"
 #include "drinkItem.h"
 #include "foodItem.h"
+
+// Initialize static instance pointer to nullptr
+Menu* Menu::instance = nullptr;
+
 Menu::Menu() : menuItems(nullptr), specials(nullptr), menuItemCount(0), specialsCount(0) {}
 
 Menu::Menu(Menu&& other) noexcept : menuItems(other.menuItems), specials(other.specials),
@@ -15,12 +19,21 @@ Menu::Menu(Menu&& other) noexcept : menuItems(other.menuItems), specials(other.s
     other.specialsCount = 0;
 }
 
+// private distructor
 Menu::~Menu() {
     clear();
     cout << "menu destroyed.\n";
 }
 
-Menu& Menu::operator=(Menu&& other) noexcept {
+// Static method to get the singleton instance
+Menu* Menu::getInstance() {
+    if (instance == nullptr) {
+        instance = new Menu();
+    }
+    return instance;
+}
+
+/*Menu& Menu::operator=(Menu&& other) noexcept {
     if (this != &other) {
         clear();
 
@@ -35,7 +48,7 @@ Menu& Menu::operator=(Menu&& other) noexcept {
         other.specialsCount = 0;
     }
     return *this;
-}
+}*/
 
 MenuItem** Menu::getMenuItems() const {
     return menuItems;
@@ -76,11 +89,11 @@ bool Menu::addItemToMenu(MenuItem* menuItem, bool special) {
     return true;
 }
 
-bool Menu::removeItemFromMenu(MenuItem& menuItem) {
+/*bool Menu::removeItemFromMenu(MenuItem& menuItem) {
     // Logic to remove item from menu
     // This could involve finding the item and removing it from the array
     return true;
-}
+}*/
 
 MenuItem* Menu::getItemByIndex(int index) const {
 	if (index < menuItemCount) {
