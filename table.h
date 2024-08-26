@@ -13,10 +13,6 @@ public:
 	Table(int number);
 	Table(Table &&other) noexcept;
 	~Table();
-	// Table(const Table &other) = delete;
-
-	// Table &operator=(const Table &other);
-	// Table &operator=(Table &&other) noexcept;
 
 	Order *getOrder() const;
 	inline int getNumber() const { return number; }
