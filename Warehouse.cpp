@@ -55,21 +55,23 @@ int* Warehouse::getIngredientQuantityList() const
 // Update ingredient quantity
 bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quantity) 
 {
+    int index = 0;
 
     //LinkedList<Ingredient>::Node* currentIngredient = ingredientList.getHead();
     LinkedList<Ingredient>::Iterator temp = ingredientList.getHead();
     while (temp != nullptr)
     {
-        int index = 0;
+       
+
 
         if ((*temp).getName() == ingredient->getName())
         {
-            ingredientQuantityList[index] = quantity;
+            ingredientQuantityList[index] += quantity;
             return true;
         }
 
         ++temp;  // Move to the next node in the ingredient list
-
+        index++;
     }
     /*for (int i = 0; i < numIngredients; ++i) {
         if (compareStrings(ingredientList[i]->getName(), ingredient->getName())) {
