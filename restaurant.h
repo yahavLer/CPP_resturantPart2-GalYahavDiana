@@ -12,8 +12,8 @@ private:
 	Table tables[10];
 	Department** departments;
 	Order** dailyOrders;
-	string name[20];
-	string address[20];
+	std::string name;
+	std::string address;
 	int dailyIncome;
 
 
@@ -30,8 +30,8 @@ public:
 
 	Table& getTables() const;
 	Department** getDepartments() const;
-	const string getName() const;
-	const string getAddress() const;
+	const std::string getName() const;
+	const std::string getAddress() const;
 
 	bool setName(const std::string& name);
 	bool setAddress(const std::string& address);

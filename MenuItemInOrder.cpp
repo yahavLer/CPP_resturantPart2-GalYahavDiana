@@ -4,21 +4,17 @@ using namespace std;
 #include "MenuItemInOrder.h"
 
 // Constructor without arguments
-MenuItemInOrder::MenuItemInOrder() : menuItem(nullptr), quantity(0) {
+MenuItemInOrder::MenuItemInOrder() :comment(""), menuItem(nullptr), quantity(0) {
     comment[0] = '\0'; // Initialize comment as an empty string
 }
 
 // Constructor with menuItem, quantity, and comment
-MenuItemInOrder::MenuItemInOrder(const MenuItem &menuItem, int quantity, const std::string& comment)
-    : menuItem(menuItem.clone()), quantity(quantity) {
-    setComment(comment);
-}
+MenuItemInOrder::MenuItemInOrder(const MenuItem &menuItem, int quantity, const std::string& newComment)
+    : menuItem(menuItem.clone()), quantity(quantity), comment(newComment){}
 
 // Constructor with menuItem and quantity only
 MenuItemInOrder::MenuItemInOrder(MenuItem* menuItem, int quantity)
-    : menuItem(menuItem), quantity(quantity) {
-    comment[0] = '\0'; // Initialize comment as an empty string
-}
+    :comment(""), menuItem(menuItem), quantity(quantity) {}
 
 // Destructor
 MenuItemInOrder::~MenuItemInOrder() {
@@ -65,7 +61,7 @@ int MenuItemInOrder::getQuantity() const {
     return quantity;
 }
 
-const char* MenuItemInOrder::getComment() const {
+const std::string MenuItemInOrder::getComment() const {
     return comment;
 }
 
@@ -77,20 +73,12 @@ bool MenuItemInOrder::setQuantity(int quantity) {
     return false;
 }
 
-bool MenuItemInOrder::setComment(const std::string& comment) {
-    if (comment == nullptr) {
-        this->comment[0] = '\0'; // אם המחרוזת היא nullptr, נוודא שה-comment יהיה ריק
+bool MenuItemInOrder::setComment(const std::string& newComment) {
+    if (comment == "") {
+        comment = newComment; // אם המחרוזת היא nullptr, נוודא שה-comment יהיה ריק
         return true;
     }
-
-    // Copy the comment into member variable, ensuring it's null-terminated
-    int i = 0;
-    while (comment[i] != '\0' && i < sizeof(this->comment) - 1) {
-        this->comment[i] = comment[i];
-        i++;
-    }
-    this->comment[i] = '\0';
-    return true;
+    return false;
 }
 
 void MenuItemInOrder::print() const {
@@ -103,7 +91,7 @@ void MenuItemInOrder::print() const {
 
     cout << "Quantity: " << quantity << endl;
 
-    if (strlen(comment) > 0) {
+    if (comment.length() > 0) {
         cout << "Comment: " << comment << endl;
     }
 }

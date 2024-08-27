@@ -7,11 +7,11 @@ class MenuItemInOrder
 private:
     MenuItem *menuItem; // ����� ������ �����
     int quantity;
-    char comment[20];
+    std::string comment;
 
 public:
     MenuItemInOrder();
-    MenuItemInOrder(const MenuItem &menuItem, int quantity, const  std::string& comment);
+    MenuItemInOrder(const MenuItem &menuItem, int quantity, const  std::string& newComment);
     MenuItemInOrder(MenuItem *menuItem, int quantity);
     ~MenuItemInOrder(); // Destructor to clean up
 
@@ -24,10 +24,10 @@ public:
 
     MenuItem *getMenuItem() const;
     int getQuantity() const;
-    const char *getComment() const;
+    const std::string getComment() const;
 
     bool setQuantity(int quantity);
-    bool setComment(const std::string& comment);
+    bool setComment(const std::string& newComment);
 
     void print() const;
 };

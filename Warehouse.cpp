@@ -62,7 +62,7 @@ bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quant
     {
         int index = 0;
 
-        if (temp->getName() == ingredient->getName())
+        if ((*temp).getName() == ingredient->getName())
         {
             ingredientQuantityList[index] = quantity;
             return true;
@@ -78,6 +78,7 @@ bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quant
         }
     }
     return false;*/
+    return false;
 }
 
 // Add ingredient to warehouse
@@ -177,10 +178,10 @@ Ingredient* Warehouse::getIngredientByName(const std::string& ingredientName) co
     LinkedList<Ingredient>::Iterator currentIngredient = ingredientList.getHead();
 
     while (currentIngredient != nullptr) {
-        if (currentIngredient->getName() == ingredientName)
+        if ((*currentIngredient).getName() == ingredientName)
         {
-            Ingredient found = (*currentIngredient);  //save the ingredient we found in the warehouse
-            return &found;  // return the address of the ingredient
+    
+            return &(*currentIngredient);  // return the address of the ingredient
         }
     }
     return nullptr;

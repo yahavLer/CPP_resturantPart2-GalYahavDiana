@@ -4,41 +4,42 @@
 
 const char* sections[] = { "Herbs","Dairy","Meat","Fish","Vegetables" };
 
-Ingredient::Ingredient() 
-{
-    name[0] = '\0';
-    section = VEGETABLES; // Default section
-    quantityIng = 0;
-}
+Ingredient::Ingredient() : name(""), section(VEGETABLES), quantityIng(0){}
 
-Ingredient::Ingredient(std::string& ingredientName, eSection ingredientSection, int quantity)
-{
-    strcpy(name,ingredientName);
-    //setName(ingredientName);
-    section = ingredientSection;
-    quantityIng = quantity;
-}
+Ingredient::Ingredient(const std::string& ingredientName, eSection ingredientSection, int quantity)
+    : name(ingredientName), section(ingredientSection), quantityIng(quantity) {}
 
-bool Ingredient::setName(std::string& newName)
+bool Ingredient::setName(const std::string& newName)
 {
-    if (!newName.empty()) 
+    if (newName != "")
     {
-        name = newName;  // השמה פשוטה באמצעות std::string
+        name = newName;
         return true;
     }
+     
     return false;
 }
 
 bool Ingredient::setSection(eSection newSection) 
 {
-    section = newSection;
-    return true;
+    if (newSection >= 0 && newSection < 5)
+    {
+        section = newSection;
+        return true;
+    }
+
+    return false;
 }
 
 bool Ingredient::setQuantity(int quantity)
 {
-    quantityIng = quantity;
-    return true;
+    if (quantity > 0)
+    {
+        quantityIng = quantity;
+        return true;
+    }
+
+    return false;
 }
 
 

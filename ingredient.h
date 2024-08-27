@@ -9,20 +9,20 @@ public:
 	enum eSection { HERBS, DAIRY, MEAT, FISH, VEGETABLES };
 	
 	Ingredient();
-	Ingredient(std::string& name, eSection section, int quantity);
+	Ingredient(const std::string& name, eSection section, int quantity);
 
 
-	inline string getName() const { return const_cast<char*>(name); }
+	inline std::string getName() const { return name; }
 	inline int getQuantity() const { return quantityIng;  }
     inline eSection getSection() const { return section; }
 
-	bool setName(const std::string& name);
+	bool setName(const std::string& newName);
 	bool setSection(eSection section);
 	bool setQuantity(int quantity);
 	void print();
 
 private:
-	char name[20];
+	std::string name;
 	eSection section;
 	int quantityIng;
 };

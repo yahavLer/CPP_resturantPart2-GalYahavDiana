@@ -2,6 +2,7 @@
 #include "restaurant.h"
 #include "bar.h"
 #include "kitchen.h"
+#include "menu.h"
 #include <iostream>
 
 // Helper function to copy strings
@@ -16,9 +17,9 @@
 Restaurant::Restaurant() : departments(nullptr), dailyOrders(nullptr), dailyIncome(0) 
 {
     Menu::getInstance();
-    name[0] = '\0';
-    address[0] = '\0';
+
 }
+
 
 // Parameterized constructor
 Restaurant::Restaurant(const std::string& name, const std::string& address) : departments(new Department* [2]), dailyOrders(nullptr), dailyIncome(0) {
@@ -32,15 +33,10 @@ Restaurant::Restaurant(const std::string& name, const std::string& address) : de
 
 // Move constructor
 Restaurant::Restaurant(Restaurant&& other) noexcept
-    : departments(other.departments), dailyOrders(other.dailyOrders), dailyIncome(other.dailyIncome)
+    :name(std::move(other.name)), address(std::move(other.address)), departments(other.departments), dailyOrders(other.dailyOrders), dailyIncome(other.dailyIncome)
 {
-    copyString(this->name, other.name, sizeof(this->name));
-    copyString(this->address, other.address, sizeof(this->address));
-
     other.departments = nullptr;
     other.dailyOrders = nullptr;
-    other.name[0] = '\0';
-    other.address[0] = '\0';
 }
 
 // Destructor
@@ -51,12 +47,13 @@ Restaurant::~Restaurant() {
             if (departments[i] != nullptr) {
                 delete departments[i];
             }
-            // שחרור המערך departments עצמו
-            delete[] departments;
         }
-        if (departments == nullptr) {
-            cout << "departments destroyed.\n";
-        }
+
+        // delete the array itself
+        delete[] departments;
+        departments = nullptr;
+        cout << "departments destroyed.\n";
+    
     }    
 
     // Free every alocated object from the daily orders 
@@ -66,8 +63,7 @@ Restaurant::~Restaurant() {
         }
         // Delete the array of daily oreders it self
         delete[] dailyOrders;
-    }
-    if (dailyOrders == nullptr) {
+        dailyOrders = nullptr;
         cout << "dailyOrders destroyed.\n";
     }
    
@@ -82,15 +78,14 @@ Restaurant& Restaurant::operator=(Restaurant&& other) noexcept
         delete[] dailyOrders;
 
         //menu = std::move(other.menu);
-        copyString(this->name, other.name, sizeof(this->name));
-        copyString(this->address, other.address, sizeof(this->address));
+        name = std::move(other.name);
+        address = std::move(other.address);
+
         departments = other.departments;
         dailyOrders = other.dailyOrders;
 
         other.departments = nullptr;
         other.dailyOrders = nullptr;
-        other.name[0] = '\0';
-        other.address[0] = '\0';
         other.dailyIncome = 0;
     }
     return *this;
@@ -108,13 +103,13 @@ Department** Restaurant::getDepartments() const
 }
 
 
-const string Restaurant::getName() const
+const std::string Restaurant::getName() const
 {
     return name;
 }
 
 
-const string Restaurant::getAddress() const
+const std::string Restaurant::getAddress() const
 {
     return address;
 }
@@ -122,13 +117,13 @@ const string Restaurant::getAddress() const
 // Setters
 bool Restaurant::setName(const std::string& name)
 {
-    copyString(this->name, name, sizeof(this->name));
+    this->name=name;
     return true;
 }
 
 bool Restaurant::setAddress(const std::string& address)
 {
-    copyString(this->address, address, sizeof(this->address));
+    this->address=address;
     return true;
 }
 

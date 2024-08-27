@@ -19,7 +19,7 @@ int userIntValidation() {
 }
 
 void initRestaurant(Restaurant* restaurant) {
-    // הוספת שולחנות
+   // allocate tabels
     restaurant->addTables(5);
     restaurant->addTables(3);
 
@@ -56,7 +56,7 @@ void gatherDrinkInfo(std::string& mealName, int& price, int& volume, int& glassT
         try {
             cout << "Please enter the name of the drink (Max 20 characters):\n";
             cin.ignore();
-            cin.getline(mealName, MAX_NAME_LENGTH + 1);
+            cin >> mealName;
             if (mealName.length() == 0) {
                 throw runtime_error("Drink name cannot be empty!");
             }
@@ -129,8 +129,8 @@ void gatherFoodInfo(std::string& mealName, int& price, bool& special, bool& kosh
         try {
             cout << "Please enter the name of the meal (Max 20 characters):\n";
 	        cin.ignore();
-	        cin.getline(mealName, MAX_NAME_LENGTH + 1);
-            if (strlen(mealName) == 0) {
+	        cin >> mealName;
+            if (mealName.length() == 0) {
                 throw runtime_error("Meal name cannot be empty!");
             }
 	        cout << "Please enter the price of the meal:\n";
@@ -217,17 +217,17 @@ int main() {
         Restaurant* restaurant = nullptr;
 
         // open new resturant insert name and address
-        char name[MAX_NAME_LENGTH + 1];
-        char address[MAX_ADDRESS_LENGTH + 1];
+        std::string name;
+        std::string address;
 
         cout << "Enter the name of the restaurant (20 characters max): ";
-        cin.getline(name, MAX_NAME_LENGTH + 1);
-        if (strlen(name) == 0) {
+        cin >> name;
+        if (name.length() == 0) {
             throw runtime_error("Restaurant name cannot be empty!");
         }
         cout << "Enter the address of the restaurant (20 characters max): ";
-        cin.getline(address, MAX_ADDRESS_LENGTH + 1);
-        if (strlen(address) == 0) {
+        cin >> address;
+        if (address.length() == 0) {
             throw runtime_error("Restaurant address cannot be empty!");
         }
         if (restaurant != nullptr)
@@ -318,28 +318,28 @@ int main() {
                     }
 		            case 4: // Add drink to menu
                     {
-                        char mealName[MAX_NAME_LENGTH + 1];
+                        std::string drinkName;
                         int price, volume, glassType, numOfIngredients = 0;
                         bool special;
                         Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];
 
-                        gatherDrinkInfo(mealName, price, volume, glassType, special);
+                        gatherDrinkInfo(drinkName, price, volume, glassType, special);
                         gatherDrinkIngredients(ingredientList, numOfIngredients, restaurant);
 
-                        restaurant->addDrinkItemToMenu(mealName, volume, static_cast<DrinkItem::eGlassType>(glassType), price, ingredientList, numOfIngredients, special);
+                        restaurant->addDrinkItemToMenu(drinkName, volume, static_cast<DrinkItem::eGlassType>(glassType), price, ingredientList, numOfIngredients, special);
                         break;
                     }
 		            case 5: // Add meal food to menu
                     {
-                        char mealName[MAX_NAME_LENGTH + 1];
+                        std::string foodName;
                         int price, numOfIngredients = 0;
                         bool special, kosher;
                         Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];
 
-                        gatherFoodInfo(mealName, price, special, kosher);
+                        gatherFoodInfo(foodName, price, special, kosher);
                         gatherFoodIngredients(ingredientList, numOfIngredients, restaurant);
 
-                        restaurant->addFoodItemToMenu(mealName, numOfIngredients, ingredientList, price, FOOD_DEPARTMENT, special, kosher);
+                        restaurant->addFoodItemToMenu(foodName, numOfIngredients, ingredientList, price, FOOD_DEPARTMENT, special, kosher);
                         break;
                     }
 		            case 6: // Open new order

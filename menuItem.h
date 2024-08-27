@@ -12,7 +12,7 @@ protected:
 	int price;
 	Ingredient** ingredientList;
 	int numOfIngredients;
-	char name[20];
+	std::string name;
 
 public:
 	MenuItem(const std::string& name, const int numOfIngredients, Ingredient** list, int price);
@@ -22,7 +22,7 @@ public:
 	MenuItem(MenuItem&& other) noexcept; 
 	MenuItem& operator=(const MenuItem& other); //
 	MenuItem& operator=(MenuItem&& other) noexcept;
-	inline const string getName() const { return name; }
+	inline const std::string getName() const { return name; }
 	bool setName(const std::string& newName);
 	inline int getPrice() const { return price; }
 	Ingredient** const getIngredientList() const { return ingredientList; }
@@ -32,7 +32,8 @@ public:
 	virtual MenuItem* clone() const = 0;
 
 private:
-	//void clearIngredients(); 
+
+	void clearIngredients(); 
 
 
 };
