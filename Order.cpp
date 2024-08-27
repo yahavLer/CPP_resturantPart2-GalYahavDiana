@@ -40,7 +40,7 @@ MenuItemInOrder** Order::getOrderedItems() const {
     return orderedItems;
 }
 
-bool Order::addItemToOrder(const MenuItem& menuItem, int quantity, char *comments) {
+bool Order::addItemToOrder(const MenuItem& menuItem, int quantity, std::string& comments) {
     MenuItemInOrder** newOrderedItems = new MenuItemInOrder*[numItems + 1];
     for (int i = 0; i < numItems; ++i) {
         newOrderedItems[i] = orderedItems[i];

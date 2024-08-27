@@ -20,7 +20,7 @@ public:
 
 	bool setNumber(int newNumber);
 	bool createNewOrder();
-	bool addItemToOrder(const MenuItem& menuItem, int quantity, char *comments);
+	bool addItemToOrder(const MenuItem& menuItem, int quantity, std::string& comments);
 	int closeBill();
 
 	void printTable() const;

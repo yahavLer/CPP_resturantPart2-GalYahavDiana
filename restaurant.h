@@ -19,7 +19,7 @@ private:
 
 public:
 	Restaurant();
-	Restaurant(const string name,const string address);                                                                                                    
+	Restaurant(const std::string& name,const std::string& address);
 	Restaurant(const Restaurant& other) = delete;
 	Restaurant(Restaurant&& other) noexcept;
 	~Restaurant();
@@ -33,15 +33,15 @@ public:
 	const string getName() const;
 	const string getAddress() const;
 
-	bool setName(const char* name);
-	bool setAddress(const char* address);
+	bool setName(const std::string& name);
+	bool setAddress(const std::string& address);
 	void presentMenu() const;
-	bool updateIngredientQuantity(const string name, int quantity, int kitchen);
+	bool updateIngredientQuantity(const std::string& name, int quantity, int kitchen);
 	void presentTables() const;
 	bool createNewOrderInTable(int tableNum);
-	bool addItemToOrder(int menuIemNum, int quantity, int tableNum, string comments);
+	bool addItemToOrder(int menuIemNum, int quantity, int tableNum, std::string& comments);
 	bool closeBill(int tableNum);
-	bool addIngredientToWarehouse(const string ingredientName, int section, int  forKitchen);
+	bool addIngredientToWarehouse(const std::string& ingredientName, int section, int  forKitchen);
 	bool addTables(int numOfTables);
 	bool isEmptyOfTable();
 	void presentDailyIncome();
@@ -49,8 +49,8 @@ public:
 	void showBarWarehouse();
 	void showMenuWarehouse();
 	void showTablesWarehouse();
-	bool addDrinkItemToMenu(const string name, int volume, DrinkItem::eGlassType glass, int price, Ingredient** ingredients, int numOfIngredients, bool special);
-	bool addFoodItemToMenu(const string itemName, const int numOfIngredients, Ingredient** list, int price, int department, bool special, bool kosher);
+	bool addDrinkItemToMenu(const std::string& name, int volume, DrinkItem::eGlassType glass, int price, Ingredient** ingredients, int numOfIngredients, bool special);
+	bool addFoodItemToMenu(const std::string& itemName, const int numOfIngredients, Ingredient** list, int price, int department, bool special, bool kosher);
 	int getTableIndex(int tableNum);
 	void print() const;
 };

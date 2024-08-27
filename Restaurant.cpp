@@ -21,9 +21,10 @@ Restaurant::Restaurant() : departments(nullptr), dailyOrders(nullptr), dailyInco
 }
 
 // Parameterized constructor
-Restaurant::Restaurant(const string name, const string address) : departments(new Department* [2]), dailyOrders(nullptr), dailyIncome(0) {
-    strcpy(this->name, name);
-    strcpy(this->address, address);
+Restaurant::Restaurant(const std::string& name, const std::string& address) : departments(new Department* [2]), dailyOrders(nullptr), dailyIncome(0) {
+   this->setName(name);
+   this->setAddress(address);
+
     // There are only two departnments in the restaurant 
     departments[0] = new Bar();      
     departments[1] = new Kitchen();
@@ -107,25 +108,25 @@ Department** Restaurant::getDepartments() const
 }
 
 
-const char* Restaurant::getName() const
+const string Restaurant::getName() const
 {
     return name;
 }
 
 
-const char* Restaurant::getAddress() const
+const string Restaurant::getAddress() const
 {
     return address;
 }
 
 // Setters
-bool Restaurant::setName(const char* name)
+bool Restaurant::setName(const std::string& name)
 {
     copyString(this->name, name, sizeof(this->name));
     return true;
 }
 
-bool Restaurant::setAddress(const char* address)
+bool Restaurant::setAddress(const std::string& address)
 {
     copyString(this->address, address, sizeof(this->address));
     return true;
@@ -137,7 +138,7 @@ void Restaurant::presentMenu() const {
     Menu::getInstance()->print();  // Use the singleton instance to present the menu
 }
 
-bool Restaurant::updateIngredientQuantity(const char* name, int quantity, int kitchen) 
+bool Restaurant::updateIngredientQuantity(const std::string& name, int quantity, int kitchen)
 {
     if (departments && departments[kitchen]) {
         return departments[kitchen]->updateIngredientQuantity(name, quantity);
@@ -152,7 +153,7 @@ void Restaurant::presentTables() const
     }
 }
 
-bool  Restaurant::addDrinkItemToMenu(const char* name, int volume, DrinkItem::eGlassType glass, int price, Ingredient** ingredients, int numOfIngredients, bool special)
+bool  Restaurant::addDrinkItemToMenu(const std::string& name, int volume, DrinkItem::eGlassType glass, int price, Ingredient** ingredients, int numOfIngredients, bool special)
 {
     MenuItem* newItem = new DrinkItem(name, volume, glass, price, ingredients, numOfIngredients);
     if (Menu::getInstance()->addItemToMenu(newItem, special))
@@ -160,7 +161,7 @@ bool  Restaurant::addDrinkItemToMenu(const char* name, int volume, DrinkItem::eG
     return false;
 }
 
-bool  Restaurant::addFoodItemToMenu(const char* itemName, const int numOfIngredients, Ingredient** list, int price, int department, bool special, bool kosher)
+bool  Restaurant::addFoodItemToMenu(const std::string& itemName, const int numOfIngredients, Ingredient** list, int price, int department, bool special, bool kosher)
 {
     MenuItem* newItem = new FoodItem(itemName, kosher, price, list, numOfIngredients, 0);
     if(Menu::getInstance()->addItemToMenu(newItem, special))
@@ -180,7 +181,7 @@ bool Restaurant::createNewOrderInTable(int tableNum)
     return false;
 }
 
-bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, char* comments)
+bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, std::string& comments)
 {
 	//add item to order
 	if (tableNum >= 0 && tableNum < 10) {
@@ -217,7 +218,7 @@ bool Restaurant::closeBill(int tableNum)
     return total > 0;
 }
 
-bool Restaurant::addIngredientToWarehouse(const string ingredientName, int section, int forKitchen) {
+bool Restaurant::addIngredientToWarehouse(const std::string& ingredientName, int section, int forKitchen) {
     if (departments && departments[forKitchen]) {
         return departments[forKitchen]->addIngredientToWarehouse(ingredientName, section);
     }

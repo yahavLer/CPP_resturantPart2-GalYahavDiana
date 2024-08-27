@@ -8,7 +8,7 @@ public:
 	enum eGlassType{LOWBOAL,WINE,BEER,HIGHBOAL,PAPERCUP};
 
 	DrinkItem();
-	DrinkItem(const char* name, int volume, eGlassType glass ,int price, Ingredient** ingredients, int numOfIngredients);
+	DrinkItem(const std::string& name, int volume, eGlassType glass ,int price, Ingredient** ingredients, int numOfIngredients);
 	DrinkItem(const DrinkItem& other);
 	DrinkItem& operator=(const DrinkItem& other);
 

@@ -50,14 +50,14 @@ void initRestaurant(Restaurant* restaurant) {
 	restaurant->addFoodItemToMenu("Tomato Salad", 1, ingredientList2, 20, FOOD_DEPARTMENT, true, false);
 }
 
-void gatherDrinkInfo(char* mealName, int& price, int& volume, int& glassType, bool& special) {
+void gatherDrinkInfo(std::string& mealName, int& price, int& volume, int& glassType, bool& special) {
     bool validInput = false;
     while (!validInput) {
         try {
             cout << "Please enter the name of the drink (Max 20 characters):\n";
             cin.ignore();
             cin.getline(mealName, MAX_NAME_LENGTH + 1);
-            if (strlen(mealName) == 0) {
+            if (mealName.length() == 0) {
                 throw runtime_error("Drink name cannot be empty!");
             }
             cout << "Please enter the price of the drink:\n";
@@ -123,7 +123,7 @@ void gatherDrinkIngredients(Ingredient** ingredientList, int& numOfIngredients, 
 	} while (answer == 'y');
 }
 
-void gatherFoodInfo(char* mealName, int& price, bool& special, bool& kosher) {
+void gatherFoodInfo(std::string& mealName, int& price, bool& special, bool& kosher) {
     bool validInput = false;
     while (!validInput) {
         try {
@@ -345,7 +345,7 @@ int main() {
 		            case 6: // Open new order
                     {
                         int tableNum, menuItemNum, quantity, addMore = 1, addComment=0;
-			            char* comments = nullptr;
+			            std::string comments ;
                         bool validInput = false;
                         while (!validInput) {
                             try {
@@ -371,7 +371,8 @@ int main() {
                             cout << "How many do you want to add to the order?\n";
                             cin >> quantity;					
 					        cout << "Do you want to add comments to the order? press 1 for yes and 0 for no (max 20) \n";
-                            cin >> addComment;
+                            cin >> comments;
+                            /*
                             if (addComment == 1)
                             {
                                 comments = new char[51];
@@ -380,6 +381,8 @@ int main() {
                                 cin.ignore();
                                 cin.getline(comments, 51);
                             }
+                            */
+                            
 					        //get the menu item by the number and add it to the order
 					        restaurant->createNewOrderInTable(tableNum);
 					        restaurant->addItemToOrder(menuItemNum, quantity, tableNum, comments);
@@ -391,7 +394,7 @@ int main() {
 		            case 7: // Add menu items to order
                     {
                         int tableNum, quantity, menuItemNum, addMore = 1, addComment = 0;;
-                        char* comments = nullptr;
+                        std::string comments = nullptr;
                         bool validInput = false;
                         while (!validInput) {
                             try {
@@ -413,7 +416,8 @@ int main() {
                             cout << "How many do you want to add to the order?\n";
                             cin >> quantity;
                             cout << "Do you want to add comments to the order? press 1 for yes and 0 for no (max 20) \n";
-                            cin >> addComment;
+                            cin >> comments;
+                            /*
                             if (addComment == 1)
                             {
                                 comments = new char[51];
@@ -422,6 +426,8 @@ int main() {
                                 cin.ignore();
                                 cin.getline(comments, 51);
                             }
+                            */
+                            
                             //get the menu item by the number and add it to the order
                             restaurant->addItemToOrder(menuItemNum, quantity, tableNum, comments);
                             cout << "Do you want to add more to order? press 1 for yes and 0 for no\n";

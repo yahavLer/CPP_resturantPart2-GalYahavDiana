@@ -3,7 +3,7 @@
 #include <utility>
 
 // Constructor with parameters
-MenuItem::MenuItem(const char* itemName, const int numOfIngredients, Ingredient** list, int price)
+MenuItem::MenuItem(const std::string& itemName, const int numOfIngredients, Ingredient** list, int price)
     : price(price), numOfIngredients(numOfIngredients), ingredientList(list) {
     setName(itemName);
 }
@@ -100,7 +100,7 @@ bool MenuItem::setIngredients(Ingredient** list, int size) {
     }
 }*/
 // Set name
-bool MenuItem::setName(const char* newName) {
+bool MenuItem::setName(const std::string& newName) {
     if (newName) {
         int i = 0;
         

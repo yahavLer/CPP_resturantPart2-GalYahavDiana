@@ -2,6 +2,10 @@
 #include "Ingredient.h"
 #include "menuItemInOrder.h"
 #include "linkedList.h"
+#include <string>
+#include <iostream>
+
+
 using namespace std;
 
 Warehouse::Warehouse() : ingredientQuantityList(nullptr), numIngredients(0)
@@ -58,7 +62,7 @@ bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quant
     {
         int index = 0;
 
-        if (strcmp((*temp).getName(), ingredient->getName()))
+        if (temp->getName() == ingredient->getName())
         {
             ingredientQuantityList[index] = quantity;
             return true;
@@ -73,11 +77,11 @@ bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quant
             return true;
         }
     }
-    return false;*/ 
+    return false;*/
 }
 
 // Add ingredient to warehouse
-bool Warehouse::addIngredientToWarehouse(const string ingredientName, int section) 
+bool Warehouse::addIngredientToWarehouse(const std::string& ingredientName, int section)
 {
     // Create new lists with one additional slot
     //Ingredient** newIngredientList = new Ingredient*[numIngredients + 1];
@@ -167,13 +171,13 @@ void Warehouse::clear() {
 }*/
 
 // function for finding ingridient by name 
-Ingredient* Warehouse::getIngredientByName(const char* ingredientName) const 
+Ingredient* Warehouse::getIngredientByName(const std::string& ingredientName) const
 {
 
     LinkedList<Ingredient>::Iterator currentIngredient = ingredientList.getHead();
 
     while (currentIngredient != nullptr) {
-        if (strcmp((*currentIngredient).getName(), ingredientName))
+        if (currentIngredient->getName() == ingredientName)
         {
             Ingredient found = (*currentIngredient);  //save the ingredient we found in the warehouse
             return &found;  // return the address of the ingredient

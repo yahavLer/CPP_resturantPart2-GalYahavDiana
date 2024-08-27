@@ -18,7 +18,7 @@ public:
 	Kitchen &operator=(Kitchen &&other) noexcept;
 
 	FoodItem **getFoodItemList() const;
-	bool updateIngredientQuantity(char *name, int quantity);
-	bool addIngredientToWarehouse(char *ingredientName, int section);
+	bool updateIngredientQuantity(std::string& name, int quantity);
+	bool addIngredientToWarehouse(std::string& ingredientName, int section);
 	void print() override;
 };

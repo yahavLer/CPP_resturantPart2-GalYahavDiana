@@ -9,7 +9,7 @@ private:
 
 public:
 	FoodItem();
-	FoodItem(const char* name, bool kosher, int price, Ingredient** ingredients, int numOfIngredients,int calories);
+	FoodItem(const std::string& name, bool kosher, int price, Ingredient** ingredients, int numOfIngredients,int calories);
 
 	inline int getCalories() const { return calories; }
 	inline bool getKosher() const { return kosher; }

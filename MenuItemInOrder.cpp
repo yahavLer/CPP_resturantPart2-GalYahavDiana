@@ -9,7 +9,7 @@ MenuItemInOrder::MenuItemInOrder() : menuItem(nullptr), quantity(0) {
 }
 
 // Constructor with menuItem, quantity, and comment
-MenuItemInOrder::MenuItemInOrder(const MenuItem &menuItem, int quantity, const char* comment)
+MenuItemInOrder::MenuItemInOrder(const MenuItem &menuItem, int quantity, const std::string& comment)
     : menuItem(menuItem.clone()), quantity(quantity) {
     setComment(comment);
 }
@@ -77,7 +77,7 @@ bool MenuItemInOrder::setQuantity(int quantity) {
     return false;
 }
 
-bool MenuItemInOrder::setComment(const char* comment) {
+bool MenuItemInOrder::setComment(const std::string& comment) {
     if (comment == nullptr) {
         this->comment[0] = '\0'; // אם המחרוזת היא nullptr, נוודא שה-comment יהיה ריק
         return true;

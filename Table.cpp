@@ -45,9 +45,9 @@ bool Table::createNewOrder()
     return true;
 }
 
-bool Table::addItemToOrder(const MenuItem& menuItem, int quantity, char *comments) 
+bool Table::addItemToOrder(const MenuItem& menuItem, int quantity, std::string& comments)
 {
-    if (!order) 
+    if (!order)
     {
         return false;
     }

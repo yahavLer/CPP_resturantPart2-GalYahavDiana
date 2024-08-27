@@ -9,7 +9,7 @@ DrinkItem::DrinkItem() : MenuItem(), volume(0), glass(LOWBOAL) {}
 
 
 // Constructor for drink item with input data
-DrinkItem::DrinkItem(const char* drinkName, int drinkVolume, eGlassType drinkGlass, int price, Ingredient** ingredients, int numOfIngredients)
+DrinkItem::DrinkItem(const std::string& drinkName, int drinkVolume, eGlassType drinkGlass, int price, Ingredient** ingredients, int numOfIngredients)
     : MenuItem(drinkName, numOfIngredients, ingredients, price), volume(drinkVolume), glass(drinkGlass) {}
 
 

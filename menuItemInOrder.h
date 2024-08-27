@@ -11,7 +11,7 @@ private:
 
 public:
     MenuItemInOrder();
-    MenuItemInOrder(const MenuItem &menuItem, int quantity, const char *comment);
+    MenuItemInOrder(const MenuItem &menuItem, int quantity, const  std::string& comment);
     MenuItemInOrder(MenuItem *menuItem, int quantity);
     ~MenuItemInOrder(); // Destructor to clean up
 
@@ -27,7 +27,7 @@ public:
     const char *getComment() const;
 
     bool setQuantity(int quantity);
-    bool setComment(const char *comment);
+    bool setComment(const std::string& comment);
 
     void print() const;
 };

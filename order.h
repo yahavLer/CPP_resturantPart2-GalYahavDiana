@@ -17,7 +17,7 @@ public:
 	// const Order& operator=(const Order& other);
 	Order &operator=(Order &&other) noexcept;
 	MenuItemInOrder **getOrderedItems() const;
-	bool addItemToOrder(const MenuItem &menuItem, int quantity, char *comments);
+	bool addItemToOrder(const MenuItem &menuItem, int quantity, std::string& comments);
 	int closeBill() const;
 	void print() const;
 

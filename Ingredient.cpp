@@ -11,7 +11,7 @@ Ingredient::Ingredient()
     quantityIng = 0;
 }
 
-Ingredient::Ingredient(string ingredientName, eSection ingredientSection, int quantity) 
+Ingredient::Ingredient(std::string& ingredientName, eSection ingredientSection, int quantity)
 {
     strcpy(name,ingredientName);
     //setName(ingredientName);
@@ -19,17 +19,11 @@ Ingredient::Ingredient(string ingredientName, eSection ingredientSection, int qu
     quantityIng = quantity;
 }
 
-bool Ingredient::setName(string newName) 
+bool Ingredient::setName(std::string& newName)
 {
-    if (newName) 
+    if (!newName.empty()) 
     {
-        int i = 0;
-        while (i < sizeof(name) - 1 && newName[i] != '\0') 
-        {
-            name[i] = newName[i];
-            i++;
-        }
-        name[i] = '\0'; 
+        name = newName;  // השמה פשוטה באמצעות std::string
         return true;
     }
     return false;

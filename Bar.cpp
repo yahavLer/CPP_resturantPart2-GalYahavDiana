@@ -37,12 +37,12 @@ int Bar::getNumOfWorkers() const {
 }
 
 // Update ingredient quantity in the warehouse
-bool Bar::updateIngredientQuantity(const char* name, int quantity) {
+bool Bar::updateIngredientQuantity(const std::string& name, int quantity) {
     return Department::updateIngredientQuantity(name, quantity);
 }
 
 // Add ingredient to the warehouse
-bool Bar::addIngredientToWarehouse(const char* ingredientName, int section) {
+bool Bar::addIngredientToWarehouse(const std::string& ingredientName, int section) {
     return Department::addIngredientToWarehouse(ingredientName, section);
 }
 

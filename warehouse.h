@@ -20,10 +20,10 @@ public:
     Warehouse& operator=(Warehouse&& other) noexcept;
 	
 	LinkedList<Ingredient>& getIngredientList();
-	Ingredient* getIngredientByName(const char* ingredientName) const; 
+	Ingredient* getIngredientByName(const std::string& ingredientName) const;
 	int* getIngredientQuantityList() const;
 	bool updateIngredientQuantity(const Ingredient* ingredient, int quantity);  
-	bool addIngredientToWarehouse(const char* ingredientName, int section);
+	bool addIngredientToWarehouse(const std::string& ingredientName, int section);
 	void print() const;
 
 	// Iterator pattern design 

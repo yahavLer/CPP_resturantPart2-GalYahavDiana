@@ -45,7 +45,7 @@ inline FoodItem **Kitchen::getFoodItemList() const
     return foodItemList;
 }
 
-bool Kitchen::updateIngredientQuantity(char *name, int quantity)
+bool Kitchen::updateIngredientQuantity(std::string& name, int quantity)
 {
     Ingredient* ingredient = wareHouse.getIngredientByName(name);
     if (ingredient) {
@@ -54,7 +54,7 @@ bool Kitchen::updateIngredientQuantity(char *name, int quantity)
     return false;
 }
 
-bool Kitchen::addIngredientToWarehouse(char *ingredientName, int section)
+bool Kitchen::addIngredientToWarehouse(std::string& ingredientName, int section)
 {
         return wareHouse.addIngredientToWarehouse(ingredientName, section);
 }

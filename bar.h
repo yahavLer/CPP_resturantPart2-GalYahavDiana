@@ -18,8 +18,8 @@ public:
 	const Bar &operator=(Bar &&other);
 
 	inline int getNumOfWorkers() const;
-	bool updateIngredientQuantity(const char *name, int quantity);
-	bool addIngredientToWarehouse(const char *ingredientName, int section);
+	bool updateIngredientQuantity(const std::string& name, int quantity);
+	bool addIngredientToWarehouse(const std::string& ingredientName, int section);
 	inline DrinkItem **getDrinkItemList() const;
 	inline const Warehouse& getWareHouse() const;
 	void print() override;
