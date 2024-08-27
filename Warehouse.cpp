@@ -4,11 +4,14 @@
 #include "linkedList.h"
 using namespace std;
 
-Warehouse::Warehouse() : ingredientQuantityList(nullptr), numIngredients(0) {}
+Warehouse::Warehouse() : ingredientQuantityList(nullptr), numIngredients(0)
+{
+}
 
 // Move constructor
 Warehouse::Warehouse(Warehouse&& other) noexcept
-    : ingredientList(std::move(other.ingredientList)), ingredientQuantityList(other.ingredientQuantityList), numIngredients(other.numIngredients) {
+    : ingredientList(std::move(other.ingredientList)), ingredientQuantityList(other.ingredientQuantityList), numIngredients(other.numIngredients)
+{
     other.ingredientQuantityList = nullptr;
     other.numIngredients = 0;
 }
@@ -19,7 +22,8 @@ Warehouse::~Warehouse() {
 }
 
 // Move assignment operator
-Warehouse& Warehouse::operator=(Warehouse&& other) noexcept {
+Warehouse& Warehouse::operator=(Warehouse&& other) noexcept 
+{
     if (this != &other) {
         clear();  
 
@@ -34,16 +38,19 @@ Warehouse& Warehouse::operator=(Warehouse&& other) noexcept {
 }
 
 // Getters
-LinkedList<Ingredient>& Warehouse::getIngredientList() {
+LinkedList<Ingredient>& Warehouse::getIngredientList() 
+{
     return ingredientList;
 }
 
-int* Warehouse::getIngredientQuantityList() const {
+int* Warehouse::getIngredientQuantityList() const 
+{
     return ingredientQuantityList;
 }
 
 // Update ingredient quantity
-bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quantity) {
+bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quantity) 
+{
 
     //LinkedList<Ingredient>::Node* currentIngredient = ingredientList.getHead();
     LinkedList<Ingredient>::Iterator temp = ingredientList.getHead();
@@ -70,7 +77,8 @@ bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quant
 }
 
 // Add ingredient to warehouse
-bool Warehouse::addIngredientToWarehouse(const char* ingredientName, int section) {
+bool Warehouse::addIngredientToWarehouse(const char* ingredientName, int section) 
+{
     // Create new lists with one additional slot
     //Ingredient** newIngredientList = new Ingredient*[numIngredients + 1];
     int* newIngredientQuantityList = new int[numIngredients + 1];
@@ -101,13 +109,13 @@ bool Warehouse::addIngredientToWarehouse(const char* ingredientName, int section
 
 void Warehouse::print() const 
 {
-    LinkedList<Ingredient>::Node* currentIngredient = ingredientList.getHead();
+    LinkedList<Ingredient>::Iterator currentIngredient = ingredientList.getHead();
     if (currentIngredient != nullptr)
     {
         while (currentIngredient != nullptr)
         {
-            currentIngredient->data.print();
-            currentIngredient = currentIngredient->next;
+            (*currentIngredient).print();
+            ++currentIngredient;
         }
     }
     else {
@@ -148,8 +156,10 @@ void Warehouse::clear() {
 }
 
 // fumction for comparing strings 
-bool Warehouse::compareStrings(const char* str1, const char* str2) const {
-    while (*str1 && (*str1 == *str2)) {
+bool Warehouse::compareStrings(const char* str1, const char* str2) const
+{
+    while (*str1 && (*str1 == *str2))
+    {
         ++str1;
         ++str2;
     }
@@ -157,13 +167,16 @@ bool Warehouse::compareStrings(const char* str1, const char* str2) const {
 }
 
 // function for finding ingridient by name 
-Ingredient* Warehouse::getIngredientByName(const char* ingredientName) const {
+Ingredient* Warehouse::getIngredientByName(const char* ingredientName) const 
+{
 
-    LinkedList<Ingredient>::Node* currentIngredient = ingredientList.getHead();
+    LinkedList<Ingredient>::Iterator currentIngredient = ingredientList.getHead();
 
     while (currentIngredient != nullptr) {
-        if (compareStrings(currentIngredient->data.getName(), ingredientName)) {
-            return &(currentIngredient->data);
+        if (compareStrings((*currentIngredient).getName(), ingredientName))
+        {
+            Ingredient found = (*currentIngredient);  //save the ingredient we found in the warehouse
+            return &found;  // return the address of the ingredient
         }
     }
     return nullptr;

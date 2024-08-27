@@ -8,20 +8,19 @@ using namespace std;
 template <typename T>       //template class that can work with any data type
 class LinkedList {
 private:
-    
-    Node* head;
-    Node* tail;
-
-public:
     struct Node
     {
         T data;                 // the data
         Node* next;             // the pointer
         Node(const T& value) : data(value), next(nullptr) {}
     };
+    Node* head;
+    Node* tail;
+
+public:
+    
     LinkedList() : head(nullptr), tail(nullptr) {}      // Initializes an empty list
     ~LinkedList();
-
     void addToEnd(const T& value);          // Adds a new element to the end of the list
     void deleteElement(const T& value);     // Removes the first occurrence of a given element
     void print() const;
