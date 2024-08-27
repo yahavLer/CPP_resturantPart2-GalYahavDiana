@@ -117,9 +117,11 @@ void Warehouse::print() const
     LinkedList<Ingredient>::Iterator currentIngredient = ingredientList.getHead();
     if (currentIngredient != nullptr)
     {
+        int index = 0;
         while (currentIngredient != nullptr)
         {
             (*currentIngredient).print();
+            cout << "Current Quantity: " << ingredientQuantityList[index] << endl;
             ++currentIngredient;
         }
     }
@@ -183,6 +185,7 @@ Ingredient* Warehouse::getIngredientByName(const std::string& ingredientName) co
     
             return &(*currentIngredient);  // return the address of the ingredient
         }
+        ++currentIngredient;
     }
     return nullptr;
     /*GPT
