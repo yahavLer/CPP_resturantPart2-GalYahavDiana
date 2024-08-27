@@ -11,13 +11,13 @@ Menu* Menu::instance = nullptr;
 
 Menu::Menu() : menuItems(nullptr), specials(nullptr), menuItemCount(0), specialsCount(0) {}
 
-Menu::Menu(Menu&& other) noexcept : menuItems(other.menuItems), specials(other.specials),
+/*Menu::Menu(Menu&& other) noexcept : menuItems(other.menuItems), specials(other.specials),
                                     menuItemCount(other.menuItemCount), specialsCount(other.specialsCount) {
     other.menuItems = nullptr;
     other.specials = nullptr;
     other.menuItemCount = 0;
     other.specialsCount = 0;
-}
+}*/
 
 // private distructor
 Menu::~Menu() {

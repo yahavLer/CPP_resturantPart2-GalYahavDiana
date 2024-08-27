@@ -11,7 +11,7 @@ Ingredient::Ingredient()
     quantityIng = 0;
 }
 
-Ingredient::Ingredient(const char* ingredientName, eSection ingredientSection, int quantity) 
+Ingredient::Ingredient(string ingredientName, eSection ingredientSection, int quantity) 
 {
     strcpy(name,ingredientName);
     //setName(ingredientName);
@@ -19,7 +19,7 @@ Ingredient::Ingredient(const char* ingredientName, eSection ingredientSection, i
     quantityIng = quantity;
 }
 
-bool Ingredient::setName(const char* newName) 
+bool Ingredient::setName(string newName) 
 {
     if (newName) 
     {

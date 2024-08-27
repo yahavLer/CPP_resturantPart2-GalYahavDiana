@@ -9,14 +9,14 @@ public:
 	enum eSection { HERBS, DAIRY, MEAT, FISH, VEGETABLES };
 	
 	Ingredient();
-	Ingredient(const char* name, eSection section, int quantity);
+	Ingredient(string name, eSection section, int quantity);
 
 
-	inline char* getName() const { return const_cast<char*>(name); }
+	inline string getName() const { return const_cast<char*>(name); }
 	inline int getQuantity() const { return quantityIng;  }
     inline eSection getSection() const { return section; }
 
-	bool setName(const char* name);
+	bool setName(const string name);
 	bool setSection(eSection section);
 	bool setQuantity(int quantity);
 	void print();

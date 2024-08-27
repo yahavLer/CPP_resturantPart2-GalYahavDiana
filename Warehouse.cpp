@@ -58,7 +58,7 @@ bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quant
     {
         int index = 0;
 
-        if (compareStrings((*temp).getName(), ingredient->getName()))
+        if (strcmp((*temp).getName(), ingredient->getName()))
         {
             ingredientQuantityList[index] = quantity;
             return true;
@@ -77,7 +77,7 @@ bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quant
 }
 
 // Add ingredient to warehouse
-bool Warehouse::addIngredientToWarehouse(const char* ingredientName, int section) 
+bool Warehouse::addIngredientToWarehouse(const string ingredientName, int section) 
 {
     // Create new lists with one additional slot
     //Ingredient** newIngredientList = new Ingredient*[numIngredients + 1];
@@ -142,7 +142,7 @@ void Warehouse::print() const
 // Internal function for memory cleaning
 void Warehouse::clear() {
     if (numIngredients) {
-        ingredientList.clear();
+        //ingredientList.clear();
         delete[] ingredientQuantityList;
     }
     ingredientQuantityList = nullptr;
@@ -156,7 +156,7 @@ void Warehouse::clear() {
 }
 
 // fumction for comparing strings 
-bool Warehouse::compareStrings(const char* str1, const char* str2) const
+/*bool Warehouse::compareStrings(const char* str1, const char* str2) const
 {
     while (*str1 && (*str1 == *str2))
     {
@@ -164,7 +164,7 @@ bool Warehouse::compareStrings(const char* str1, const char* str2) const
         ++str2;
     }
     return *str1 == *str2;
-}
+}*/
 
 // function for finding ingridient by name 
 Ingredient* Warehouse::getIngredientByName(const char* ingredientName) const 
@@ -173,7 +173,7 @@ Ingredient* Warehouse::getIngredientByName(const char* ingredientName) const
     LinkedList<Ingredient>::Iterator currentIngredient = ingredientList.getHead();
 
     while (currentIngredient != nullptr) {
-        if (compareStrings((*currentIngredient).getName(), ingredientName))
+        if (strcmp((*currentIngredient).getName(), ingredientName))
         {
             Ingredient found = (*currentIngredient);  //save the ingredient we found in the warehouse
             return &found;  // return the address of the ingredient

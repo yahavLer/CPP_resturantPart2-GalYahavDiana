@@ -34,6 +34,6 @@ public:
 
 private:
     void clear();  
-    bool compareStrings(const char* str1, const char* str2) const;   
+    //bool compareStrings(const char* str1, const char* str2) const;   ->use strsmp insted
 };
 #endif// __WAREHOUSE_H

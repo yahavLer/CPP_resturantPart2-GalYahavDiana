@@ -22,8 +22,6 @@ private:
 	// Deleted move constructor and move assignment operator to prevent moving
 	Menu(Menu&&) = delete;
 	Menu& operator=(Menu&&) = delete;
-	Menu& operator=(Menu&& other) noexcept;
-	Menu(Menu&& other) noexcept;
 
 	// Private destructor to prevent direct destruction
 	~Menu();
@@ -35,7 +33,7 @@ public:
 	MenuItem **getMenuItems() const;
 	MenuItem **getSpecials() const;
 	bool addItemToMenu(MenuItem* menuItem, bool special);
-	bool removeItemFromMenu(MenuItem &menuItem);
+	//bool removeItemFromMenu(MenuItem &menuItem);
 	MenuItem* getItemByIndex(int index) const;
 	void print() const;
 
