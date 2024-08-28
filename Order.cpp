@@ -4,28 +4,26 @@ using namespace std;
 
 Order::Order() : orderedItems() {}
 
-Order::Order(const Order& other) : orderedItems() {
-    /*if (other.orderedItems) {
-        orderedItems = new MenuItemInOrder*[other.numItems];
-        for (int i = 0; i < other.numItems; ++i) {
-            orderedItems[i] = new MenuItemInOrder(*other.orderedItems[i]);
-        }
-        numItems = other.numItems;
-    }*/
-	for (auto item : other.orderedItems) {
+Order::Order(const Order& other) : orderedItems()
+{
+	for (auto item : other.orderedItems) 
+    {
 		orderedItems.push_back(new MenuItemInOrder(*item));
 	}
 }
 
 Order::Order(Order&& other) noexcept : orderedItems(move(other.orderedItems)) {}
 
-Order::~Order() {
+Order::~Order() 
+{
     clear();
 }
 
 // Move Assignment Operator
-Order& Order::operator=(Order&& other) noexcept {
-    if (this != &other) {
+Order& Order::operator=(Order&& other) noexcept
+{
+    if (this != &other) 
+    {
         clear();
         orderedItems = move(other.orderedItems);
     }

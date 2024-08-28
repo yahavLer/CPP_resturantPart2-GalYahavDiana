@@ -234,8 +234,10 @@ void displayMenu() {
     cout << "15. Exit\n";
 }*/
 
-int main() {
-    try {
+int main()
+{
+    try 
+    {
         int choice;
         bool exit = false;
         HelpFunctions help = HelpFunctions();
@@ -273,12 +275,15 @@ int main() {
         restaurant->print();
 
         // Realization menu options
-        while (!exit) {
+        while (!exit) 
+        {
             help.displayMenu();
             cout << "Enter your choice: ";
             cin >> choice;
-            try {
-                switch (choice) {
+            try 
+            {
+                switch (choice) 
+                {
 		            case 1: // Add number to table in restaurant
                     {
                         int numOfTables;
@@ -394,8 +399,10 @@ int main() {
                         int tableNum, menuItemNum, quantity, addMore = 1, addComment=0;
 			            string comments ;
                         bool validInput = false;
-                        while (!validInput) {
-                            try {
+                        while (!validInput) 
+                        {
+                            try 
+                            {
                                 restaurant->presentTables();
                                 cout << "Please enter the table's number you want to open a new order in:\n";
                                 tableNum = help.userIntValidation();
@@ -405,7 +412,8 @@ int main() {
                                     throw runtime_error("Couldn't find a table with the table number provided or there is already an order opened in table.");
                                 validInput = true; 
                             }
-                            catch (const exception& e) {
+                            catch (const exception& e) 
+                            {
                                 cout << "Error: " << e.what() << endl;
                                 cout << "Please try again.\n";
                             }
@@ -435,14 +443,17 @@ int main() {
                         int tableNum, quantity, menuItemNum, addMore = 1, addComment = 0;;
                         string comments;
                         bool validInput = false;
-                        while (!validInput) {
-                            try {
+                        while (!validInput) 
+                        {
+                            try 
+                            {
                                 restaurant->presentTables();
                                 cout << "Please enter the table's number you want to add items to order:\n";
                                 tableNum = help.userIntValidation();
                                 validInput = true; 
                             }
-                            catch (const exception& e) {
+                            catch (const exception& e) 
+                            {
                                 cout << "Error: " << e.what() << endl;
                                 cout << "Please try again.\n";
                             }
@@ -468,8 +479,10 @@ int main() {
                     {
                         int tableNum;
                         bool validInput = false;
-                        while (!validInput) {
-                            try {
+                        while (!validInput) 
+                        {
+                            try 
+                            {
                                 restaurant->presentTables();
                                 cout << "Please enter the table's number you want to close order's bill:\n";
                                 tableNum = help.userIntValidation();
@@ -477,7 +490,7 @@ int main() {
                                 if (!restaurant->closeBill(tableNum))
                                     throw runtime_error("No table or order found");
                                     //cout << "No table or order found\n";
-                                validInput = true; // אם הקלט תקין, נסמן שהקלט תקין ונצא מהלולאה
+                                validInput = true; 
                             }
                             catch (const exception& e) {
                                 cout << "Error: " << e.what() << endl;
@@ -512,8 +525,10 @@ int main() {
                         break;
                     }
                     case 14: //show resturant
+                    {
                         restaurant->print();
                         break;
+                    }
 		            case 15: // Exit
                     {
                         exit = true;
@@ -525,10 +540,12 @@ int main() {
                     }
                 }
             }
-            catch (const out_of_range& e) {
+            catch (const out_of_range& e) 
+            {
                 cout << "Error: " << e.what() << endl;
             }
-            catch (const runtime_error& e) {
+            catch (const runtime_error& e) 
+            {
                 cout << "Error: " << e.what() << endl;
             }
         }

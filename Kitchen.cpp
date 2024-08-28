@@ -2,20 +2,16 @@
 
 #include "Kitchen.h"
 
-Kitchen::Kitchen() : foodItemList()
-{
-}
+Kitchen::Kitchen() : foodItemList() {}
 
-Kitchen::Kitchen(Kitchen &&other) noexcept : Department(move(other)), foodItemList(move(other.foodItemList))
-{
-}
+Kitchen::Kitchen(Kitchen &&other) noexcept : Department(move(other)), foodItemList(move(other.foodItemList)) {}
 
 Kitchen::~Kitchen()
 {
     foodItemList.clear();
 }
 
-Kitchen &Kitchen::operator=(const Kitchen &other)
+Kitchen &Kitchen::operator=(Kitchen &other)
 {
     if (this != &other)
     {
@@ -27,7 +23,8 @@ Kitchen &Kitchen::operator=(const Kitchen &other)
 
 Kitchen &Kitchen::operator=(Kitchen &&other) noexcept 
 {
-    if (this != &other) {
+    if (this != &other) 
+    {
         Department::operator=(move(other));  // Move assignment of base class
         foodItemList = move(other.foodItemList);
     }
@@ -42,7 +39,8 @@ list<FoodItem*>& Kitchen::getFoodItemList()
 bool Kitchen::updateIngredientQuantity(string& name, int quantity)
 {
     Ingredient* ingredient = wareHouse.getIngredientByName(name);
-    if (ingredient) {
+    if (ingredient)
+    {
         return wareHouse.updateIngredientQuantity(ingredient, quantity);
     }
     return false;
@@ -63,13 +61,16 @@ void Kitchen::print() {
     cout << "Kitchen Department:" << endl;
     cout << "Number of Workers: " << getNumOfWorkers() << endl;
 
-    if (!foodItemList.empty()) {
+    if (!foodItemList.empty()) 
+    {
         cout << "Food Items in the Kitchen:" << endl;
-        for (FoodItem* food : foodItemList) {
+        for (FoodItem* food : foodItemList)
+        {
             food->print();
         }
     }
-    else {
+    else
+    {
         cout << "No food items in the kitchen." << endl;
     }
 

@@ -23,8 +23,10 @@ MenuItem::MenuItem(const MenuItem& other)
     : name(other.name), price(other.price), ingredientList(other.ingredientList) { }
 
 // Copy assignment operator
-MenuItem& MenuItem::operator=(const MenuItem& other) {
-    if (this != &other) {
+MenuItem& MenuItem::operator=(const MenuItem& other)
+{
+    if (this != &other)
+    {
        clearIngredients();
        name = other.name;
        price = other.price;
@@ -34,8 +36,10 @@ MenuItem& MenuItem::operator=(const MenuItem& other) {
 }
 
 // Move assignment operator
-MenuItem& MenuItem::operator=(MenuItem&& other) noexcept {
-    if (this != &other) {
+MenuItem& MenuItem::operator=(MenuItem&& other) noexcept 
+{
+    if (this != &other) 
+    {
         clearIngredients();
         name = move(other.name);
         price = other.price;
@@ -47,7 +51,8 @@ MenuItem& MenuItem::operator=(MenuItem&& other) noexcept {
 /*********
 * Satters 
 **********/
-bool MenuItem::setPrice(int newPrice) {
+bool MenuItem::setPrice(int newPrice)
+{
     if (price != 0)
     {
         price = newPrice;
@@ -56,22 +61,26 @@ bool MenuItem::setPrice(int newPrice) {
     return false; 
 }
 
-bool MenuItem::setIngredients(list<Ingredient*> list) {
+bool MenuItem::setIngredients(list<Ingredient*> list)
+{
     clearIngredients();
     ingredientList = move(list);
     return true;
 }
 
-void MenuItem::clearIngredients() {
+void MenuItem::clearIngredients() 
+{
     ingredientList.clear();
 }
 
-const list<Ingredient*>& MenuItem::getIngredientList() const {
+const list<Ingredient*>& MenuItem::getIngredientList() const
+{
     return ingredientList;
 }
 
 
-bool MenuItem::setName(const std::string& newName) {
+bool MenuItem::setName(const std::string& newName)
+{
     if (!newName.empty()) {
         name = newName;
         return true;

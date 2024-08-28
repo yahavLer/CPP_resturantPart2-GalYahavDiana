@@ -13,9 +13,11 @@ HelpFunctions::HelpFunctions() {}
 // default destructor
 HelpFunctions::~HelpFunctions() {}
 
-int HelpFunctions::userIntValidation() {
+int HelpFunctions::userIntValidation() 
+{
     int temp;
-    while (!(cin >> temp)) {
+    while (!(cin >> temp)) 
+    {
         cin.clear();
         cin.ignore();
         cout << "Invalid input. Please enter an integer: ";
@@ -23,7 +25,8 @@ int HelpFunctions::userIntValidation() {
     return temp;
 }
 
-void HelpFunctions::initRestaurant(Restaurant* restaurant) {
+void HelpFunctions::initRestaurant(Restaurant* restaurant) 
+{
     // Initiate case 1
     restaurant->addTables(5);
     restaurant->addTables(3);
@@ -54,49 +57,62 @@ void HelpFunctions::initRestaurant(Restaurant* restaurant) {
     restaurant->addFoodItemToMenu("Tomato Salad", ingredientList2, 20, FOOD_DEPARTMENT, true, false);
 }
 
-Ingredient* HelpFunctions::getValidIngredient(Warehouse& warehouse) {
+Ingredient* HelpFunctions::getValidIngredient(Warehouse& warehouse) 
+{
     string ingredientName;
     Ingredient* ingredientToCopy = nullptr;
 
-    while (ingredientToCopy == nullptr) {
+    while (ingredientToCopy == nullptr) 
+    {
         cin.ignore();
         cout << "Please enter the ingredient name or type 'exit' to return to the menu: ";
         getline(cin, ingredientName);
-        if (ingredientName == "exit") {
+        if (ingredientName == "exit") 
+        {
             return nullptr;  // delete alocated pointers
         }
         ingredientToCopy = warehouse.getIngredientByName(ingredientName);
-        if (ingredientToCopy == nullptr) {
+        if (ingredientToCopy == nullptr) 
+        {
             cout << "The ingredient name does not exist in the warehouse. Please enter a different name or type 'exit' to return to the menu.\n";
         }
     }
     return ingredientToCopy;
 }
 
-void HelpFunctions::gatherDrinkInfo(string& mealName, int& price, int& volume, int& glassType, bool& special) {
+void HelpFunctions::gatherDrinkInfo(string& mealName, int& price, int& volume, int& glassType, bool& special)
+{
     bool validInput = false;
-    while (!validInput) {
-        try {
+    while (!validInput)
+    {
+        try
+        {
             cout << "Please enter the name of the drink (Max 20 characters):\n";
             cin.ignore();
             getline(cin, mealName);
-            if (mealName.length() == 0) {
+            if (mealName.length() == 0)
+            {
                 throw runtime_error("Drink name cannot be empty!");
             }
+
             cout << "Please enter the price of the drink:\n";
             cin >> price;
             if (price < 0) {
                 throw out_of_range("Price cannot be negative!");
             }
+
             cout << "what is the volume of alcohol in the drink? \n";
             cin >> volume;
-            if (volume < 0) {
+            if (volume < 0)
+            {
                 throw out_of_range("Volume cannot be negative!");
             }
+
             cout << "Is this a special drink? y/n\n";
             char answer;
             cin >> answer;
             special = (answer == 'y');
+
             cout << "Which glass do you want? Enter number:\n0: Lowball\n1: Wine\n2: Beer\n3: Highball\n4: Paper cup\n";
             cin >> glassType;
             if (glassType < 0 || glassType > 4) {
@@ -111,14 +127,18 @@ void HelpFunctions::gatherDrinkInfo(string& mealName, int& price, int& volume, i
     }
 }
 
-void HelpFunctions::gatherDrinkIngredients(list<Ingredient*> ingredientList, Restaurant* restaurant) {
+void HelpFunctions::gatherDrinkIngredients(list<Ingredient*> ingredientList, Restaurant* restaurant)
+{
     string ingredientName;
     int quantity;
     char answer = 'n';
-    do {
+    do 
+    {
         bool validInput = false;
-        while (!validInput) {
-            try {
+        while (!validInput) 
+        {
+            try
+            {
                
                 list<Department*> temp = restaurant->getDepartments();
                 Warehouse& ware = temp.front()->getWarehouse();
@@ -136,7 +156,8 @@ void HelpFunctions::gatherDrinkIngredients(list<Ingredient*> ingredientList, Res
                 ingredientList.push_back(new Ingredient(ingredientName, ingredientToCopy->getSection(), quantity));
                 validInput = true;
             }
-            catch (const exception& e) {
+            catch (const exception& e)
+            {
                 cout << "Error: " << e.what() << endl;
                 cout << "Please try again.\n";
             }
@@ -146,25 +167,31 @@ void HelpFunctions::gatherDrinkIngredients(list<Ingredient*> ingredientList, Res
     } while (answer == 'y');
 }
 
-void HelpFunctions::gatherFoodInfo(string& mealName, int& price, bool& special, bool& kosher) {
+void HelpFunctions::gatherFoodInfo(string& mealName, int& price, bool& special, bool& kosher)
+{
     bool validInput = false;
-    while (!validInput) {
+    while (!validInput)
+    {
         try {
             cout << "Please enter the name of the meal (Max 20 characters):\n";
             cin.ignore();
-            cin >> mealName;
-            if (mealName.length() == 0) {
+            getline(cin, mealName);
+            if (mealName.length() == 0) 
+            {
                 throw runtime_error("Meal name cannot be empty!");
             }
-            cout << "Please enter the price of the meal:\n";
+            cout << "Please enter the price of the meal ($):\n";
             cin >> price;
-            if (price < 0) {
+            if (price < 0) 
+            {
                 throw out_of_range("Price cannot be negative!");
             }
+
             cout << "Is this a special meal? y/n\n";
             char answer;
             cin >> answer;
             special = (answer == 'y');
+
             cout << "Is this a kosher meal? y/n\n";
             cin >> answer;
             kosher = (answer == 'y');
@@ -177,20 +204,26 @@ void HelpFunctions::gatherFoodInfo(string& mealName, int& price, bool& special, 
     }
 }
 
-void HelpFunctions::gatherFoodIngredients(list<Ingredient*> ingredientList, Restaurant* restaurant) {
+void HelpFunctions::gatherFoodIngredients(list<Ingredient*> ingredientList, Restaurant* restaurant)
+{
     string ingredientName;
     int quantity;
     char answer = 'n';
-    do {
+    do 
+    {
         bool validInput = false;
-        while (!validInput) {
-            try {
+        while (!validInput)
+        {
+            try 
+            {
 
                 list<Department*> temp = restaurant->getDepartments();
                 Warehouse& ware = temp.back()->getWarehouse();
                 Ingredient* ingredientToCopy = getValidIngredient(ware);
                 if (ingredientToCopy == nullptr)
-                        return;  // in case the ingredient does not exists in ware house
+                {
+                    return;  // in case the ingredient does not exists in ware house
+                }
 
                 cout << "What is the quantity of the ingredient that is needed?\n";
                 cin >> quantity;
@@ -201,7 +234,8 @@ void HelpFunctions::gatherFoodIngredients(list<Ingredient*> ingredientList, Rest
                 ingredientList.push_back(new Ingredient(ingredientName, ingredientToCopy->getSection(), quantity));
                 validInput = true;
             }
-            catch (const exception& e) {
+            catch (const exception& e) 
+            {
                 cout << "Error: " << e.what() << endl;
                 cout << "Please try again.\n";
             }
@@ -211,7 +245,8 @@ void HelpFunctions::gatherFoodIngredients(list<Ingredient*> ingredientList, Rest
     } while (answer == 'y');
 }
 
-void HelpFunctions::displayMenu() {
+void HelpFunctions::displayMenu() 
+{
     cout << "Menu:\n";
     cout << "1. Add number to table in restaurant\n";
     cout << "2. Add new ingredient to warehouse\n";

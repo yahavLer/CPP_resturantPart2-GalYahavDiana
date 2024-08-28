@@ -17,7 +17,7 @@ public:
 	Kitchen();
 	Kitchen(Kitchen &&other) noexcept;
 	~Kitchen();
-	Kitchen &operator=(const Kitchen &other);
+	Kitchen &operator=(Kitchen &other);
 	Kitchen &operator=(Kitchen &&other) noexcept;
 
 	//FoodItem **getFoodItemList() const;

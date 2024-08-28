@@ -81,21 +81,31 @@ MenuItem* Menu::getItemByIndex(int index) const
 void Menu::print() const 
 {
     cout << "--------------------------------------------------------------------------\n" << "Menu Items : "<<endl;
-    int i = 0;
+    int i = 1;
     for (MenuItem* menuItem: menuItems)
     {
-        cout<<i <<endl;
-        menuItem->print();
-		cout << endl;
+        cout<< "No."<< i << endl;
+        cout << menuItem->getName() << ".............................." << menuItem->getPrice() << "$" << endl;
+        list<Ingredient*> toPrint = menuItem->getIngredientList();
+        for (Ingredient* ingredient : toPrint)
+        {
+            cout << ingredient->getName() << ", ";
+        }
+		cout << endl << endl;
         ++i;
     }
 
     cout << "Specials:" << endl;
     for (MenuItem* menuItem : specials)
     {
-        cout << i << endl;
-        menuItem->print();
-        cout << endl;
+        cout << "No." << i << endl;
+        cout << menuItem->getName() << ".............................." << menuItem->getPrice() << "$" << endl;
+        list<Ingredient*> toPrint = menuItem->getIngredientList();
+        for (Ingredient* ingredient : toPrint)
+        {
+            cout << ingredient->getName() << ", ";
+        }
+        cout << endl << endl;
         ++i;
     }
     cout << "--------------------------------------------------------------------------" << endl;
