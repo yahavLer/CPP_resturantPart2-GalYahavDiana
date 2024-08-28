@@ -37,6 +37,8 @@ public:
 	const Menu& getMenu() const;
 	const char* getName() const;
 	const char* getAddress() const;
+	bool checkAvailableIngredients(MenuItem* item);
+
 
 	bool setName(const char* name);
 	bool setAddress(const char* address);

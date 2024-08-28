@@ -18,14 +18,17 @@ public:
 	MenuItem(const char* name, const int numOfIngredients, Ingredient** list, int price);
 	virtual ~MenuItem();
 	MenuItem();
-	MenuItem(const MenuItem& other); //
+	MenuItem(const MenuItem& other); 
 	MenuItem(MenuItem&& other) noexcept; 
-	MenuItem& operator=(const MenuItem& other); //
+	MenuItem& operator=(const MenuItem& other); 
 	MenuItem& operator=(MenuItem&& other) noexcept;
+
 	inline const char* getName() const { return name; }
-	bool setName(const char* newName);
 	inline int getPrice() const { return price; }
+	inline int getNumOfIngredients() const { return numOfIngredients; }
+
 	Ingredient** const getIngredientList() const { return ingredientList; }
+	bool setName(const char* newName);
 	bool setPrice(int newPrice);
 	bool setIngredients(Ingredient** list, int size);
 	virtual void print() = 0 ;

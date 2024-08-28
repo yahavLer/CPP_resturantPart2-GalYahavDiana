@@ -385,14 +385,14 @@ int main()
                     }
 		            case 4: // Add drink to menu
                     {
-                        char drinkName[MAX_NAME_LENGTH + 1];
+                        char mealName[MAX_NAME_LENGTH + 1];
                         int price, volume, glassType, numOfIngredients = 0;
                         bool special;
                         Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];
 
-                        if(gatherDrinkInfo(drinkName, price, volume, glassType, special))
+                        if(gatherDrinkInfo(mealName, price, volume, glassType, special))
                             if(gatherDrinkIngredients(ingredientList, numOfIngredients, restaurant))
-                                restaurant->addDrinkItemToMenu(drinkName, volume, static_cast<DrinkItem::eGlassType>(glassType), price, ingredientList, numOfIngredients, special);
+                                restaurant->addDrinkItemToMenu(mealName, volume, static_cast<DrinkItem::eGlassType>(glassType), price, ingredientList, numOfIngredients, special);
                         break;
                     }
 		            case 5: // Add meal food to menu

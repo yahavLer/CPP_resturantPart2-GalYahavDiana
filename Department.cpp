@@ -15,7 +15,7 @@ Department::Department(Department&& other) noexcept
     other.numOfWorkers = 0;
 }
 
-Warehouse& Department::getWarwhouse()
+Warehouse& Department::getWarehouse()
 { 
     return wareHouse; 
 }

@@ -67,9 +67,6 @@ Restaurant::~Restaurant() {
         cout << "dailyOrders destroyed.\n";
     }
     delete &menu;
-    if (&menu == NULL) {
-        cout << "menu destroyed.\n";
-    }
     cout << "Restaurant destroyed.\n";
 }
 
@@ -184,6 +181,41 @@ bool Restaurant::createNewOrderInTable(int tableNum)
     return false;
 }
 
+bool Restaurant::checkAvailableIngredients(MenuItem* item)
+{
+    Ingredient** ingredients = item->getIngredientList();  //copy of ingredients of the new menu item 
+    int ingredientCount = item->getNumOfIngredients();
+    for (int i = 0; i < ingredientCount; ++i)
+    {
+        Ingredient* ingredient = ingredients[i];
+        bool found = false;
+        for (int j = 0; j < 2; ++j)
+        {
+            Department* department = departments[j];
+            Warehouse& warehouse = department->getWarehouse();
+
+            Ingredient* warehouseIngredient = warehouse.getIngredientByName(ingredient->getName());
+            if (warehouseIngredient == nullptr)
+                continue;
+
+            // calculate the new 
+            int reduceQuantity = ingredient->getQuantity() - warehouseIngredient->getQuantity();
+            if (warehouseIngredient && reduceQuantity >= 0)
+            {
+                found = true;
+                department->updateIngredientQuantity(warehouseIngredient->getName(), reduceQuantity);
+                break;
+            }
+        }
+        if (!found)
+        {
+            cout << "Error: Not enough " << ingredient->getName() << " in the warehouse to order " << item->getName() << ".\n";
+            return false;
+        }
+    }
+    return true;
+}
+
 bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, char* comments)
 {
 	//add item to order
@@ -197,7 +229,13 @@ bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, cha
 				return false;
             }
             else {
-                return tables[index].addItemToOrder(*item, quantity, comments);
+                if (checkAvailableIngredients(item))
+                    return tables[index].addItemToOrder(*item, quantity, comments);
+                else
+                {
+					cout << "Not enough ingredients in the warehouse.\n" << endl;
+					return false;
+                }
             }
         }
         else {
