@@ -278,13 +278,13 @@ int main()
         Restaurant* restaurant = nullptr;
 
         // open new resturant insert name and address
-        char name[MAX_NAME_LENGTH + 1];
-        char address[MAX_ADDRESS_LENGTH + 1];
+        char name[MAX_NAME_LENGTH + 1] = { 0 };
+        char address[MAX_ADDRESS_LENGTH + 1] = { 0 };
 
         // user input for restaurant name
         cout << "Enter the name of the restaurant (20 characters max): ";
         cin.getline(name, MAX_NAME_LENGTH + 1);
-        if (strlen(name) == 0) 
+        if (name[0] == 0)
         {
             throw runtime_error("Restaurant name cannot be empty!");
         }
@@ -292,7 +292,7 @@ int main()
         //user input for restaurant address
         cout << "Enter the address of the restaurant (20 characters max): ";
         cin.getline(address, MAX_ADDRESS_LENGTH + 1);
-        if (strlen(address) == 0)
+        if (address[0] == '\0')
         {
             throw runtime_error("Restaurant address cannot be empty!");
         }
@@ -354,13 +354,13 @@ int main()
                     }
 		            case 3: // Add ingredient shipment to warehouse
                     {
-                        char ingredientName[MAX_NAME_LENGTH + 1];
+                        char ingredientName[MAX_NAME_LENGTH + 1] = { 0 };
                         int quantity, forKitchen;
 
                         cout << "Enter the name of the ingredient (20 characters max): ";
                         cin.ignore();
                         cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
-                        if (strlen(ingredientName) == 0) {
+                        if (ingredientName[0] == '\0') {
                             throw runtime_error("Ingredient name cannot be empty!");
                         }
 
