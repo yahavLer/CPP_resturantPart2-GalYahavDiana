@@ -1,3 +1,6 @@
+#ifndef __DEPARTMENT_H
+#define __DEPARTMENT_H
+
 #pragma once
 #include "warehouse.h"
 
@@ -23,3 +26,4 @@ public:
 	void printWarehouse();
 
 };
+#endif  // __DEPARTMENT_H

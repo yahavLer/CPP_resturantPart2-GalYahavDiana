@@ -7,8 +7,7 @@ using namespace std;
 FoodItem::FoodItem() : MenuItem(), calories(0), kosher(true) {}
 
 FoodItem::FoodItem(const char* name, bool kosher, int price, Ingredient** ingredients, int numOfIngredients, int calories)
-    : MenuItem(name,numOfIngredients, ingredients, price), calories(0), kosher(kosher) {
-}
+    : MenuItem(name,numOfIngredients, ingredients, price), calories(0), kosher(kosher){}
 
 bool FoodItem::setCalories(int newCalories)
 {
@@ -34,22 +33,21 @@ void FoodItem::print() {
 
     cout << "Ingredients:" << endl;
     Ingredient** ingredients = getIngredientList();
-    if (ingredients) {
+    if (ingredients) 
+    {
         int i = 0;
-        while (i<numOfIngredients) {
+        while (i<numOfIngredients) 
+        {
             cout << i+1 <<  " ingradient: " << endl;
             ingredients[i]->print(); // assuming Ingredient has a print method
             i++;
         }
     }
-    else {
+    else
+    {
         cout << "No ingredients listed." << endl;
     }
 }
 
 
 
-/*FoodItem* FoodItem::clone() const override
-{
-    return new FoodItem(*this); // returns new copy of the object
-}*/

@@ -1,3 +1,6 @@
+#ifndef __RESTAURANT_H
+#define __RESTAURANT_H
+
 #pragma once
 
 #include "table.h"
@@ -56,3 +59,4 @@ public:
 	int getTableIndex(int tableNum);
 	void print() const;
 };
+#endif  // __RESTAURANT_H

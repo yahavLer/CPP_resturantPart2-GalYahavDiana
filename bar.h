@@ -1,3 +1,5 @@
+#ifndef __BAR_H
+#define __BAR_H
 #pragma once
 
 #include "warehouse.h"
@@ -24,3 +26,4 @@ public:
 	inline const Warehouse& getWareHouse() const;
 	void print() override;
 };
+#endif// __BAR_H

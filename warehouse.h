@@ -1,3 +1,6 @@
+#ifndef __WAREHOUSE_H
+#define __WAREHOUSE_H
+
 #pragma once
 
 #include "Ingredient.h"
@@ -28,3 +31,5 @@ private:
     void clear();  
     bool compareStrings(const char* str1, const char* str2) const;   
 };
+
+#endif // __WAREHOUSE_H

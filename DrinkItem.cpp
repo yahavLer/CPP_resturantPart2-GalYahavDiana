@@ -18,8 +18,10 @@ DrinkItem::DrinkItem(const DrinkItem& other)
     : MenuItem(other), volume(other.volume), glass(other.glass) {}
 
 // Move constructor
-DrinkItem& DrinkItem::operator=(const DrinkItem& other) {
-    if (this != &other) {
+DrinkItem& DrinkItem::operator=(const DrinkItem& other)
+{
+    if (this != &other) 
+    {
         MenuItem::operator=(other);
         volume = other.volume;
         glass = other.glass;
@@ -28,19 +30,23 @@ DrinkItem& DrinkItem::operator=(const DrinkItem& other) {
 }
 
 
-bool DrinkItem::setVolume(int newVolume) {
-    if (newVolume >= 0) {
+bool DrinkItem::setVolume(int newVolume)
+{
+    if (newVolume >= 0)
+    {
         volume = newVolume;
         return true;
     }
     return false;
 }
 
-bool DrinkItem::setGlass(eGlassType newGlass) {
+bool DrinkItem::setGlass(eGlassType newGlass) 
+{
     glass = newGlass;
     return true;
 }
-void DrinkItem::print() {
+void DrinkItem::print()
+{
     cout << "Drink Item:" << endl;
     cout << "Name: " << getName() << endl;
     cout << "Volume: " << getVolume() << " ml" << endl;
@@ -49,14 +55,17 @@ void DrinkItem::print() {
 
     cout << "Ingredients:" << endl;
     Ingredient** ingredients = getIngredientList();
-    if (ingredients) {
+    if (ingredients) 
+    {
         int i = 0;
-        while (i<numOfIngredients) {
+        while (i<numOfIngredients) 
+        {
             ingredients[i]->print(); // assuming Ingredient has a print method
             i++;
         }
     }
-    else {
+    else
+    {
         cout << "No ingredients listed." << endl;
     }
 }

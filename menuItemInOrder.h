@@ -1,3 +1,6 @@
+#ifndef __MENUITEMINORDER_H
+#define __MENUITEMINORDER_H
+
 #pragma once
 
 #include "menuItem.h"
@@ -31,3 +34,5 @@ public:
 
     void print() const;
 };
+
+#endif // __MENUITEMINORDER_H

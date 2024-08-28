@@ -1,3 +1,5 @@
+#ifndef __KITCHEN_H
+#define __KITCHEN_H
 #pragma once
 
 #include "warehouse.h"
@@ -22,3 +24,5 @@ public:
 	bool addIngredientToWarehouse(char *ingredientName, int section);
 	void print() override;
 };
+
+#endif // !1

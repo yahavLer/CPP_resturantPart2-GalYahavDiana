@@ -8,11 +8,13 @@ AlcoholicDrink::AlcoholicDrink() : alcoholPercentage(0) {}
 
 AlcoholicDrink::AlcoholicDrink(int percentage) : alcoholPercentage(percentage) {}
 
-int AlcoholicDrink::getAlcoholPercentage() const {
+int AlcoholicDrink::getAlcoholPercentage() const 
+{
     return alcoholPercentage;
 }
 
-bool AlcoholicDrink::setAlcoholPercentage(int percentage) {
+bool AlcoholicDrink::setAlcoholPercentage(int percentage) 
+{
     if (percentage >= 0 && percentage <= 100) {
         alcoholPercentage = percentage;
         return true;

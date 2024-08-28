@@ -1,3 +1,6 @@
+#ifndef __ORDER_H
+#define __ORDER_H
+
 #pragma once
 
 #include "menuItemInOrder.h"
@@ -24,3 +27,4 @@ public:
 private:
 	void clear();
 };
+#endif // __ORDER_H

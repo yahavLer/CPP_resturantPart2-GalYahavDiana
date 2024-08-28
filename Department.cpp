@@ -30,7 +30,8 @@ bool Department::updateIngredientQuantity(const char* name, int quantity) {
 }
 
 // Add ingredient to the warehouse
-bool Department::addIngredientToWarehouse(const char* ingredientName, int section) {
+bool Department::addIngredientToWarehouse(const char* ingredientName, int section) 
+{
     return wareHouse.addIngredientToWarehouse(ingredientName, section);
 }
 

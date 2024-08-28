@@ -1,3 +1,6 @@
+#ifndef __FOODITEM_H
+#define __FOODITEM_H
+
 #pragma once
 #include "menuItem.h"
 
@@ -24,3 +27,4 @@ public:
 	}
 
 };
+#endif // __FOODITEM_H

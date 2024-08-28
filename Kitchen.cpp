@@ -31,7 +31,8 @@ Kitchen &Kitchen::operator=(const Kitchen &other)
 
 Kitchen &Kitchen::operator=(Kitchen &&other) noexcept 
 {
-    if (this != &other) {
+    if (this != &other) 
+    {
         Department::operator=(std::move(other));  // Move assignment of base class
         delete[] foodItemList;
         foodItemList = other.foodItemList;
@@ -48,7 +49,8 @@ inline FoodItem **Kitchen::getFoodItemList() const
 bool Kitchen::updateIngredientQuantity(char *name, int quantity)
 {
     Ingredient* ingredient = wareHouse.getIngredientByName(name);
-    if (ingredient) {
+    if (ingredient) 
+    {
         return wareHouse.updateIngredientQuantity(ingredient, quantity);
     }
     return false;
@@ -63,13 +65,16 @@ void Kitchen::print() {
     cout << "Kitchen Department:" << endl;
     cout << "Number of Workers: " << getNumOfWorkers() << endl;
 
-    if (foodItemList) {
+    if (foodItemList)
+    {
         cout << "Food Items in the Kitchen:" << endl;
-        for (int i = 0; foodItemList[i] != nullptr; ++i) {
+        for (int i = 0; foodItemList[i] != nullptr; ++i) 
+        {
             foodItemList[i]->print();
         }
     }
-    else {
+    else 
+    {
         cout << "No food items in the kitchen." << endl;
     }
 

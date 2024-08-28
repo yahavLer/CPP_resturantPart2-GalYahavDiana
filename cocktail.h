@@ -1,3 +1,6 @@
+#ifndef __COCKTAIL_H
+#define __COCKTAIL_H
+
 #pragma once
 #include "DrinkItem.h"
 #include "AlcoholicDrink.h"
@@ -19,3 +22,4 @@ public:
 	bool setDoubleDosePrice(int doubleDosePrice);
 	void print() const;
 };
+#endif // __COCKTAIL_H

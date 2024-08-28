@@ -1,3 +1,5 @@
+#ifndef __TABLE_H
+#define __TABLE_H
 #pragma once
 
 #include "order.h"
@@ -31,3 +33,4 @@ public:
 private:
 	void clear();
 };
+#endif // __TABLE_H
