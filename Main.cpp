@@ -5,6 +5,7 @@
 #include <string>
 #include "list"
 using namespace std;
+
 const int FOOD_DEPARTMENT = 1;
 const int DRINK_DEPARTMENT = 0;
 const int MAX_NAME_LENGTH = 20;
@@ -50,6 +51,24 @@ void initRestaurant(Restaurant* restaurant) {
     restaurant->addFoodItemToMenu("Tomato Salad", ingredientList2, 20, FOOD_DEPARTMENT, true, false);
 }
 
+Ingredient* getValidIngredient(Warehouse& warehouse) {
+    string ingredientName;
+    Ingredient* ingredientToCopy = nullptr;
+
+    while (ingredientToCopy == nullptr) {
+        cout << "Please enter the ingredient name or type 'exit' to return to the menu: ";
+        cin >> ingredientName;
+        if (ingredientName == "exit") {
+            return nullptr;  // חזרה לתפריט
+        }
+        ingredientToCopy = warehouse.getIngredientByName(ingredientName);
+        if (ingredientToCopy == nullptr) {
+            cout << "The ingredient name does not exist in the warehouse. Please enter a different name or type 'exit' to return to the menu.\n";
+        }
+    }
+    return ingredientToCopy;
+}
+
 void gatherDrinkInfo(string& mealName, int& price, int& volume, int& glassType, bool& special) {
     bool validInput = false;
     while (!validInput) {
@@ -89,27 +108,31 @@ void gatherDrinkInfo(string& mealName, int& price, int& volume, int& glassType, 
 }
 
 void gatherDrinkIngredients(list<Ingredient*> ingredientList, Restaurant* restaurant) {
-	char ingredientName[MAX_NAME_LENGTH + 1];
+	string ingredientName;
 	int quantity;
 	char answer = 'n';
 	do {
         bool validInput = false;
         while (!validInput) {
             try {
-		        cout << "What is the name of the ingredient?\n";
+		        /*cout << "What is the name of the ingredient?\n";
 		        cin.ignore();
 		        cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
                 if (strlen(ingredientName) == 0) {
                     throw runtime_error("Ingredient name cannot be empty!");
-                }
+                }*/
+                list<Department*> temp = restaurant->getDepartments();
+                Warehouse& ware = temp.front()->getWarehouse();
+                Ingredient* ingredientToCopy = ware.getIngredientByName(ingredientName);
+				if (ingredientToCopy == nullptr) {
+					// חזרה לתפריט הראשי
+					return;
+				}
 		        cout << "What is the quantity of the ingredient that is needed?\n";
 		        cin >> quantity;
                 if (quantity < 0) {
                     throw out_of_range("Quantity cannot be negative!");
                 }
-                list<Department*> temp = restaurant->getDepartments();
-                Warehouse& ware = temp.front()->getWarehouse();
-		        Ingredient* ingredientToCopy = ware.getIngredientByName(ingredientName);
 		        ingredientList.push_back(new Ingredient(ingredientName, ingredientToCopy->getSection(), quantity));
                 validInput = true;
             } catch (const exception& e) {
@@ -154,27 +177,33 @@ void gatherFoodInfo(string& mealName, int& price, bool& special, bool& kosher) {
 }
 
 void gatherFoodIngredients(list<Ingredient*> ingredientList, Restaurant* restaurant) {
-    char ingredientName[MAX_NAME_LENGTH + 1];
+    string ingredientName;
     int quantity;
     char answer = 'n';
     do {
         bool validInput = false;
         while (!validInput) {
             try {
-                cout << "What is the name of the ingredient?\n";
+               /* cout << "What is the name of the ingredient?\n";
                 cin.ignore();
                 cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
                 if (strlen(ingredientName) == 0) {
                     throw runtime_error("Ingredient name cannot be empty!");
+                }*/
+                list<Department*> temp = restaurant->getDepartments();
+                Warehouse& ware = temp.back()->getWarehouse();
+                Ingredient* ingredientToCopy = getValidIngredient(ware);
+                if (ingredientToCopy == nullptr) {
+                    // חזרה לתפריט הראשי
+                    return;
                 }
+               
                 cout << "What is the quantity of the ingredient that is needed?\n";
                 cin >> quantity;
                 if (quantity < 0) {
                     throw out_of_range("Quantity cannot be negative!");
                 }
-                list<Department*> temp = restaurant->getDepartments();
-                Warehouse& ware = temp.back()->getWarehouse(); 
-                Ingredient* ingredientToCopy = ware.getIngredientByName(ingredientName);
+
                 ingredientList.push_back( new Ingredient(ingredientName, ingredientToCopy->getSection(), quantity));
                 validInput = true;
             }

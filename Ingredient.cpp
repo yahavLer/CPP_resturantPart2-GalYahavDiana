@@ -6,10 +6,10 @@ const char* sections[] = { "Herbs","Dairy","Meat","Fish","Vegetables" };
 
 Ingredient::Ingredient() : name(""), section(VEGETABLES), quantityIng(0){}
 
-Ingredient::Ingredient(const std::string& ingredientName, eSection ingredientSection, int quantity)
+Ingredient::Ingredient(const string& ingredientName, eSection ingredientSection, int quantity)
     : name(ingredientName), section(ingredientSection), quantityIng(quantity) {}
 
-bool Ingredient::setName(const std::string& newName)
+bool Ingredient::setName(const string& newName)
 {
     if (newName != "")
     {
