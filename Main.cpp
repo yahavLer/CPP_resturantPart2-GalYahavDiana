@@ -133,7 +133,7 @@ bool gatherDrinkIngredients(Ingredient** ingredientList, int& numOfIngredients, 
 		        cout << "What is the name of the ingredient?\n";
 		        cin.ignore();
 		        cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
-                if (ingredientName[0]='\0')
+                if (ingredientName[0]=='\0')
                 {
 					cout << "Ingredient name cannot be empty!\n";
 					return false;
