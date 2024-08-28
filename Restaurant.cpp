@@ -173,17 +173,24 @@ bool Restaurant::createNewOrderInTable(int tableNum)
 
 bool Restaurant::checkAvailableIngredients(MenuItem* item) 
 {
-    const list<Ingredient*>& ingredients = item->getIngredientList();  //copy of ingredients for the new menu item 
+    const list<Ingredient*>& ingredients = item->getIngredientList();  //copy of ingredients of the new menu item 
     for (Ingredient* ingredient : ingredients)
     {
         bool found = false;
         for (Department* department : departments) 
         {
             Warehouse& warehouse = department->getWarehouse();
+
             Ingredient* warehouseIngredient = warehouse.getIngredientByName(ingredient->getName());
-            if (warehouseIngredient && warehouseIngredient->getQuantity() >= ingredient->getQuantity())
+            if (warehouseIngredient == nullptr)
+                continue;
+
+            // calculate the new 
+            int reduceQuantity = ingredient->getQuantity() - warehouseIngredient->getQuantity();
+            if (warehouseIngredient && reduceQuantity >= 0)
             {
                 found = true;
+                department->updateIngredientQuantity(warehouseIngredient->getName(), reduceQuantity);
                 break;
             }
         }
@@ -206,7 +213,8 @@ bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, con
         if (item != nullptr)
         {
 			if(checkAvailableIngredients(item))
-                return tables[tableIndex].addItemToOrder(*item, quantity, comments);        
+                return tables[tableIndex].addItemToOrder(*item, quantity, comments);
+
         }
         else 
         {

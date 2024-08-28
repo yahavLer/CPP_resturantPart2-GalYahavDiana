@@ -12,7 +12,7 @@ Department::Department(int workers) : wareHouse(), numOfWorkers(workers) {}
 
 // Move constructor
 Department::Department(Department&& other) noexcept
-    : wareHouse(std::move(other.wareHouse)), numOfWorkers(other.numOfWorkers)
+    : wareHouse(move(other.wareHouse)), numOfWorkers(other.numOfWorkers)
 {
     other.numOfWorkers = 0;
 }
@@ -23,7 +23,7 @@ Warehouse& Department::getWarehouse()
 }
 
 // Update ingredient quantity
-bool Department::updateIngredientQuantity(const std::string& name, int quantity) {
+bool Department::updateIngredientQuantity(const string& name, int quantity) {
     Ingredient* ingredient = wareHouse.getIngredientByName(name);
     if (ingredient) {
         return wareHouse.updateIngredientQuantity(ingredient, quantity);
@@ -32,7 +32,7 @@ bool Department::updateIngredientQuantity(const std::string& name, int quantity)
 }
 
 // Add ingredient to the warehouse
-bool Department::addIngredientToWarehouse(const std::string& ingredientName, int section) {
+bool Department::addIngredientToWarehouse(const string& ingredientName, int section) {
     return wareHouse.addIngredientToWarehouse(ingredientName, section);
 }
 
