@@ -151,6 +151,26 @@ bool Restaurant::createNewOrderInTable(int tableNum)
     return false;
 }
 
+bool Restaurant::checkAvailableIngredients(MenuItem* item) {
+    const list<Ingredient*>& ingredients = item->getIngredientList();  // קבלת רשימת המרכיבים
+    for (Ingredient* ingredient : ingredients) {
+        bool found = false;
+        for (Department* department : departments) {
+            Warehouse& warehouse = department->getWarehouse();
+            Ingredient* warehouseIngredient = warehouse.getIngredientByName(ingredient->getName());
+            if (warehouseIngredient && warehouse.getIngredientQuantity(warehouseIngredient) >= ingredient->getQuantity()) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            cout << "Error: Not enough " << ingredient->getName() << " in the warehouse to order " << item->getName() << ".\n";
+            return false;
+        }
+    }
+    return true;
+}
+
 //add item to order
 bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, const string& comments)
 {
@@ -158,7 +178,8 @@ bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, con
 	if (tableIndex!=-1) {
         MenuItem* item= Menu::getInstance()->getItemByIndex(menuItemNum);
         if (item != nullptr) {
-            return tables[tableIndex].addItemToOrder(*item, quantity, comments);        
+			if(checkAvailableIngredients(item))
+                return tables[tableIndex].addItemToOrder(*item, quantity, comments);        
         }
         else {
             cout << "Menu item not found.\n" << endl;

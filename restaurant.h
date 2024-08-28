@@ -38,6 +38,7 @@ public:
 	const string& getName() const;
 	const string& getAddress() const;
 
+	bool checkAvailableIngredients(MenuItem* item);
 	bool setName(const string& name);
 	bool setAddress(const string& address);
 	void presentMenu() const;
