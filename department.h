@@ -1,7 +1,8 @@
 #pragma once
 #include "warehouse.h"
+#include "Observer.h"
 
-class Department
+class Department : public Observer
 {
 protected:
 	Warehouse wareHouse;

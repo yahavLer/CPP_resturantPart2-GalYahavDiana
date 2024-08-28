@@ -51,6 +51,12 @@ inline const Warehouse& Bar::getWareHouse() const {
     return wareHouse;
 }
 
+void Bar::update(const MenuItem& newDrink)
+{
+    cout << "Bar Notification new drink had been added to menu recently: " << endl;
+    cout << newDrink.getName() << endl; 
+}
+
 void Bar::print() {
     cout << "Bar Department:" << endl;
     cout << "Number of Workers: " << getNumOfWorkers() << endl;

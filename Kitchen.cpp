@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 #include "Kitchen.h"
 
 Kitchen::Kitchen() : foodItemList()
@@ -52,6 +51,12 @@ bool Kitchen::updateIngredientQuantity(string& name, int quantity)
 bool Kitchen::addIngredientToWarehouse(string& ingredientName, int section)
 {
     return wareHouse.addIngredientToWarehouse(ingredientName, section);
+}
+
+void Kitchen::update(const MenuItem& newMeal)
+{
+    cout << "Kitchen Notification: new meal had been added to menu recently: " << endl;
+    cout << newMeal.getName() << endl;
 }
 
 void Kitchen::print() {

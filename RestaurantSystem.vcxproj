@@ -25,12 +25,14 @@
     <ClInclude Include="department.h" />
     <ClInclude Include="drinkItem.h" />
     <ClInclude Include="foodItem.h" />
+    <ClInclude Include="helpFunctions.h" />
     <ClInclude Include="ingredient.h" />
     <ClInclude Include="kitchen.h" />
     <ClInclude Include="linkedList.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="menuItem.h" />
     <ClInclude Include="menuItemInOrder.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="order.h" />
     <ClInclude Include="restaurant.h" />
     <ClInclude Include="table.h" />
@@ -43,6 +45,7 @@
     <ClCompile Include="Department.cpp" />
     <ClCompile Include="DrinkItem.cpp" />
     <ClCompile Include="FoodItem.cpp" />
+    <ClCompile Include="HelpFunctions.cpp" />
     <ClCompile Include="Ingredient.cpp" />
     <ClCompile Include="Kitchen.cpp" />
     <ClCompile Include="Main.cpp" />

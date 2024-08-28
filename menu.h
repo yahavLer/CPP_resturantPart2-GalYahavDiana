@@ -1,6 +1,7 @@
 #pragma once
 
 #include "menuItem.h"
+#include "Observer.h"
 #include <list>  // Include the list header
 using namespace std;
 
@@ -15,6 +16,7 @@ private:
 
 	list<MenuItem*> menuItems;
 	list<MenuItem*> specials;
+	list<Observer*> observers;
 	static Menu* instance;  // Static instance of Menu
 
 	// Deleted copy constructor and assignment operator to prevent copying
@@ -38,11 +40,16 @@ public:
 	//MenuItem **getSpecials() const;
 	list<MenuItem*>& getMenuItems() const;
 	list<MenuItem*>& getSpecials() const;
-	bool addItemToMenu(MenuItem* menuItem, bool special);
-	//bool removeItemFromMenu(MenuItem &menuItem);
+
+	bool addItemToMenu(MenuItem* menuItem, bool special, int notify);
 	MenuItem* getItemByIndex(int index) const;
 	void print() const;
+	//bool removeItemFromMenu(MenuItem &menuItem);   - not defiened in the PDF file.
 
+	// observer functions
+	void addObserver(Observer* observer);
+	void removeObserver(Observer* observer);
+	void notifyObservers(const MenuItem& mealName, int notify);
 private: 
 	void clear();
 };

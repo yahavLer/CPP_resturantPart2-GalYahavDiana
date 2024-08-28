@@ -1,8 +1,10 @@
 #pragma warning (disable: 4996)
 
 #include <iostream>
-using namespace std;
 #include "department.h"
+#include "Observer.h"
+
+using namespace std;
 
 Department::Department() : wareHouse(), numOfWorkers(0) { }
 

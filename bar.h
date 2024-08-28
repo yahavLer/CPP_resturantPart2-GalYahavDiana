@@ -3,7 +3,9 @@
 #include "warehouse.h"
 #include "Department.h"
 #include "DrinkItem.h"
+#include "Observer.h"
 #include <list>
+
 using namespace std;
 
 class Bar : public Department
@@ -21,10 +23,11 @@ public:
 	const Bar &operator=(Bar &&other) noexcept;
 
 	inline int getNumOfWorkers() const;
-	bool updateIngredientQuantity(const std::string& name, int quantity);
-	bool addIngredientToWarehouse(const std::string& ingredientName, int section);
+	bool updateIngredientQuantity(const string& name, int quantity);
+	bool addIngredientToWarehouse(const string& ingredientName, int section);
 	//inline DrinkItem **getDrinkItemList() const;
 	inline const list<DrinkItem*>& getDrinkItemList() const;
 	inline const Warehouse& getWareHouse() const;
+	void update(const MenuItem& newDrink) override;
 	void print() override;
 };

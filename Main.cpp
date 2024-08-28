@@ -1,17 +1,19 @@
 #include <iostream>
 #include <stdexcept> // for standard exceptions
+#include "helpFunctions.h"
 #include "restaurant.h"
 #include <limits>
 #include <string>
 #include "list"
 using namespace std;
 
+// defines
 const int FOOD_DEPARTMENT = 1;
 const int DRINK_DEPARTMENT = 0;
 const int MAX_NAME_LENGTH = 20;
 const int MAX_ADDRESS_LENGTH = 20;
 
-int userIntValidation() {
+/*int userIntValidation() {
     int temp;
     while (!(cin >> temp)) {
         cin.clear();
@@ -56,10 +58,11 @@ Ingredient* getValidIngredient(Warehouse& warehouse) {
     Ingredient* ingredientToCopy = nullptr;
 
     while (ingredientToCopy == nullptr) {
+        cin.ignore();
         cout << "Please enter the ingredient name or type 'exit' to return to the menu: ";
-        cin >> ingredientName;
+        getline(cin, ingredientName);
         if (ingredientName == "exit") {
-            return nullptr;  // חזרה לתפריט
+            return nullptr;  // delete alocated pointers
         }
         ingredientToCopy = warehouse.getIngredientByName(ingredientName);
         if (ingredientToCopy == nullptr) {
@@ -75,7 +78,7 @@ void gatherDrinkInfo(string& mealName, int& price, int& volume, int& glassType, 
         try {
             cout << "Please enter the name of the drink (Max 20 characters):\n";
             cin.ignore();
-            cin >> mealName;
+            getline(cin, mealName); 
             if (mealName.length() == 0) {
                 throw runtime_error("Drink name cannot be empty!");
             }
@@ -120,7 +123,7 @@ void gatherDrinkIngredients(list<Ingredient*> ingredientList, Restaurant* restau
 		        cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
                 if (strlen(ingredientName) == 0) {
                     throw runtime_error("Ingredient name cannot be empty!");
-                }*/
+                }
                 list<Department*> temp = restaurant->getDepartments();
                 Warehouse& ware = temp.front()->getWarehouse();
                 Ingredient* ingredientToCopy = ware.getIngredientByName(ingredientName);
@@ -184,17 +187,12 @@ void gatherFoodIngredients(list<Ingredient*> ingredientList, Restaurant* restaur
         bool validInput = false;
         while (!validInput) {
             try {
-               /* cout << "What is the name of the ingredient?\n";
-                cin.ignore();
-                cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
-                if (strlen(ingredientName) == 0) {
-                    throw runtime_error("Ingredient name cannot be empty!");
-                }*/
+               
                 list<Department*> temp = restaurant->getDepartments();
                 Warehouse& ware = temp.back()->getWarehouse();
                 Ingredient* ingredientToCopy = getValidIngredient(ware);
                 if (ingredientToCopy == nullptr) {
-                    // חזרה לתפריט הראשי
+                    // in case the ingredient does not exists in ware house
                     return;
                 }
                
@@ -234,40 +232,49 @@ void displayMenu() {
     cout << "13. Show tables\n";
     cout << "14. Show resturant\n";
     cout << "15. Exit\n";
-}
+}*/
 
 int main() {
     try {
         int choice;
         bool exit = false;
+        HelpFunctions help = HelpFunctions();
         //Restaurant* restaurant = new Restaurant("Sample Restaurant", "123 Sample St.");
         Restaurant* restaurant = nullptr;
 
-        // open new resturant insert name and address
         string name;
         string address;
 
+        // Get input name from user
         cout << "Enter the name of the restaurant (20 characters max): ";
-        cin >> name;
+        getline(cin, name);
+
         if (name.length() == 0) {
             throw runtime_error("Restaurant name cannot be empty!");
         }
+
+        // Get input address from user
         cout << "Enter the address of the restaurant (20 characters max): ";
-        cin >> address;
+        getline(cin, address);
+
         if (address.length() == 0) {
             throw runtime_error("Restaurant address cannot be empty!");
         }
+
+        // open new resturant with the input name and address
         if (restaurant != nullptr)
-            delete restaurant;  // in case the pointer of the returunt
+            delete restaurant;  // in case the pointer of the returunt is not null 
         restaurant = new Restaurant(name, address);
-        initRestaurant(restaurant);
+
+        // Intialize & print restaurant data
+        cout << "\n****************/  Restaurant Name: " << restaurant->getName() << "  /****************" << "\n";
+        cout << "Restaurant Address: " << restaurant->getAddress() << "\n\n";
+        help.initRestaurant(restaurant);
         restaurant->print();
 
-        cout << "\nRestaurant Name: " << restaurant->getName() << "\n";
-        cout << "Restaurant Address: " << restaurant->getAddress() << "\n\n";
-
+        // Realization menu options
         while (!exit) {
-            displayMenu();
+            help.displayMenu();
             cout << "Enter your choice: ";
             cin >> choice;
             try {
@@ -276,7 +283,7 @@ int main() {
                     {
                         int numOfTables;
                         cout << "Enter the desired number of tables you want to add to the restaurant\n";
-                        numOfTables = userIntValidation();
+                        numOfTables = help.userIntValidation();
                         if (restaurant->addTables(numOfTables))
                             cout << "table added successfully\n";
                         else
@@ -285,59 +292,68 @@ int main() {
                     }
 		            case 2: // Add new ingredient to warehouse
                     {
-                        char newIngredientName[MAX_NAME_LENGTH + 1];
+                        string newIngredientName;
                         int section, forKitchen;
+                        
+                        // get name of the ingredient
                         cout << "Enter the name of the ingredient (20 characters max): ";
                         cin.ignore();
-                        cin.getline(newIngredientName, MAX_NAME_LENGTH + 1);
-                        if (strlen(newIngredientName) == 0) {
+                        getline(cin, newIngredientName);
+
+                        if (newIngredientName.length() == 0) {
                             throw runtime_error("Ingredient name cannot be empty!");
                         }
+
+                        // get quantity of the ingredient
                         cout << "Enter the number of the section the ingredient is part of:\n0 - Herbs\n1 - Dairy\n2 - Meat\n3 - Fish\n4 - Vegetables\n";
-                        section = userIntValidation();
+                        section = help.userIntValidation();
+
                         if (section < 0 || section > 4) {
                             throw out_of_range("Invalid section number!");
                         }
+                        // get warehouse
                         cout << "Choose to which warehouse the ingredient belongs to:\n0 - Bar Warehouse\n1 - Kitchen Warehouse\n";
-                        forKitchen = userIntValidation();
+                        forKitchen = help.userIntValidation();
+
                         if (forKitchen != 0 && forKitchen != 1) {
                             throw out_of_range("Invalid warehouse selection!");
                         }
+
+                        // adding new ingredient acknolagment
                         restaurant->addIngredientToWarehouse(newIngredientName, section, forKitchen);
                         break;
 
                     }
 		            case 3: // Add ingredient shipment to warehouse
                     {
-                        char ingredientName[MAX_NAME_LENGTH + 1];
+                        string ingredientName;
                         int quantity, forKitchen;
 
+                        // get name of the ingredient
                         cout << "Enter the name of the ingredient (20 characters max): ";
                         cin.ignore();
-                        cin.getline(ingredientName, MAX_NAME_LENGTH + 1);
-                        if (strlen(ingredientName) == 0) {
+                        getline(cin, ingredientName);
+                        if (ingredientName.length() == 0) {
                             throw runtime_error("Ingredient name cannot be empty!");
                         }
 
+                        // get quantity to update the ingredient
                         cout << "Enter the quantity of the ingredient: ";
-                        quantity = userIntValidation();
+                        quantity = help.userIntValidation();
                         if (quantity < 0) {
                             throw out_of_range("Quantity cannot be negative!");
                         }
                         cout << "\nIngredient Name: " << ingredientName << "\n";
                         cout << "Quantity: " << quantity << "\n\n";
 
+                        // choose warehouse 
                         cout << "Choose to which warehouse the ingredient belongs to:\n0 - Bar Warehouse\n1 - Kitchen Warehouse\n";
                         cin >> forKitchen;
                         if (forKitchen != 0 && forKitchen != 1) {
                             throw out_of_range("Invalid warehouse selection!");
                         }
-                        /*
-                        while (forKitchen != 0 && forKitchen != 1) {
-                            cout << "Invalid input. Please enter 0 for Bar Warehouse or 1 for Kitchen Warehouse: ";
-                            cin >> forKitchen;
-                        }
-                        */
+
+                        // update the ingredient quantity in the proper warehouse
                         if (!restaurant->updateIngredientQuantity(ingredientName, quantity, forKitchen))
                             cout << "No ingredient found with following name in the warehouse: " << ingredientName << "\n";
 
@@ -350,9 +366,11 @@ int main() {
                         bool special;
                         list<Ingredient*> ingredientList;
 
-                        gatherDrinkInfo(drinkName, price, volume, glassType, special);
-                        gatherDrinkIngredients(ingredientList, restaurant);
+                        // get input user for adding drink to the menu
+                        help.gatherDrinkInfo(drinkName, price, volume, glassType, special);
+                        help.gatherDrinkIngredients(ingredientList, restaurant);
 
+                        // adding the drink to the restaurant menu
                         restaurant->addDrinkItemToMenu(drinkName, volume, static_cast<DrinkItem::eGlassType>(glassType), price, ingredientList, special);
                         break;
                     }
@@ -363,9 +381,11 @@ int main() {
                         bool special, kosher;
                         list<Ingredient*> ingredientList;
 
-                        gatherFoodInfo(foodName, price, special, kosher);
-                        gatherFoodIngredients(ingredientList, restaurant);
+                        // get input user for adding meal to the menu
+                        help.gatherFoodInfo(foodName, price, special, kosher);
+                        help.gatherFoodIngredients(ingredientList, restaurant);
 
+                        // adding the meal to the restaurant menu
                         restaurant->addFoodItemToMenu(foodName, ingredientList, price, FOOD_DEPARTMENT, special, kosher);
                         break;
                     }
@@ -378,12 +398,12 @@ int main() {
                             try {
                                 restaurant->presentTables();
                                 cout << "Please enter the table's number you want to open a new order in:\n";
-                                tableNum = userIntValidation();
+                                tableNum = help.userIntValidation();
 
                                 if (!restaurant->createNewOrderInTable(tableNum))
                                     //cout << "Couldn't find a table with the table number provided or there is already an order opened in table\n";
                                     throw runtime_error("Couldn't find a table with the table number provided or there is already an order opened in table.");
-                                validInput = true; // אם הקלט תקין, נסמן שהקלט תקין ונצא מהלולאה
+                                validInput = true; 
                             }
                             catch (const exception& e) {
                                 cout << "Error: " << e.what() << endl;
@@ -392,23 +412,15 @@ int main() {
                         }
                         while (addMore)
                         {
+                            // get user input for adding items into the order
                             restaurant->presentMenu();
                             cout << "Please enter the menu item's number you want to add to order:\n";
                             cin >> menuItemNum;
                             cout << "How many do you want to add to the order?\n";
                             cin >> quantity;					
 					        cout << "Do you want to add comments to the order? press 1 for yes and 0 for no (max 20) \n";
-                            cin >> comments;
-                            /*
-                            if (addComment == 1)
-                            {
-                                comments = new char[51];
-                                comments[0] = '\0';
-                                cout << "Enter your comments (max 50 characters):\n";
-                                cin.ignore();
-                                cin.getline(comments, 51);
-                            }
-                            */
+                            cin.ignore();
+                            getline(cin, comments);
                             
 					        //get the menu item by the number and add it to the order
 					        restaurant->createNewOrderInTable(tableNum);
@@ -427,8 +439,8 @@ int main() {
                             try {
                                 restaurant->presentTables();
                                 cout << "Please enter the table's number you want to add items to order:\n";
-                                tableNum = userIntValidation();
-                                validInput = true; // אם הקלט תקין, נסמן שהקלט תקין ונצא מהלולאה
+                                tableNum = help.userIntValidation();
+                                validInput = true; 
                             }
                             catch (const exception& e) {
                                 cout << "Error: " << e.what() << endl;
@@ -444,17 +456,7 @@ int main() {
                             cin >> quantity;
                             cout << "Do you want to add comments to the order? press 1 for yes and 0 for no (max 20) \n";
                             cin >> comments;
-                            /*
-                            if (addComment == 1)
-                            {
-                                comments = new char[51];
-                                comments[0] = '\0';
-                                cout << "Enter your comments (max 50 characters):\n";
-                                cin.ignore();
-                                cin.getline(comments, 51);
-                            }
-                            */
-                            
+     
                             //get the menu item by the number and add it to the order
                             restaurant->addItemToOrder(menuItemNum, quantity, tableNum, comments);
                             cout << "Do you want to add more to order? press 1 for yes and 0 for no\n";
@@ -470,7 +472,7 @@ int main() {
                             try {
                                 restaurant->presentTables();
                                 cout << "Please enter the table's number you want to close order's bill:\n";
-                                tableNum = userIntValidation();
+                                tableNum = help.userIntValidation();
 
                                 if (!restaurant->closeBill(tableNum))
                                     throw runtime_error("No table or order found");
@@ -520,8 +522,6 @@ int main() {
                     default: 
                     {
                         throw out_of_range("Invalid menu choice, please try again.");
-                        //cout << "Invalid choice, please try again.\n";
-                        //break;
                     }
                 }
             }

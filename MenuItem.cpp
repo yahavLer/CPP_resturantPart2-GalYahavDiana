@@ -2,16 +2,6 @@
 #include <iostream>
 #include <utility>
 
-// Constructor with parameters
-//MenuItem::MenuItem(const std::string& itemName, const int numOfIngredients, Ingredient** list, int price)
-//    : name(itemName), price(price), numOfIngredients(numOfIngredients), ingredientList(nullptr) {
-//    if (numOfIngredients > 0 && list != nullptr) {
-//        ingredientList = new Ingredient * [numOfIngredients];
-//        for (int i = 0; i < numOfIngredients; ++i) {
-//            ingredientList[i] = list[i];
-//        }
-//    }
-//}
 MenuItem::MenuItem(const string& itemName, list<Ingredient*> list, int price)
     : name(itemName), price(price), ingredientList(list) {}
 
@@ -54,7 +44,9 @@ MenuItem& MenuItem::operator=(MenuItem&& other) noexcept {
     return *this;
 }
 
-// Set price
+/*********
+* Satters 
+**********/
 bool MenuItem::setPrice(int newPrice) {
     if (price != 0)
     {
@@ -64,7 +56,6 @@ bool MenuItem::setPrice(int newPrice) {
     return false; 
 }
 
-// Set ingredients
 bool MenuItem::setIngredients(list<Ingredient*> list) {
     clearIngredients();
     ingredientList = move(list);
@@ -79,7 +70,7 @@ const list<Ingredient*>& MenuItem::getIngredientList() const {
     return ingredientList;
 }
 
-// Set name
+
 bool MenuItem::setName(const std::string& newName) {
     if (!newName.empty()) {
         name = newName;
