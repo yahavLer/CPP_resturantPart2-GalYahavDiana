@@ -1,5 +1,7 @@
 #pragma once
 #include "menuItem.h"
+#include "list"
+using namespace std;
 
 class FoodItem : virtual public MenuItem
 {
@@ -9,7 +11,7 @@ private:
 
 public:
 	FoodItem();
-	FoodItem(const std::string& name, bool kosher, int price, Ingredient** ingredients, int numOfIngredients,int calories);
+	FoodItem(const string& name, bool kosher, int price, const list<Ingredient*>& list,int calories);
 
 	inline int getCalories() const { return calories; }
 	inline bool getKosher() const { return kosher; }
@@ -22,5 +24,4 @@ public:
 	{
 		return new FoodItem(*this);
 	}
-
 };

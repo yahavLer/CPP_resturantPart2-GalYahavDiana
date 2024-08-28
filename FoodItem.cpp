@@ -1,13 +1,12 @@
 #pragma warning(disable : 4996)
 
 #include <iostream>
-using namespace std;
 #include "FoodItem.h"
 
 FoodItem::FoodItem() : MenuItem(), calories(0), kosher(true) {}
 
-FoodItem::FoodItem(const std::string& name, bool kosher, int price, Ingredient** ingredients, int numOfIngredients, int calories)
-    : MenuItem(name,numOfIngredients, ingredients, price), calories(0), kosher(kosher) {
+FoodItem::FoodItem(const string& name, bool kosher, int price, const list<Ingredient*>& ingredients, int calories)
+    : MenuItem(name, ingredients, price), calories(0), kosher(kosher) {
 }
 
 bool FoodItem::setCalories(int newCalories)
@@ -31,17 +30,14 @@ void FoodItem::print() {
     cout << "Calories: " << getCalories() << endl;
     cout << "Kosher: " << (getKosher() ? "Yes" : "No") << endl;
     cout << "Price: " << getPrice() << endl;
-
     cout << "Ingredients:" << endl;
-    Ingredient** ingredients = getIngredientList();
-    if (ingredients) {
-        int i = 0;
-        while (i<numOfIngredients) {
-            cout << i+1 <<  " ingradient: " << endl;
-            ingredients[i]->print(); // assuming Ingredient has a print method
-            i++;
+	int i = 0;
+	if (!getIngredientList().empty()) {
+        for(auto ingredient: ingredientList){
+            cout << ++i <<  " ingradient: " << endl;
+            ingredient->print(); // assuming Ingredient has a print method
         }
-    }
+	}
     else {
         cout << "No ingredients listed." << endl;
     }

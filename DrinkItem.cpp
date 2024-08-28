@@ -9,8 +9,8 @@ DrinkItem::DrinkItem() : MenuItem(), volume(0), glass(LOWBOAL) {}
 
 
 // Constructor for drink item with input data
-DrinkItem::DrinkItem(const std::string& drinkName, int drinkVolume, eGlassType drinkGlass, int price, Ingredient** ingredients, int numOfIngredients)
-    : MenuItem(drinkName, numOfIngredients, ingredients, price), volume(drinkVolume), glass(drinkGlass) {}
+DrinkItem::DrinkItem(const string& drinkName, int drinkVolume, eGlassType drinkGlass, int price, list<Ingredient*>& ingredients)
+    : MenuItem(drinkName, ingredients, price), volume(drinkVolume), glass(drinkGlass) {}
 
 
 // Copy constructor
@@ -48,13 +48,12 @@ void DrinkItem::print() {
     cout << "Price: " << getPrice() << endl;
 
     cout << "Ingredients:" << endl;
-    Ingredient** ingredients = getIngredientList();
-    if (ingredients) {
+    list<Ingredient*> ingredients = getIngredientList();
+    if (!ingredients.empty()) {
         int i = 0;
-        while (i<numOfIngredients) {
-            ingredients[i]->print(); // assuming Ingredient has a print method
-            i++;
-        }
+		for (auto it: ingredients) {
+			it->print();
+		}
     }
     else {
         cout << "No ingredients listed." << endl;

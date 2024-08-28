@@ -3,13 +3,17 @@
 #define __WAREHOUSE_H
 #include "Ingredient.h"
 #include "linkedList.h"
+#include <string>
+#include <list> 
+using namespace std;
+
 class Warehouse
 {
 private:
 	// Ingredient** ingredientList; 
 	LinkedList<Ingredient> ingredientList;    //  Replacing the array with a linked list
-	int* ingredientQuantityList;
-	int numIngredients;
+	list<int> ingredientQuantityList;
+	//int numIngredients;
 
 public:
 	Warehouse();
@@ -20,10 +24,11 @@ public:
     Warehouse& operator=(Warehouse&& other) noexcept;
 	
 	LinkedList<Ingredient>& getIngredientList();
-	Ingredient* getIngredientByName(const std::string& ingredientName) const;
-	int* getIngredientQuantityList() const;
+	Ingredient* getIngredientByName(const string& ingredientName) const;
+	const list<int>& getIngredientQuantityList() const;
+	//int* getIngredientQuantityList() const;
 	bool updateIngredientQuantity(const Ingredient* ingredient, int quantity);  
-	bool addIngredientToWarehouse(const std::string& ingredientName, int section);
+	bool addIngredientToWarehouse(const string& ingredientName, int section);
 	void print() const;
 
 	// Iterator pattern design 

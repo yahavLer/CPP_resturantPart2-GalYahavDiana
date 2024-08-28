@@ -1,32 +1,27 @@
 #pragma warning (disable: 4996)
 
 #include <iostream>
-using namespace std;
 #include "bar.h"
 #include "drinkItem.h"
 
 // Default constructor
-Bar::Bar():Department(),drinkItemList(nullptr) {
+Bar::Bar():Department(),drinkItemList() {
 }
 
 // Move constructor
-Bar::Bar(Bar&& other) noexcept : Department(std::move(other)), drinkItemList(other.drinkItemList) {
-    other.drinkItemList = nullptr;
+Bar::Bar(Bar&& other) noexcept : Department(move(other)), drinkItemList(move(other.drinkItemList)) {
 }
 
 // Destructor
 Bar::~Bar() {
-    delete[] drinkItemList;
+    drinkItemList.clear();
 }
 
 // Move assignment operator
-const Bar& Bar::operator=(Bar&& other) {
+const Bar& Bar::operator=(Bar&& other) noexcept {
     if (this != &other) {
-        Department::operator=(std::move(other));
-
-        delete[] drinkItemList;
-        drinkItemList = other.drinkItemList;
-        other.drinkItemList = nullptr;
+        Department::operator=(move(other));
+        drinkItemList = move(other.drinkItemList);
     }
     return *this;
 }
@@ -37,17 +32,17 @@ int Bar::getNumOfWorkers() const {
 }
 
 // Update ingredient quantity in the warehouse
-bool Bar::updateIngredientQuantity(const std::string& name, int quantity) {
+bool Bar::updateIngredientQuantity(const string& name, int quantity) {
     return Department::updateIngredientQuantity(name, quantity);
 }
 
 // Add ingredient to the warehouse
-bool Bar::addIngredientToWarehouse(const std::string& ingredientName, int section) {
+bool Bar::addIngredientToWarehouse(const string& ingredientName, int section) {
     return Department::addIngredientToWarehouse(ingredientName, section);
 }
 
 // Get drink item list
-DrinkItem** Bar::getDrinkItemList() const {
+const list<DrinkItem*>& Bar::getDrinkItemList() const {
     return drinkItemList;
 }
 
@@ -60,12 +55,10 @@ void Bar::print() {
     cout << "Bar Department:" << endl;
     cout << "Number of Workers: " << getNumOfWorkers() << endl;
 
-    if (drinkItemList) {
+    if (!drinkItemList.empty()) {
         cout << "Drink Items in the Bar:" << endl;
-        // הנחה שיש לך פונקציה שתדפיס את פרטי כל משקה ב-bar
-        for (int i = 0; drinkItemList[i] != nullptr; ++i) {
-            // דוגמה להדפסה של משקה - הנח שיש לפונקציה זו מתודת print משלה
-            drinkItemList[i]->print();
+        for (DrinkItem* drink : drinkItemList) {
+            drink->print();
         }
     }
     else {

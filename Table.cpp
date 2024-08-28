@@ -1,6 +1,4 @@
 #include <iostream>
-using namespace std;
-
 #include "Table.h"
 
 Table::Table() : order(nullptr), number(0) {}
@@ -16,9 +14,19 @@ Table::~Table()
     clear();
 }
 
-Table::Table(int number) : order(nullptr), number(number) 
-{
-    // Constructor with table number
+Table::Table(int number) : order(nullptr), number(number) {}
+
+Table& Table::operator=(Table&& other) noexcept {
+    if (this != &other) {
+        clear();  // Clear existing data
+
+        order = other.order;
+        number = other.number;
+
+        other.order = nullptr;
+        other.number = 0;
+    }
+    return *this;
 }
 
 Order* Table::getOrder() const
@@ -45,7 +53,7 @@ bool Table::createNewOrder()
     return true;
 }
 
-bool Table::addItemToOrder(const MenuItem& menuItem, int quantity, std::string& comments)
+bool Table::addItemToOrder(const MenuItem& menuItem, int quantity, const string& comments)
 {
     if (!order)
     {

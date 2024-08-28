@@ -2,7 +2,6 @@
 #include "restaurant.h"
 #include "bar.h"
 #include "kitchen.h"
-#include "menu.h"
 #include <iostream>
 
 // Helper function to copy strings
@@ -14,59 +13,36 @@
 }*/
 
 // Default constructor
-Restaurant::Restaurant() : departments(nullptr), dailyOrders(nullptr), dailyIncome(0) 
+Restaurant::Restaurant() : dailyIncome(0) 
 {
     Menu::getInstance();
-
 }
 
-
 // Parameterized constructor
-Restaurant::Restaurant(const std::string& name, const std::string& address) : departments(new Department* [2]), dailyOrders(nullptr), dailyIncome(0) {
-   this->setName(name);
-   this->setAddress(address);
-
-    // There are only two departnments in the restaurant 
-    departments[0] = new Bar();      
-    departments[1] = new Kitchen();
+Restaurant::Restaurant(const string& name, const string& address)
+    : name(name), address(address), dailyIncome(0) {
+    departments.push_back(new Bar());
+    departments.push_back(new Kitchen());
 }
 
 // Move constructor
 Restaurant::Restaurant(Restaurant&& other) noexcept
-    :name(std::move(other.name)), address(std::move(other.address)), departments(other.departments), dailyOrders(other.dailyOrders), dailyIncome(other.dailyIncome)
+    :name(move(other.name)), address(move(other.address)), departments(other.departments), dailyOrders(move(other.dailyOrders)), dailyIncome(other.dailyIncome)
 {
-    other.departments = nullptr;
-    other.dailyOrders = nullptr;
+    for (int i = 0; i < MAX_TABLES && tables[i].getNumber()!=0; ++i) {
+        tables[i] = move(other.tables[i]);
+    }
+    other.dailyIncome = 0;
 }
 
 // Destructor
 Restaurant::~Restaurant() {
-    // Free every alocated object from the department
-    if (departments != nullptr) {
-        for (int i = 0; i < 2; ++i) {
-            if (departments[i] != nullptr) {
-                delete departments[i];
-            }
-        }
-
-        // delete the array itself
-        delete[] departments;
-        departments = nullptr;
-        cout << "departments destroyed.\n";
-    
-    }    
-
-    // Free every alocated object from the daily orders 
-    if (dailyOrders != nullptr) {
-        for (int i = 0; dailyOrders[i] != nullptr; ++i) {
-            delete dailyOrders[i];
-        }
-        // Delete the array of daily oreders it self
-        delete[] dailyOrders;
-        dailyOrders = nullptr;
-        cout << "dailyOrders destroyed.\n";
+    for (auto department : departments) {
+        delete department;
     }
-   
+    for (auto order : dailyOrders) {
+        delete order;
+    }
     cout << "Restaurant destroyed.\n";
 }
 
@@ -74,18 +50,22 @@ Restaurant::~Restaurant() {
 Restaurant& Restaurant::operator=(Restaurant&& other) noexcept 
 {
     if (this != &other) {
-        delete[] departments;
-        delete[] dailyOrders;
+        for (auto department : departments) {
+            delete department;
+        }
+        for (auto order : dailyOrders) {
+            delete order;
+        }
 
         //menu = std::move(other.menu);
-        name = std::move(other.name);
-        address = std::move(other.address);
-
-        departments = other.departments;
-        dailyOrders = other.dailyOrders;
-
-        other.departments = nullptr;
-        other.dailyOrders = nullptr;
+        for (int i = 0; i < MAX_TABLES && tables[i].getNumber() != 0; ++i) {
+            tables[i] = move(other.tables[i]);
+        }
+        departments = move(other.departments);
+        dailyOrders = move(other.dailyOrders);
+        name = move(other.name);
+        address = move(other.address);
+        dailyIncome = other.dailyIncome;
         other.dailyIncome = 0;
     }
     return *this;
@@ -97,26 +77,23 @@ Table& Restaurant::getTables() const
     return const_cast<Table&>(tables[0]);
 }
 
-Department** Restaurant::getDepartments() const 
-{
+const list<Department*>& Restaurant::getDepartments() const {
     return departments;
 }
 
-
-const std::string Restaurant::getName() const
-{
+const string& Restaurant::getName() const {
     return name;
 }
 
-
-const std::string Restaurant::getAddress() const
-{
+const string& Restaurant::getAddress() const {
     return address;
 }
 
 // Setters
-bool Restaurant::setName(const std::string& name)
+bool Restaurant::setName(const string& name)
 {
+	if (name.empty())
+		return false;
     this->name=name;
     return true;
 }
@@ -133,40 +110,38 @@ void Restaurant::presentMenu() const {
     Menu::getInstance()->print();  // Use the singleton instance to present the menu
 }
 
-bool Restaurant::updateIngredientQuantity(const std::string& name, int quantity, int kitchen)
+bool Restaurant::updateIngredientQuantity(const string& name, int quantity, int kitchen)
 {
-    if (departments && departments[kitchen]) {
-        return departments[kitchen]->updateIngredientQuantity(name, quantity);
+    auto it = departments.begin();
+    advance(it, kitchen);
+    if (it != departments.end() && *it) {
+        return (*it)->updateIngredientQuantity(name, quantity);
     }
     return false;
 }
 
 void Restaurant::presentTables() const
 {
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < MAX_TABLES && tables[i].getNumber() != 0; ++i) {
         tables[i].printTable();
     }
 }
 
-bool  Restaurant::addDrinkItemToMenu(const std::string& name, int volume, DrinkItem::eGlassType glass, int price, Ingredient** ingredients, int numOfIngredients, bool special)
+bool Restaurant::addDrinkItemToMenu(const string& name, int volume, DrinkItem::eGlassType glass, int price, list<Ingredient*> ingredients, bool special)
 {
-    MenuItem* newItem = new DrinkItem(name, volume, glass, price, ingredients, numOfIngredients);
-    if (Menu::getInstance()->addItemToMenu(newItem, special))
-        return true;
-    return false;
+    MenuItem* newItem = new DrinkItem(name, volume, glass, price, ingredients);
+    return Menu::getInstance()->addItemToMenu(newItem, special);
 }
 
-bool  Restaurant::addFoodItemToMenu(const std::string& itemName, const int numOfIngredients, Ingredient** list, int price, int department, bool special, bool kosher)
+bool  Restaurant::addFoodItemToMenu(const string& itemName, const list<Ingredient*>& list, int price, int department, bool special, bool kosher)
 {
-    MenuItem* newItem = new FoodItem(itemName, kosher, price, list, numOfIngredients, 0);
-    if(Menu::getInstance()->addItemToMenu(newItem, special))
-        return true;
-    return false;
+    MenuItem* newItem = new FoodItem(itemName, kosher, price, list, 0);
+    return Menu::getInstance()->addItemToMenu(newItem, special);
 }
 
 bool Restaurant::createNewOrderInTable(int tableNum)
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < MAX_TABLES && tables[i].getNumber() != 0; i++)
     {
 		if (tables[i].getNumber() == tableNum)
 		{
@@ -176,28 +151,24 @@ bool Restaurant::createNewOrderInTable(int tableNum)
     return false;
 }
 
-bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, std::string& comments)
+//add item to order
+bool Restaurant::addItemToOrder(int menuItemNum, int quantity, int tableNum, const string& comments)
 {
-	//add item to order
-	if (tableNum >= 0 && tableNum < 10) {
+	int tableIndex=getTableIndex(tableNum);
+	if (tableIndex!=-1) {
         MenuItem* item= Menu::getInstance()->getItemByIndex(menuItemNum);
         if (item != nullptr) {
-			int index = getTableIndex(tableNum);
-			if (index == -1)
-			{
-				cout << "Table with that number not found. \n" << endl;
-				return false;
-            }
-            else {
-                return tables[index].addItemToOrder(*item, quantity, comments);
-            }
+            return tables[tableIndex].addItemToOrder(*item, quantity, comments);        
         }
         else {
             cout << "Menu item not found.\n" << endl;
             return false;
         }
-	}
-    return true;
+    }
+    else {
+        cout << "Table with that number not found.\n";
+        return false;
+    }
 }
 
 bool Restaurant::closeBill(int tableNum)
@@ -213,15 +184,17 @@ bool Restaurant::closeBill(int tableNum)
     return total > 0;
 }
 
-bool Restaurant::addIngredientToWarehouse(const std::string& ingredientName, int section, int forKitchen) {
-    if (departments && departments[forKitchen]) {
-        return departments[forKitchen]->addIngredientToWarehouse(ingredientName, section);
+bool Restaurant::addIngredientToWarehouse(const string& ingredientName, int section, int forKitchen) {
+    auto it = departments.begin();
+    advance(it, forKitchen);
+    if (it != departments.end() && *it) {
+        return (*it)->addIngredientToWarehouse(ingredientName, section);
     }
     return false;
 }
 
 bool Restaurant::addTables(int numOfTable) {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < MAX_TABLES; i++)
     {
         if (tables[i].getNumber() == 0 )
         {
@@ -235,9 +208,10 @@ bool Restaurant::addTables(int numOfTable) {
     return false;
 }
 
-bool Restaurant::isEmptyOfTable()
+// Check if there are empty tables
+bool Restaurant::isEmptyOfTable() const
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < MAX_TABLES; i++)
     {
         if (tables[i].getNumber() != 0)
             return true;
@@ -252,16 +226,16 @@ void Restaurant::presentDailyIncome()
 
 void Restaurant::showKitchenWarehouse() 
 {
-    if (departments[1]) 
-    {
-        departments[1]->printWarehouse();
+    auto it = departments.begin();
+	advance(it, 1);
+    if (it != departments.end() && *it) {
+        (*it)->printWarehouse();
     }
 }
 
 void Restaurant::showBarWarehouse() {
-    if (departments[0])
-    {
-        departments[0]->printWarehouse();
+    if (!departments.empty() && departments.front()) {
+        departments.front()->printWarehouse();
     }
 }
 
@@ -270,13 +244,13 @@ void Restaurant::showMenuWarehouse() {
 }
 
 void Restaurant::showTablesWarehouse() {
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < MAX_TABLES && tables[i].getNumber() != 0; ++i) {
         tables[i].printTable();
     }
 }
 
 int Restaurant::getTableIndex(int tableNum) {
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < MAX_TABLES && tables[i].getNumber() != 0; ++i) {
 		if (tables[i].getNumber() == tableNum) {
 			return i;
 		}
@@ -286,8 +260,8 @@ int Restaurant::getTableIndex(int tableNum) {
 
 void Restaurant::print() const 
 {
-    std::cout << "Restaurant Name: " << name << std::endl;
-    std::cout << "Restaurant Address: " << address << std::endl;
+    cout << "Restaurant Name: " << name << std::endl;
+    cout << "Restaurant Address: " << address << std::endl;
     presentMenu();
     presentTables();
 }

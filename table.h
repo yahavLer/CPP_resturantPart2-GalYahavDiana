@@ -2,6 +2,8 @@
 #ifndef __TABLE_H
 #define __TABLE_H
 #include "order.h"
+#include <string>
+using namespace std;
 
 class Table
 {
@@ -13,6 +15,9 @@ public:
 	Table();
 	Table(int number);
 	Table(Table &&other) noexcept;
+	Table& operator=(Table&& other) noexcept;
+	Table& operator=(const Table& other) = delete;
+
 	~Table();
 
 	Order *getOrder() const;
@@ -20,7 +25,7 @@ public:
 
 	bool setNumber(int newNumber);
 	bool createNewOrder();
-	bool addItemToOrder(const MenuItem& menuItem, int quantity, std::string& comments);
+	bool addItemToOrder(const MenuItem& menuItem, int quantity, const string& comments);
 	int closeBill();
 
 	void printTable() const;

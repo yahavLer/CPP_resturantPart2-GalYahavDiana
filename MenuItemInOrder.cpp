@@ -1,15 +1,13 @@
 #include <iostream>
-using namespace std;
-
 #include "MenuItemInOrder.h"
 
 // Constructor without arguments
-MenuItemInOrder::MenuItemInOrder() :comment(""), menuItem(nullptr), quantity(0) {
-    comment[0] = '\0'; // Initialize comment as an empty string
+MenuItemInOrder::MenuItemInOrder() :menuItem(nullptr), quantity(0), comment("") {
+    //comment[0] = '\0'; // Initialize comment as an empty string
 }
 
 // Constructor with menuItem, quantity, and comment
-MenuItemInOrder::MenuItemInOrder(const MenuItem &menuItem, int quantity, const std::string& newComment)
+MenuItemInOrder::MenuItemInOrder(const MenuItem &menuItem, int quantity, const string& newComment)
     : menuItem(menuItem.clone()), quantity(quantity), comment(newComment){}
 
 // Constructor with menuItem and quantity only
@@ -21,33 +19,35 @@ MenuItemInOrder::~MenuItemInOrder() {
     delete menuItem;
 }
 
-
+// Operator +=
 MenuItemInOrder& MenuItemInOrder::operator+=(int num) {
-    this->quantity += num;
+    quantity += num;
     return *this;
 }
 
+// Operator -=
 MenuItemInOrder& MenuItemInOrder::operator-=(int num) {
-    this->quantity -= num;
-    if (this->quantity < 0) this->quantity = 0;
+    quantity -= num;
+	if (quantity < 0) quantity = 0; // Ensure quantity is not negative
     return *this;
 }
 
 // Operator +
-MenuItemInOrder MenuItemInOrder::operator+(int num) {
+MenuItemInOrder MenuItemInOrder::operator+(int num) const {
     MenuItemInOrder result(*this); // Copy the current object
     result.quantity += num; // Add the number to the quantity
     return result;
 }
 
 // Operator -
-MenuItemInOrder MenuItemInOrder::operator-(int num) {
+MenuItemInOrder MenuItemInOrder::operator-(int num) const {
     MenuItemInOrder result(*this); // Copy the current object
     result.quantity -= num; // Subtract the number from the quantity
     if (result.quantity < 0) result.quantity = 0; // Ensure quantity is not negative
     return result;
 }
 
+// Operator ++ (prefix)
 MenuItemInOrder& MenuItemInOrder::operator++() {
     ++quantity;
     return *this;
@@ -61,7 +61,7 @@ int MenuItemInOrder::getQuantity() const {
     return quantity;
 }
 
-const std::string MenuItemInOrder::getComment() const {
+const string& MenuItemInOrder::getComment() const {
     return comment;
 }
 
@@ -73,19 +73,15 @@ bool MenuItemInOrder::setQuantity(int quantity) {
     return false;
 }
 
-bool MenuItemInOrder::setComment(const std::string& newComment) {
-    if (comment == "") {
-        comment = newComment; // אם המחרוזת היא nullptr, נוודא שה-comment יהיה ריק
-        return true;
-    }
-    return false;
+bool MenuItemInOrder::setComment(const string& newComment) {
+    comment = newComment;
+	return true;
 }
 
 void MenuItemInOrder::print() const {
     if (menuItem != nullptr) {
-        menuItem->print();  // ����� ������ print �� �-MenuItem (����� �����)
-    }
-    else {
+        menuItem->print();  // שימוש בפונקציה print של MenuItem
+    } else {
         cout << "No menu item assigned." << endl;
     }
 

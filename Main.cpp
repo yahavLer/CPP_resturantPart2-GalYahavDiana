@@ -2,6 +2,8 @@
 #include <stdexcept> // for standard exceptions
 #include "restaurant.h"
 #include <limits>
+#include <string>
+#include "list"
 using namespace std;
 const int FOOD_DEPARTMENT = 1;
 const int DRINK_DEPARTMENT = 0;
@@ -19,38 +21,36 @@ int userIntValidation() {
 }
 
 void initRestaurant(Restaurant* restaurant) {
-   // allocate tabels
+    // הוספת מספר שולחנות למסעדה
     restaurant->addTables(5);
     restaurant->addTables(3);
 
-    // הוספת מרכיבים למחסן case 2
-    restaurant->addIngredientToWarehouse("Tomato", 4, 1); // Kitchen Warehouse
-    restaurant->addIngredientToWarehouse("Lemon", 4, 0);  // Bar Warehouse
-    restaurant->addIngredientToWarehouse("Chicken", 2, 1); // Kitchen Warehouse
-    restaurant->addIngredientToWarehouse("Mint", 0, 0);  // Bar Warehouse
+    // הוספת מרכיבים למחסן במקרה 2
+    restaurant->addIngredientToWarehouse("Tomato", 4, FOOD_DEPARTMENT); // Kitchen Warehouse
+    restaurant->addIngredientToWarehouse("Lemon", 4, DRINK_DEPARTMENT);  // Bar Warehouse
+    restaurant->addIngredientToWarehouse("Chicken", 2, FOOD_DEPARTMENT); // Kitchen Warehouse
+    restaurant->addIngredientToWarehouse("Mint", 0, DRINK_DEPARTMENT);  // Bar Warehouse
 
-    // הוספת פריטים לתפריט case 3
-	restaurant->updateIngredientQuantity("Tomato", 10, 1);
-	restaurant->updateIngredientQuantity("Lemon", 20, 0);
-	restaurant->updateIngredientQuantity("Chicken", 30, 1);
-	restaurant->updateIngredientQuantity("Mint", 40, 0);
+    // הוספת פריטים לתפריט במקרה 3
+    restaurant->updateIngredientQuantity("Tomato", 10, FOOD_DEPARTMENT);
+    restaurant->updateIngredientQuantity("Lemon", 20, DRINK_DEPARTMENT);
+    restaurant->updateIngredientQuantity("Chicken", 30, FOOD_DEPARTMENT);
+    restaurant->updateIngredientQuantity("Mint", 40, DRINK_DEPARTMENT);
 
-	// הוספת מנות לתפריט case 4
-    Department** temp = restaurant->getDepartments();
-    Warehouse& ware = temp[DRINK_DEPARTMENT]->getWarwhouse();
-	Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];
-    ingredientList[0] = new Ingredient("Lemon", Ingredient::eSection::DAIRY, 2);
-	restaurant->addDrinkItemToMenu("Lemonade", 100, DrinkItem::eGlassType::HIGHBOAL, 15, ingredientList, 1, false);
-    restaurant->addDrinkItemToMenu("Miranda", 50, DrinkItem::eGlassType::LOWBOAL, 25, ingredientList, 1, true);
+    // הוספת מנות לתפריט במקרה 4
+    list<Ingredient*> ingredientList;
+    ingredientList.push_back(new Ingredient("Lemon", Ingredient::eSection::DAIRY, 2));
+    restaurant->addDrinkItemToMenu("Lemonade", 100, DrinkItem::eGlassType::HIGHBOAL, 15, ingredientList, false);
+    restaurant->addDrinkItemToMenu("Miranda", 50, DrinkItem::eGlassType::LOWBOAL, 25, ingredientList, true);
 
-    Ingredient** ingredientList2 = new Ingredient * [MAX_NAME_LENGTH];
-	ingredientList2[0] = new Ingredient("Tomato", Ingredient::eSection::VEGETABLES, 2);
-	ingredientList2[1] = new Ingredient("Chicken", Ingredient::eSection::MEAT, 2);
-	restaurant->addFoodItemToMenu("Chicken Salad", 2, ingredientList2, 30, FOOD_DEPARTMENT, false, true);
-	restaurant->addFoodItemToMenu("Tomato Salad", 1, ingredientList2, 20, FOOD_DEPARTMENT, true, false);
+    list<Ingredient*> ingredientList2;
+    ingredientList2.push_back(new Ingredient("Tomato", Ingredient::eSection::VEGETABLES, 2));
+    ingredientList2.push_back(new Ingredient("Chicken", Ingredient::eSection::MEAT, 2));
+    restaurant->addFoodItemToMenu("Chicken Salad", ingredientList2, 30, FOOD_DEPARTMENT, false, true);
+    restaurant->addFoodItemToMenu("Tomato Salad", ingredientList2, 20, FOOD_DEPARTMENT, true, false);
 }
 
-void gatherDrinkInfo(std::string& mealName, int& price, int& volume, int& glassType, bool& special) {
+void gatherDrinkInfo(string& mealName, int& price, int& volume, int& glassType, bool& special) {
     bool validInput = false;
     while (!validInput) {
         try {
@@ -88,7 +88,7 @@ void gatherDrinkInfo(std::string& mealName, int& price, int& volume, int& glassT
     }
 }
 
-void gatherDrinkIngredients(Ingredient** ingredientList, int& numOfIngredients, Restaurant* restaurant) {
+void gatherDrinkIngredients(list<Ingredient*> ingredientList, Restaurant* restaurant) {
 	char ingredientName[MAX_NAME_LENGTH + 1];
 	int quantity;
 	char answer = 'n';
@@ -107,11 +107,10 @@ void gatherDrinkIngredients(Ingredient** ingredientList, int& numOfIngredients, 
                 if (quantity < 0) {
                     throw out_of_range("Quantity cannot be negative!");
                 }
-		        Department** temp = restaurant->getDepartments();
-		        Warehouse& ware = temp[DRINK_DEPARTMENT]->getWarwhouse();
+                list<Department*> temp = restaurant->getDepartments();
+                Warehouse& ware = temp.front()->getWarehouse();
 		        Ingredient* ingredientToCopy = ware.getIngredientByName(ingredientName);
-		        ingredientList[numOfIngredients] = new Ingredient(ingredientName, ingredientToCopy->getSection(), quantity);
-		        numOfIngredients++;
+		        ingredientList.push_back(new Ingredient(ingredientName, ingredientToCopy->getSection(), quantity));
                 validInput = true;
             } catch (const exception& e) {
                 cout << "Error: " << e.what() << endl;
@@ -123,7 +122,7 @@ void gatherDrinkIngredients(Ingredient** ingredientList, int& numOfIngredients, 
 	} while (answer == 'y');
 }
 
-void gatherFoodInfo(std::string& mealName, int& price, bool& special, bool& kosher) {
+void gatherFoodInfo(string& mealName, int& price, bool& special, bool& kosher) {
     bool validInput = false;
     while (!validInput) {
         try {
@@ -154,7 +153,7 @@ void gatherFoodInfo(std::string& mealName, int& price, bool& special, bool& kosh
     }
 }
 
-void gatherFoodIngredients(Ingredient** ingredientList, int& numOfIngredients, Restaurant* restaurant) {
+void gatherFoodIngredients(list<Ingredient*> ingredientList, Restaurant* restaurant) {
     char ingredientName[MAX_NAME_LENGTH + 1];
     int quantity;
     char answer = 'n';
@@ -173,11 +172,10 @@ void gatherFoodIngredients(Ingredient** ingredientList, int& numOfIngredients, R
                 if (quantity < 0) {
                     throw out_of_range("Quantity cannot be negative!");
                 }
-                Department** temp = restaurant->getDepartments();
-                Warehouse& ware = temp[FOOD_DEPARTMENT]->getWarwhouse();
+                list<Department*> temp = restaurant->getDepartments();
+                Warehouse& ware = temp.back()->getWarehouse(); 
                 Ingredient* ingredientToCopy = ware.getIngredientByName(ingredientName);
-                ingredientList[numOfIngredients] = new Ingredient(ingredientName, ingredientToCopy->getSection(), quantity);
-                numOfIngredients++;
+                ingredientList.push_back( new Ingredient(ingredientName, ingredientToCopy->getSection(), quantity));
                 validInput = true;
             }
             catch (const exception& e) {
@@ -217,8 +215,8 @@ int main() {
         Restaurant* restaurant = nullptr;
 
         // open new resturant insert name and address
-        std::string name;
-        std::string address;
+        string name;
+        string address;
 
         cout << "Enter the name of the restaurant (20 characters max): ";
         cin >> name;
@@ -318,34 +316,34 @@ int main() {
                     }
 		            case 4: // Add drink to menu
                     {
-                        std::string drinkName;
+                        string drinkName;
                         int price, volume, glassType, numOfIngredients = 0;
                         bool special;
-                        Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];
+                        list<Ingredient*> ingredientList;
 
                         gatherDrinkInfo(drinkName, price, volume, glassType, special);
-                        gatherDrinkIngredients(ingredientList, numOfIngredients, restaurant);
+                        gatherDrinkIngredients(ingredientList, restaurant);
 
-                        restaurant->addDrinkItemToMenu(drinkName, volume, static_cast<DrinkItem::eGlassType>(glassType), price, ingredientList, numOfIngredients, special);
+                        restaurant->addDrinkItemToMenu(drinkName, volume, static_cast<DrinkItem::eGlassType>(glassType), price, ingredientList, special);
                         break;
                     }
 		            case 5: // Add meal food to menu
                     {
-                        std::string foodName;
+                        string foodName;
                         int price, numOfIngredients = 0;
                         bool special, kosher;
-                        Ingredient** ingredientList = new Ingredient * [MAX_NAME_LENGTH];
+                        list<Ingredient*> ingredientList;
 
                         gatherFoodInfo(foodName, price, special, kosher);
-                        gatherFoodIngredients(ingredientList, numOfIngredients, restaurant);
+                        gatherFoodIngredients(ingredientList, restaurant);
 
-                        restaurant->addFoodItemToMenu(foodName, numOfIngredients, ingredientList, price, FOOD_DEPARTMENT, special, kosher);
+                        restaurant->addFoodItemToMenu(foodName, ingredientList, price, FOOD_DEPARTMENT, special, kosher);
                         break;
                     }
 		            case 6: // Open new order
                     {
                         int tableNum, menuItemNum, quantity, addMore = 1, addComment=0;
-			            std::string comments ;
+			            string comments ;
                         bool validInput = false;
                         while (!validInput) {
                             try {
@@ -394,7 +392,7 @@ int main() {
 		            case 7: // Add menu items to order
                     {
                         int tableNum, quantity, menuItemNum, addMore = 1, addComment = 0;;
-                        std::string comments = nullptr;
+                        string comments;
                         bool validInput = false;
                         while (!validInput) {
                             try {

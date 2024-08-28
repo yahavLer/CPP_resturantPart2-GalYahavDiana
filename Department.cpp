@@ -15,7 +15,7 @@ Department::Department(Department&& other) noexcept
     other.numOfWorkers = 0;
 }
 
-Warehouse& Department::getWarwhouse()
+Warehouse& Department::getWarehouse()
 { 
     return wareHouse; 
 }
@@ -38,11 +38,8 @@ Department& Department::operator=(const Department& other)
 {
     if (this != &other)
     {
-       
-        Department::operator=(other); // Assuming Warehouse has an appropriate assignment operator
-      
+        Department::operator=(other); // Assuming Warehouse has an appropriate assignment operator 
     }
-
     return *this;
 }
 

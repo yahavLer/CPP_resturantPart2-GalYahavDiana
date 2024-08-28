@@ -1,7 +1,6 @@
 #pragma warning (disable: 4996)
 
 #include <iostream>
-using namespace std;
 #include "menu.h"
 #include "drinkItem.h"
 #include "foodItem.h"
@@ -9,7 +8,7 @@ using namespace std;
 // Initialize static instance pointer to nullptr
 Menu* Menu::instance = nullptr;
 
-Menu::Menu() : menuItems(nullptr), specials(nullptr), menuItemCount(0), specialsCount(0) {}
+Menu::Menu() : menuItems(), specials() {}
 
 /*Menu::Menu(Menu&& other) noexcept : menuItems(other.menuItems), specials(other.specials),
                                     menuItemCount(other.menuItemCount), specialsCount(other.specialsCount) {
@@ -50,12 +49,12 @@ Menu* Menu::getInstance() {
     return *this;
 }*/
 
-MenuItem** Menu::getMenuItems() const {
-    return menuItems;
+list<MenuItem*>& Menu::getMenuItems() const {
+    return const_cast<list<MenuItem*>&>(menuItems);
 }
 
-MenuItem** Menu::getSpecials() const {
-    return specials;
+list<MenuItem*>& Menu::getSpecials() const {
+    return const_cast<list<MenuItem*>&>(specials);
 }
 
 
@@ -63,19 +62,23 @@ bool Menu::addItemToMenu(MenuItem* menuItem, bool special) {
     // Clone the item to be added
     //MenuItem* newItem = menuItem.clone();
 
-    if (special) {                                     
+    if (special) {    
+        specials.push_back(menuItem);
         // Expand the specials array
-        MenuItem** newSpecials = new MenuItem * [specialsCount + 1];
-        for (int i = 0; i < specialsCount; ++i) {
-            newSpecials[i] = specials[i];
-        }
-        newSpecials[specialsCount] = menuItem;  // Add new item to the end
-        delete[] specials;
-        specials = newSpecials;
-        specialsCount++;
+         
+        //MenuItem** newSpecials = new MenuItem * [specialsCount + 1];
+        //for (int i = 0; i < specialsCount; ++i) {
+        //    newSpecials[i] = specials[i];
+        //}
+        //newSpecials[specialsCount] = menuItem;  // Add new item to the end
+        //delete[] specials;
+        //specials = newSpecials;
+        //specialsCount++;
     }
     else {
+        menuItems.push_back(menuItem);
         // Expand the menuItems array
+        /*
         MenuItem** newMenuItems = new MenuItem * [menuItemCount + 1];
         for (int i = 0; i < menuItemCount; ++i) {
             newMenuItems[i] = menuItems[i];
@@ -83,7 +86,7 @@ bool Menu::addItemToMenu(MenuItem* menuItem, bool special) {
         newMenuItems[menuItemCount] = menuItem;  // Add new item to the end
         delete[] menuItems;
         menuItems = newMenuItems;
-        menuItemCount++;
+        menuItemCount++;*/
     }
 
     return true;
@@ -96,47 +99,48 @@ bool Menu::addItemToMenu(MenuItem* menuItem, bool special) {
 }*/
 
 MenuItem* Menu::getItemByIndex(int index) const {
-	if (index < menuItemCount) {
-		return menuItems[index];
+	if (index < menuItems.size()) {
+        list<MenuItem*>::const_iterator it = menuItems.begin();
+        advance(it, index);
+        return *it;
 	}
-	else if (index < menuItemCount + specialsCount) {
-		return specials[index - menuItemCount];
+	else if (index < menuItems.size() + specials.size()) {
+        list<MenuItem*>::const_iterator it = specials.begin();
+        advance(it, index - menuItems.size());
+		return *it;
 	}
 	return nullptr;
 }
 
 void Menu::print() const {
-    cout << "Menu Items:\n" << endl;
+    cout << "Menu Items:\n" << "--------------------------------------------------------------------------"<<endl;
     int i = 0;
-    for (; i < menuItemCount; ++i) {
+    for (MenuItem* menuItem: menuItems) {
         cout<<i <<endl;
-        menuItems[i]->print();
+        menuItem->print();
 		cout << endl;
+        ++i;
     }
 
     cout << "Specials:" << endl;
-    for (int j = 0;j < specialsCount; ++j, ++i) {
+    for (MenuItem* menuItem : specials) {
         cout << i << endl;
-        specials[j]->print();
+        menuItem->print();
         cout << endl;
+        ++i;
     }
+    cout << "--------------------------------------------------------------------------" << endl;
+
 }
 
 void Menu::clear() {
-    if (menuItems) {
-        for (int i = 0; i < menuItemCount; ++i) {
-            delete menuItems[i];
-        }
-        delete[] menuItems;
-        menuItems = nullptr;
+    for (MenuItem* item : menuItems) {
+        delete item;
     }
-    if (specials) {
-        for (int i = 0; i < specialsCount; ++i) {
-            delete specials[i];
-        }
-        delete[] specials;
-        specials = nullptr;
+    menuItems.clear(); 
+
+    for (MenuItem* item : specials) {
+        delete item;
     }
-    menuItemCount = 0;
-    specialsCount = 0;
+    specials.clear(); 
 }

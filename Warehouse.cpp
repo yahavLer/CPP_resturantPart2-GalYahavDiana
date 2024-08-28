@@ -1,24 +1,13 @@
 #include "Warehouse.h"
-#include "Ingredient.h"
 #include "menuItemInOrder.h"
-#include "linkedList.h"
-#include <string>
 #include <iostream>
-
-
 using namespace std;
 
-Warehouse::Warehouse() : ingredientQuantityList(nullptr), numIngredients(0)
-{
-}
+Warehouse::Warehouse() {}
 
 // Move constructor
 Warehouse::Warehouse(Warehouse&& other) noexcept
-    : ingredientList(std::move(other.ingredientList)), ingredientQuantityList(other.ingredientQuantityList), numIngredients(other.numIngredients)
-{
-    other.ingredientQuantityList = nullptr;
-    other.numIngredients = 0;
-}
+    : ingredientList(move(other.ingredientList)), ingredientQuantityList(move(other.ingredientQuantityList)){}
 
 // Destructor
 Warehouse::~Warehouse() {
@@ -31,12 +20,14 @@ Warehouse& Warehouse::operator=(Warehouse&& other) noexcept
     if (this != &other) {
         clear();  
 
-        ingredientList = std::move(other.ingredientList);
-        ingredientQuantityList = other.ingredientQuantityList;
+        ingredientList = move(other.ingredientList);
+        ingredientQuantityList = move(other.ingredientQuantityList);
+
+        /*ingredientQuantityList = other.ingredientQuantityList;
         numIngredients = other.numIngredients;
 
         other.ingredientQuantityList = nullptr;
-        other.numIngredients = 0;
+        other.numIngredients = 0;*/
     }
     return *this;
 }
@@ -47,7 +38,7 @@ LinkedList<Ingredient>& Warehouse::getIngredientList()
     return ingredientList;
 }
 
-int* Warehouse::getIngredientQuantityList() const 
+const list<int>& Warehouse::getIngredientQuantityList() const
 {
     return ingredientQuantityList;
 }
@@ -55,76 +46,51 @@ int* Warehouse::getIngredientQuantityList() const
 // Update ingredient quantity
 bool Warehouse::updateIngredientQuantity(const Ingredient* ingredient, int quantity) 
 {
-    int index = 0;
-
     //LinkedList<Ingredient>::Node* currentIngredient = ingredientList.getHead();
-    LinkedList<Ingredient>::Iterator temp = ingredientList.getHead();
-    while (temp != nullptr)
+    auto itQuantity = ingredientQuantityList.begin();
+    LinkedList<Ingredient>::Iterator itIngredient = ingredientList.getHead();
+    while (itIngredient != nullptr && itQuantity != ingredientQuantityList.end())
     {
-       
-
-
-        if ((*temp).getName() == ingredient->getName())
+        if ((*itIngredient).getName() == ingredient->getName())
         {
-            ingredientQuantityList[index] += quantity;
+            *itQuantity += quantity;
             return true;
         }
-
-        ++temp;  // Move to the next node in the ingredient list
-        index++;
+        ++itIngredient;  // Move to the next node in the ingredient list
+        ++itQuantity;
     }
     /*for (int i = 0; i < numIngredients; ++i) {
         if (compareStrings(ingredientList[i]->getName(), ingredient->getName())) {
             ingredientQuantityList[i] = quantity;
             return true;
         }
-    }
-    return false;*/
+    }*/
     return false;
 }
 
 // Add ingredient to warehouse
-bool Warehouse::addIngredientToWarehouse(const std::string& ingredientName, int section)
+bool Warehouse::addIngredientToWarehouse(const string& ingredientName, int section)
 {
-    // Create new lists with one additional slot
-    //Ingredient** newIngredientList = new Ingredient*[numIngredients + 1];
-    int* newIngredientQuantityList = new int[numIngredients + 1];
-
-    // Copy existing data to new lists
-    for (int i = 0; i < numIngredients; ++i) {
-        //newIngredientList[i] = ingredientList[i];
-        newIngredientQuantityList[i] = ingredientQuantityList[i];
-    }
-
-    // Add the new ingredient
-    Ingredient ingToAdd =  Ingredient(ingredientName, static_cast<Ingredient::eSection>(section), 0);
+    Ingredient ingToAdd = Ingredient(ingredientName, static_cast<Ingredient::eSection>(section), 0);
     ingredientList.addToEnd(ingToAdd);
-    //newIngredientList[numIngredients] = new Ingredient(ingredientName, static_cast<Ingredient::eSection>(section), 0);
-    newIngredientQuantityList[numIngredients] = 0;
+    ingredientQuantityList.push_back(0);
 
-    // Clean up old list
-    delete[] ingredientQuantityList;
-
-    // Assign new lists to class members
-    //ingredientList = newIngredientList;
-    ingredientQuantityList = newIngredientQuantityList;
-    numIngredients++;
     print();
-
     return true;
 }
 
 void Warehouse::print() const 
 {
+    auto itQuantity = ingredientQuantityList.begin();
     LinkedList<Ingredient>::Iterator currentIngredient = ingredientList.getHead();
     if (currentIngredient != nullptr)
     {
-        int index = 0;
-        while (currentIngredient != nullptr)
+        while (currentIngredient != nullptr && itQuantity != ingredientQuantityList.end())
         {
             (*currentIngredient).print();
-            cout << "Current Quantity: " << ingredientQuantityList[index] << endl;
+            cout << "Current Quantity: " << *itQuantity << endl;
             ++currentIngredient;
+			++itQuantity;
         }
     }
     else {
@@ -149,19 +115,23 @@ void Warehouse::print() const
 
 
 // Internal function for memory cleaning
+//void Warehouse::clear() {
+//    if (numIngredients) {
+//        //ingredientList.clear();
+//        delete[] ingredientQuantityList;
+//    }
+//    ingredientQuantityList = nullptr;
+//    numIngredients = 0;
+//    /*
+//    * GPT
+//    * ingredientList.clear();  // Assuming you have implemented a clear() function in CustomLinkedList
+//    ingredientQuantityList.clear();
+//    numIngredients = 0;
+//    */
+//}
 void Warehouse::clear() {
-    if (numIngredients) {
-        //ingredientList.clear();
-        delete[] ingredientQuantityList;
-    }
-    ingredientQuantityList = nullptr;
-    numIngredients = 0;
-    /*
-    * GPT
-    * ingredientList.clear();  // Assuming you have implemented a clear() function in CustomLinkedList
+    ingredientList.clear(); //ask diana
     ingredientQuantityList.clear();
-    numIngredients = 0;
-    */
 }
 
 // fumction for comparing strings 
@@ -178,13 +148,11 @@ void Warehouse::clear() {
 // function for finding ingridient by name 
 Ingredient* Warehouse::getIngredientByName(const std::string& ingredientName) const
 {
-
     LinkedList<Ingredient>::Iterator currentIngredient = ingredientList.getHead();
 
     while (currentIngredient != nullptr) {
         if ((*currentIngredient).getName() == ingredientName)
         {
-    
             return &(*currentIngredient);  // return the address of the ingredient
         }
         ++currentIngredient;

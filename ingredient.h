@@ -9,10 +9,10 @@ public:
 	enum eSection { HERBS, DAIRY, MEAT, FISH, VEGETABLES };
 	
 	Ingredient();
-	Ingredient(const std::string& name, eSection section, int quantity);
+	Ingredient(const string& name, eSection section, int quantity);
 
 
-	inline std::string getName() const { return name; }
+	inline string getName() const { return name; }
 	inline int getQuantity() const { return quantityIng;  }
     inline eSection getSection() const { return section; }
 
@@ -22,7 +22,7 @@ public:
 	void print();
 
 private:
-	std::string name;
+	string name;
 	eSection section;
 	int quantityIng;
 };

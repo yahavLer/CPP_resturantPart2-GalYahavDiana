@@ -24,7 +24,7 @@ public:
     void addToEnd(const T& value);          // Adds a new element to the end of the list
     void deleteElement(const T& value);     // Removes the first occurrence of a given element
     void print() const;
-    //void clear() const;              // Delete all the elemants fron the list
+    void clear();              // Delete all the elemants fron the list
  
 
     Node* getHead() const { return head; }
@@ -129,21 +129,17 @@ void LinkedList<T>::print() const
     }
 }
 
-/*template <typename T>
-void LinkedList<T>::clear() const
-{
+template <typename T>
+void LinkedList<T>::clear() {
     Node* current = head;
-
-    while (current)
-    {
+    while (current) {
         Node* temp = current;
-        const Ingredient& toDelete = temp->data;
-        deleteElement(toDelete);
         current = current->next;
+        delete temp;
     }
     head = nullptr;
     tail = nullptr;
-}*/
+}
 
 template <typename T>
 

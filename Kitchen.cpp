@@ -1,51 +1,46 @@
 #include <iostream>
-using namespace std;
+
 
 #include "Kitchen.h"
 
-Kitchen::Kitchen() : foodItemList(nullptr)
+Kitchen::Kitchen() : foodItemList()
 {
 }
 
-Kitchen::Kitchen(Kitchen &&other) noexcept : Department(std::move(other)), foodItemList(other.foodItemList)
+Kitchen::Kitchen(Kitchen &&other) noexcept : Department(move(other)), foodItemList(move(other.foodItemList))
 {
-    other.foodItemList = nullptr;
 }
 
 Kitchen::~Kitchen()
 {
-    delete[] foodItemList;
+    foodItemList.clear();
 }
 
 Kitchen &Kitchen::operator=(const Kitchen &other)
 {
     if (this != &other)
     {
-        delete[] foodItemList;
-        Department::operator=(other); // Assuming Warehouse has an appropriate assignment operator
+        Department::operator=(move(other)); 
         foodItemList = other.foodItemList;
     }
-
     return *this;
 }
 
 Kitchen &Kitchen::operator=(Kitchen &&other) noexcept 
 {
     if (this != &other) {
-        Department::operator=(std::move(other));  // Move assignment of base class
-        delete[] foodItemList;
-        foodItemList = other.foodItemList;
-        other.foodItemList = nullptr;
+        Department::operator=(move(other));  // Move assignment of base class
+        foodItemList = move(other.foodItemList);
     }
     return *this;
 }
 
-inline FoodItem **Kitchen::getFoodItemList() const
+list<FoodItem*>& Kitchen::getFoodItemList()
 {
     return foodItemList;
 }
 
-bool Kitchen::updateIngredientQuantity(std::string& name, int quantity)
+bool Kitchen::updateIngredientQuantity(string& name, int quantity)
 {
     Ingredient* ingredient = wareHouse.getIngredientByName(name);
     if (ingredient) {
@@ -54,19 +49,19 @@ bool Kitchen::updateIngredientQuantity(std::string& name, int quantity)
     return false;
 }
 
-bool Kitchen::addIngredientToWarehouse(std::string& ingredientName, int section)
+bool Kitchen::addIngredientToWarehouse(string& ingredientName, int section)
 {
-        return wareHouse.addIngredientToWarehouse(ingredientName, section);
+    return wareHouse.addIngredientToWarehouse(ingredientName, section);
 }
 
 void Kitchen::print() {
     cout << "Kitchen Department:" << endl;
     cout << "Number of Workers: " << getNumOfWorkers() << endl;
 
-    if (foodItemList) {
+    if (!foodItemList.empty()) {
         cout << "Food Items in the Kitchen:" << endl;
-        for (int i = 0; foodItemList[i] != nullptr; ++i) {
-            foodItemList[i]->print();
+        for (FoodItem* food : foodItemList) {
+            food->print();
         }
     }
     else {
@@ -74,5 +69,5 @@ void Kitchen::print() {
     }
 
     cout << "Warehouse status:" << endl;
-    wareHouse.print();  // הנחה ש-wareHouse כולל פונקציה להדפסת המצב שלו
+    wareHouse.print();
 }
